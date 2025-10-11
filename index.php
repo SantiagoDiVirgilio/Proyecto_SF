@@ -51,7 +51,7 @@
 	
 			<article>
 				<h3>¿Que es S.G.S.F?</h3>
-					<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (O por sus siglas S.G.S.F) es un sistema de gestion de reservas de canchas y salones del clbu de Sociedad De Fomento.
+					<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (O por sus siglas S.G.S.F) es un sistema de gestion de reservas de canchas y salones del club de Sociedad De Fomento.
 					</p>
 			</article>
 	
