@@ -47,10 +47,13 @@
 				<h3>Sobre Nosotros:</h3>
 					<p>Somos un equipo de trabajo dedicado y unido, estudiantes de la TUP en la Universidad Tecnológica Nacional, regional de Haedo,
 					<br>cuyos participantes somos:
-					<br><i>Mateo Álvarez San Juan</i>
-					<br><i>Martín Castaño</i>
-					<br><i>Agustín Dotto</i>
-					<br><i>Santiago Di Virgilio</i>
+					<br>
+					<ul>
+						<li><i>Mateo Álvarez San Juan</i></li>
+						<li><i>Martín Castaño</i></li>
+						<li><i>Agustín Dotto</i></li>
+						<li><i>Santiago Di Virgilio</i></li>
+					</ul>
 					</p>
 			</article>
 	
