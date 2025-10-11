@@ -16,28 +16,28 @@
 <body>
 	<header>
 		<div class="mobile-header-bar">
-			<a href="index.html"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
+			<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
 			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 		</div>
 				<nav id="myTopnav">
 					<ul>
-						<li><a href="index.html">Inicio</a></li>
+						<li><a href="index.php">Inicio</a></li>
 						<li class="dropdown">
 							<a>Alquileres</a>
 							<div class="dropdown-content">
-								<a href="pagina1.html">Alquiler 1</a>
-								<a href="pagina2.html">Alquiler 2</a>
-								<a href="pagina2.html">Alquiler 3</a>
+								<a href="alquiler_furbol.php">Alquiler 1</a>
+								<a href="alquiler_basquet.php">Alquiler 2</a>
+								<a href="alquiler_salon.php">Alquiler 3</a>
 							</div>
 						</li>
 						<li class="dropdown">
 							<a>Inscripciones</a>
 							<div class="dropdown-content">
-								<a href="pagina1.html">Inscripcion 1</a>
-								<a href="pagina2.html">Inscripcion 2</a>
+								<a href="pagina1.php">Inscripcion 1</a>
+								<a href="pagina2.php">Inscripcion 2</a>
 							</div>
 						</li>
-						<li><a href="contacto.html">Contacto</a></li>
+						<li><a href="contacto.php">Contacto</a></li>
 					</ul>
 				</nav>	</header>
 
@@ -65,21 +65,21 @@
 
 	<footer>
 		<div>
-			<a href="index.html"><strong>Inicio</strong></a>
+			<a href="index.php"><strong>Inicio</strong></a>
 		</div>
 		<div>
 			<h7><strong>Alquileres</strong></h7>
-			<br><a href="pagina1.html">Alquiler 1</a>
-			<br><a href="pagina2.html">Alquiler 2</a>
-			<br><a href="pagina3.html">Alquiler 3</a>
+			<br><a href="pagina1.php">Alquiler 1</a>
+			<br><a href="pagina2.php">Alquiler 2</a>
+			<br><a href="pagina3.php">Alquiler 3</a>
 		</div>
 		<div>
 			<h7><strong>Inscripciones</strong></h7>
-			<br><a href="temporada1.html">Inscripcion 1</a>
-			<br><a href="temporada2.html">Inscripcion 2</a>
+			<br><a href="temporada1.php">Inscripcion 1</a>
+			<br><a href="temporada2.php">Inscripcion 2</a>
 		</div>
 		<div>
-			<a href="contacto.html"><strong>Contacto</strong></a>
+			<a href="contacto.php"><strong>Contacto</strong></a>
 		</div>
 		<div class="redes-sociales">
 			<a href="https://es-la.facebook.com/" target="_blank"><img src="imagenes/icono_facebook.webp" alt="Facebook" class="redes"></a>
