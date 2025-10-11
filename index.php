@@ -45,13 +45,19 @@
 		<div class="columna-texto">
 			<article >
 				<h3>Sobre Nosotros:</h3>
-					<p>Somos un equipo de trabajo dedicado y unido, estudiantes de la TUP en la UTN regional de Haedo
+					<p>Somos un equipo de trabajo dedicado y unido, estudiantes de la TUP en la Universidad Tecnológica Nacional, regional de Haedo,
+					<br>cuyos participantes somos:
+					<br><i>Mateo Álvarez San Juan</i>
+					<br><i>Martín Castaño</i>
+					<br><i>Agustín Dotto</i>
+					<br><i>Santiago Di Virgilio</i>
 					</p>
 			</article>
 	
 			<article>
 				<h3>¿Que es S.G.S.F?</h3>
-					<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (O por sus siglas S.G.S.F) es un sistema de gestion de reservas de canchas y salones del club de Sociedad De Fomento.
+					<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (O por sus siglas S.G.S.F) es un sistema web de gestion de reservas de canchas y salones 
+					<br>del club Sociedad De Fomento. Fue diseñado con los lenguajes HTML5, PHP, JavaScript y MySQL.
 					</p>
 			</article>
 	
