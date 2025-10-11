@@ -27,10 +27,10 @@ header{
     position: relative; /* Añadido para el posicionamiento del menú */
     align-items: center; /* Alinea verticalmente el logo y la navegación */
 }
-ul li{
-  margin-left: 6%;
+#sobre_nosotros li{
   font-family: 'Ubuntu';
   font-size: 1.3rem;
+  color: #000000;
 }
 .icon{ 
   display: none; 
@@ -93,6 +93,16 @@ width: 15%;
 .dropdown a {
   display: block;
   color: #000000;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+  color: #cf9548;
+}
+.dropdown-content li:hover {
+background-color: #cf9548;
+}
+.dropdown-content li a:hover {
+background-color: #cf9548;;
 }
 div nav{
 	color: #ffffff;
@@ -249,6 +259,14 @@ article p{
   color: #000000;
 }
 
+article ul li {
+  font-size: 1.3rem;
+  font-family: 'Ubuntu';
+  margin-left: 8%;
+  margin-top: 1%;
+  color: #000000;
+}
+
 footer{
 	background-color: #62b0b3;
 	text-align: center;
@@ -263,11 +281,11 @@ footer div ul li{
   margin-right: 65%;
   display: block;
   margin-top: 1%;
+  font-size: 0.6rem;
 }
 footer div a{
   font-family: 'Ubuntu';
   color: #000000;
-  font-size: 1rem;
   display: inline-block;
   margin: 0 15px;
 }
@@ -276,16 +294,4 @@ footer div a:hover{
 }
 footer div h7:hover{
   color: rgb(255, 255, 255);
-}
-footer div h7{
-  font-family: 'Ubuntu';
-  margin-top: 7%;
-  margin-left: 8%;
-  color: #000000;
-  font-size: 1rem;
-}
-
-footer div + a::before {
-  content: "";
-  display: block;
 }

@@ -74,7 +74,8 @@
 
 	<footer>
 		<div>
-		<ul>
+		<ul id="sobre_nosotros">
+			<li><strong>Integrantes del Grupo:</strong></li>
 			<li><i>Mateo Álvarez San Juan</i></li>
 			<li><i>Martín Castaño</i></li>
 			<li><i>Agustín Dotto</i></li>
