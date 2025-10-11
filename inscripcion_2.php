@@ -33,8 +33,8 @@
 						<li class="dropdown">
 							<a>Inscripciones</a>
 							<div class="dropdown-content">
-								<a href="inscripcion_1.php">Inscripcion 1</a>
-								<a href="inscripcion_2.php">Inscripcion 2</a>
+								<a href="pagina1.php">Inscripcion 1</a>
+								<a href="pagina2.php">Inscripcion 2</a>
 							</div>
 						</li>
 						<li><a href="contacto.php">Contacto</a></li>
