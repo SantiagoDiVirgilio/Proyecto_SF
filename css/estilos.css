@@ -27,7 +27,11 @@ header{
     position: relative; /* Añadido para el posicionamiento del menú */
     align-items: center; /* Alinea verticalmente el logo y la navegación */
 }
-
+ul li{
+  margin-left: 6%;
+  font-family: 'Ubuntu';
+  font-size: 1.3rem;
+}
 .icon{ 
   display: none; 
 }
@@ -89,16 +93,6 @@ width: 15%;
 .dropdown a {
   display: block;
   color: #000000;
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-  color: #cf9548;
-}
-.dropdown-content li:hover {
-background-color: #cf9548;
-}
-.dropdown-content li a:hover {
-background-color: #cf9548;;
 }
 div nav{
 	color: #ffffff;
@@ -264,11 +258,11 @@ footer .redes-sociales {
   padding: 1rem 2rem;
   text-align: right;
 }
-footer div{
+footer div ul li{
   text-align: center;
-  margin-left: 5%;
-  display: inline-grid;
-  margin-top: 2%;
+  margin-right: 65%;
+  display: block;
+  margin-top: 1%;
 }
 footer div a{
   font-family: 'Ubuntu';

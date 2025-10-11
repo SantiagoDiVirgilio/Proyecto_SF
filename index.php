@@ -74,22 +74,14 @@
 
 	<footer>
 		<div>
-			<a href="index.php"><strong>Inicio</strong></a>
+		<ul>
+			<li><i>Mateo Álvarez San Juan</i></li>
+			<li><i>Martín Castaño</i></li>
+			<li><i>Agustín Dotto</i></li>
+			<li><i>Santiago Di Virgilio</i></li>
+		</ul>
 		</div>
 		<div>
-			<h7><strong>Alquileres</strong></h7>
-			<br><a href="pagina1.php">Alquiler 1</a>
-			<br><a href="pagina2.php">Alquiler 2</a>
-			<br><a href="pagina3.php">Alquiler 3</a>
-		</div>
-		<div>
-			<h7><strong>Inscripciones</strong></h7>
-			<br><a href="temporada1.php">Inscripcion 1</a>
-			<br><a href="temporada2.php">Inscripcion 2</a>
-		</div>
-		<div>
-			<a href="contacto.php"><strong>Contacto</strong></a>
-		</div>
 		<div class="redes-sociales">
 			<a href="https://es-la.facebook.com/" target="_blank"><img src="imagenes/icono_facebook.webp" alt="Facebook" class="redes"></a>
 			<a href="https://www.instagram.com/" target="_blank"><img src="imagenes/icono_instagram.webp" alt="Instagram" class="redes"> </a>
