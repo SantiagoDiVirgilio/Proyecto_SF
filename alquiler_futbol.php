@@ -25,7 +25,7 @@
 						<li class="dropdown">
 							<a>Alquileres</a>
 							<div class="dropdown-content">
-								<a href="alquiler_furbol.php">Alquiler 1</a>
+								<a href="alquiler_futbol.php">Alquiler 1</a>
 								<a href="alquiler_basquet.php">Alquiler 2</a>
 								<a href="alquiler_salon.php">Alquiler 3</a>
 							</div>
