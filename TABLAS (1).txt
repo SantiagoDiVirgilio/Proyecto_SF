@@ -1,0 +1,92 @@
+Tablas
+
+Usuarios: 
+Campo       Tipo         Descripción                                    
+-------------------------------------------------------------------------------------------- 
+id_usuario  INT (PK)      -Identificador único del usuario                
+nombre     -VARCHAR(50)   -Nombre del usuario                             
+apellido   -VARCHAR(50)   -Apellido del usuario                           
+dni        -VARCHAR(15)   -Documento (único)                              
+email      -VARCHAR(100)  -Correo electrónico                             
+contraseña -VARCHAR(255)  -Contraseña cifrada                             
+telefono   -VARCHAR(20)   -Número de contacto                             
+fecha_alta -DATE          -Fecha de registro                              
+rol        - VARCHAR(20)  -Ej: "socio", "admin" para asi diferenciar los accesos a la pagina
+
+
+
+=============================================================================================================
+
+Deportes: 
+
+Campo        Tipo          Descripción                    
+------------------------------------------------------------------
+id_deporte   INT (PK)      Identificador del deporte      
+nombre       VARCHAR(50)   Ej: Fútbol, Básquet, Tenis     
+descripcion  VARCHAR(255)  Breve descripción              
+cupo_maximo  INT           Límite de inscriptos (puede o no haber)
+
+
+=============================================================================================================
+
+Inscripciones: 
+
+Campo              Tipo                 Descripción                          
+---------------------------------------------------------------------------- 
+id_inscripcion     INT (PK)             Identificador de la inscripción      
+id_usuario         INT (FK -> USUARIOS)  Usuario inscripto                    
+id_deporte         INT (FK -> DEPORTES)  Deporte elegido                      
+fecha_inscripcion  DATE                 Fecha de inscripción                 
+becado             BOOLEAN              Indica si el usuario tiene beca o no 
+
+
+=============================================================================================================
+
+
+Canchas:
+
+ Campo        Tipo           Descripción                                 
+ ----------------------------------------------------------------------- 
+ id_cancha    INT (PK)       Identificador de la cancha/salón            
+ tipo         VARCHAR(30)    Ej: "Fútbol", "Básquet", "Salón de eventos" 
+ nombre       VARCHAR(50)    Ej: "Cancha 1", "Salón Principal"           
+ descripcion  VARCHAR(255)   Detalles opcionales                         
+ precio_hora  DECIMAL(10,2)  Precio por hora o por reserva               
+
+
+
+=============================================================================================================
+
+
+Reservas: 
+
+Campo           Tipo                           Descripción                                
+----------------------------------------------------------------------------------------- 
+id_reserva      INT (PK)                       Identificador único                        
+id_cancha       INT (FK → CANCHAS)             Cancha o salón reservado                   
+id_usuario      INT (FK → USUARIOS, NULLABLE)  Si es socio registrado                     
+nombre_cliente  VARCHAR(100)                   Si no está registrado                      
+telefono        VARCHAR(20)                    Contacto (para no registrados)             
+fecha_reserva   DATE                           Fecha de uso                               
+hora_inicio     TIME                           Inicio de la reserva                       
+hora_fin        TIME                           Fin de la reserva                          
+monto_senia     DECIMAL(10,2)                  Monto de la seña                           
+estado          VARCHAR(20)                    Ej: “Pendiente”, “Confirmada”, “Cancelada” 
+
+
+
+=============================================================================================================
+
+
+Mensajes_Contacto:
+
+Campo        Tipo          Descripción              
+---------------------------------------------------------------- 
+id_mensaje   INT (PK)      Identificador            
+nombre       VARCHAR(100)  Nombre del remitente     
+email        VARCHAR(100)  Correo del remitente     
+telefono     VARCHAR(20)   Teléfono opcional        
+mensaje      TEXT          Contenido del mensaje    
+fecha_envio  DATETIME      Fecha y hora del envío   
+*estado      VARCHAR(20)   Ej: “Pendiente”, “Leído”* = Excluible
+
