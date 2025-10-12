@@ -27,15 +27,9 @@ header{
     position: relative; /* Añadido para el posicionamiento del menú */
     align-items: center; /* Alinea verticalmente el logo y la navegación */
 }
-#sobre_nosotros {
-  display: flex;
-  justify-content: center;
-  padding: 1% 0 0 0;
-  list-style: none;
-}
-
 #sobre_nosotros li {
-  margin: 0 15px;
+  display: inline-block;
+  margin: 1% 15px 0;
   font-family: 'Ubuntu';
   font-size: 1.3rem;
   color: #000000;
@@ -279,7 +273,7 @@ footer{
 }
 footer .redes-sociales {
   display: block;
-  padding: 1rem 2rem;
+  padding: 0.7rem 2rem;
   text-align: right;
 }
 
@@ -288,4 +282,13 @@ footer div a{
   color: #000000;
   display: inline-block;
   margin: 0 15px;
+}
+#sobre_nosotros_footer li{
+  font-family: 'Ubuntu';
+  font-size: 1.1rem;
+  color: #000000;
+  display: inline;
+  margin-top: 4%;
+  padding: 1rem 2rem;
+  text-align: right;
 }
