@@ -74,7 +74,7 @@
 
 	<footer>
 		<div>
-		<ul id="sobre_nosotros">
+		<ul id="sobre_nosotros_footer">
 			<li><strong>Integrantes del Grupo:</strong></li>
 			<li><i>Mateo Álvarez San Juan</i></li>
 			<li><i>Martín Castaño</i></li>
