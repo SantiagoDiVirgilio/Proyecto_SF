@@ -106,20 +106,18 @@ p a{
 /*----------------------------- INICIO ESTILOS DE PAGINA CONTACTO --------------------------------------*/
 .formu{
   flex: 0 0 45%;
-  color: #ffffff;
+  color: #000000;
   font-family: 'Ubuntu';
-  background-color: #1a0000;
+  background-color: #a4d7e0;
   border-radius: 10px; /* Esquinas redondeadas */
   padding: 20px; /* Espacio interno */
   text-align: center; /* Centra el texto */;
-  border: 2px solid rgb(96, 172, 96);
-  box-shadow: 0 0 15px rgba(96, 172, 96, 0.7);
   display: flex;
   flex-direction: column;
 }
 
 .formu form {
-  height: 100%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
