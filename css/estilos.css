@@ -58,11 +58,9 @@ nav > ul {
 nav > ul a {
   color: #000000;
 }
-
 nav ul li a{
   list-style: none;
 }
-
 li {
   list-style: none;
 }
@@ -71,7 +69,6 @@ nav ul li:hover
 {
   color: rgb(255, 255, 255);
 }
-
 .logo{
 width: 15%;
 }
@@ -98,13 +95,6 @@ width: 15%;
 }
 .dropdown:hover .dropdown-content {
   display: block;
-  color: #cf9548;
-}
-.dropdown-content li:hover {
-background-color: #cf9548;
-}
-.dropdown-content li a:hover {
-background-color: #cf9548;;
 }
 div nav{
 	color: #ffffff;
@@ -113,7 +103,6 @@ div nav{
 p a{
   color: #000000;
 }
-
 /*----------------------------- INICIO ESTILOS DE PAGINA CONTACTO --------------------------------------*/
 .formu{
   flex: 0 0 45%;
@@ -182,13 +171,11 @@ p a{
   border: 0;
 }
 /*----------------------------- FIN ESTILOS DE MAPA ----------------------------------------*/
-
 .container-principal {
   display: flex;
   align-items: stretch;
   flex: 1;
 }
-
 .columna-texto {
   flex: 1;
   padding: 20px;
@@ -207,7 +194,6 @@ p a{
   margin-top: 4%;
   margin-left: 36%;
 }
-
 /*--------------------------------------- Inicio Efecto Zoom en Imagenes -----------------------------------------*/
  img.redes{
     width: 35px;
@@ -239,19 +225,12 @@ article h3{
   margin-left: 2.5%;
   margin-bottom: 1.5%;
   margin-top: 2%;
+  font-size: 1.5rem;
 }
 h3{
 	font-family: 'Ubuntu';
 	margin-left: 3%;
 	color: #000000;
-}
-
-h4{
-  font-family: 'Ubuntu';
-  margin-left: 3%;
-  color: #000000;
-  font-size: 1.2rem;
-  margin-top: 2%;
 }
 article p{
 	font-size: 1.3rem;
@@ -276,19 +255,22 @@ footer .redes-sociales {
   padding: 0.7rem 2rem;
   text-align: right;
 }
-
+.legales{
+  font-family: 'Ubuntu';
+  text-align: left;
+  margin-left: 2%;
+}
 footer div a{
   font-family: 'Ubuntu';
   color: #000000;
   display: inline-block;
-  margin: 0 15px;
+  margin: 0 7px;
 }
 #sobre_nosotros_footer li{
   font-family: 'Ubuntu';
   font-size: 1.1rem;
   color: #000000;
-  display: inline;
-  margin-top: 4%;
-  padding: 1rem 2rem;
-  text-align: right;
+  display: inline-block;
+  margin-top: 1%;
+  padding: 0.7rem;
 }

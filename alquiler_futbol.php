@@ -15,31 +15,15 @@
 
 <body>
 	<header>
-		<div class="mobile-header-bar">
-			<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
-			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-		</div>
-				<nav id="myTopnav">
-					<ul>
-						<li><a href="index.php">Inicio</a></li>
-						<li class="dropdown">
-							<a>Alquileres</a>
-							<div class="dropdown-content">
-								<a href="alquiler_futbol.php">Alquiler 1</a>
-								<a href="alquiler_basquet.php">Alquiler 2</a>
-								<a href="alquiler_salon.php">Alquiler 3</a>
-							</div>
-						</li>
-						<li class="dropdown">
-							<a>Inscripciones</a>
-							<div class="dropdown-content">
-								<a href="inscripcion_1.php">Inscripcion 1</a>
-								<a href="inscripcion_2.php">Inscripcion 2</a>
-							</div>
-						</li>
-						<li><a href="contacto.php">Contacto</a></li>
-					</ul>
-				</nav>	</header>
+		<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
+	
+	<?php
+    include("NAV.php");
+    ?>
+
+	<div class="mobile-header-bar">
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+	</header>
 
 	<div class="container-principal">
 		<div class="columna-texto">
@@ -65,27 +49,20 @@
 
 	<footer>
 		<div>
-			<a href="index.php"><strong>Inicio</strong></a>
-		</div>
-		<div>
-			<h7><strong>Alquileres</strong></h7>
-			<br><a href="pagina1.php">Alquiler 1</a>
-			<br><a href="pagina2.php">Alquiler 2</a>
-			<br><a href="pagina3.php">Alquiler 3</a>
-		</div>
-		<div>
-			<h7><strong>Inscripciones</strong></h7>
-			<br><a href="temporada1.php">Inscripcion 1</a>
-			<br><a href="temporada2.php">Inscripcion 2</a>
-		</div>
-		<div>
-			<a href="contacto.php"><strong>Contacto</strong></a>
-		</div>
 		<div class="redes-sociales">
 			<a href="https://es-la.facebook.com/" target="_blank"><img src="imagenes/icono_facebook.webp" alt="Facebook" class="redes"></a>
 			<a href="https://www.instagram.com/" target="_blank"><img src="imagenes/icono_instagram.webp" alt="Instagram" class="redes"> </a>
 			<a href="https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoiZXMifQ%3D%3D%22%7D" target="_blank"><img src="imagenes/icono_twitter.webp" alt="Twitter" class="redes"></a>
 			<a href="https://www.tiktok.com/" target="_blank"><img src="imagenes/icono_tiktok.webp" alt="Tik Tok" class="redes"></a>
+		</div>
+		<div>
+		<li class="legales"><strong>©2025 Todos los derechos reservados a Club Sociedad de Fomento</strong></li>
+		</div>
+		<div>
+		<ul id="sobre_nosotros_footer">
+			<li><strong>Integrantes del Grupo: </strong>Santiago Di Virgilio, Mateo Álvarez San Juan, Martín Castaño, Agustín Dotto</li>
+		</ul>
+		</div>
 		</div>
 	</footer>
 
