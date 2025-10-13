@@ -33,18 +33,16 @@
             ¡Complete el formulario y envíelo!
         </p>
         <form action="contacto.php" method="post">
-            <br><label for="nom">Nombre:</label>
-            <input class="input_formu" type="text" name="nombre" maxlength="20" id="identificador"; width:150px>
-            <br>
-            <br><label for="email">Email:</label>
-            <input class="input_formu" type="email" name="email" maxlength="40" id="identificador"; width:150px>
-            <br>
-            <br><label for="comentario">Haga su comentario <strong>aquí:</strong></label><br><br>
-            <textarea class="input_formu" arows="400" cols="60" maxlength="700" style="width: 645px; height: 128px;" name="comentario"> 
-            </textarea>
-            <br>
-            <br><input type="submit" value="Enviar" id="identificador">
-            <input type="reset" value="Resetear Información" id="identificador">
+            <label for="nom">Nombre:</label>
+            <input class="input_formu" type="text" name="nombre" maxlength="20">
+            <label for="email">Email:</label>
+            <input class="input_formu" type="email" name="email" maxlength="40">
+            <label for="comentario">Haga su comentario <strong>aquí:</strong></label>
+            <textarea class="input_formu" arows="400" cols="60" maxlength="700" name="comentario"></textarea>
+            <div class="form-buttons">
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Resetear Información">
+            </div>
         </form>
     </section>
 </article>

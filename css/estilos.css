@@ -117,18 +117,20 @@ p a{
 }
 
 .formu form {
-  height: 40%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 10px;
 }
 
 .formu form input[type="text"],
 .formu form input[type="password"],
 .formu form input[type="email"] {
-  width: 40%;
+  width: 60%;
   align-self: center;
   box-sizing: border-box; /* Esto es importante para que el padding no afecte el ancho total */
+  padding: 8px;
 }
 
 .form-buttons {
@@ -138,10 +140,21 @@ p a{
   gap: 20px;
 }
 
+.form-buttons input {
+  padding: 8px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #62b0b3;
+  color: white;
+}
+
 .formu form textarea {
-  width: 100%;
-  height: 15%;
+  width: 60%;
+  height: 128px;
   align-self: center;
+  box-sizing: border-box;
 }
 .formu_side{
   flex: 0 0 45%;
