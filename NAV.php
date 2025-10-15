@@ -8,9 +8,9 @@
 			<li class="dropdown">
 				<a>Alquileres</a>
 				<div class="dropdown-content">
-				<a href="alquiler_futbol.php">Alquiler 1</a>
-				<a href="alquiler_basquet.php">Alquiler 2</a>
-				<a href="alquiler_salon.php">Alquiler 3</a>
+				<a href="alquileres.php #FUTBOL 5">Futbol 5</a>
+				<a href="alquileres.php #BASQUET">Basquet</a>
+				<a href="alquileres.php #SALON">Salon</a>
 				</div>
 			</li>
 			<li class="dropdown">

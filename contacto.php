@@ -40,8 +40,8 @@
             <label for="comentario">Haga su comentario <strong>aquí:</strong></label>
             <textarea class="input_formu" arows="400" cols="60" maxlength="700" name="comentario"></textarea>
             <div class="form-buttons">
-                <input type="submit" value="Enviar">
-                <input type="reset" value="Resetear Información">
+                <input id="Enviar" type="submit" value="Enviar">
+                <input id="Resetear" type="reset" value="Resetear Información">
             </div>
         </form>
     </section>

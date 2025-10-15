@@ -24,28 +24,36 @@
 	<div class="mobile-header-bar">
 	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
+<?php
+   include("conexion.php");
+   $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
+ ?>
+<!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
+ deporte-->
+<?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
+        <section class="titulo_deportes"id="<?php echo $variable_2["nombre"]; ?>">
+            <h2 id="<?php $variable_2["nombre"]; ?>"><?php echo $variable_2["nombre"]; ?></h2> 
 
-	<div class="container-principal">
-		<div class="columna-texto">
-			<article >
-				<h3>Sobre Nosotros:</h3>
-					<p>Somos un equipo de trabajo dedicado y unido, estudiantes de la TUP en la UTN regional de Haedo
-					</p>
-			</article>
-	
-			<article>
-				<h3>¿Que es S.G.S.F?</h3>
-					<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (O por sus siglas S.G.S.F)
-					</p>
-			</article>
-	
-			<article>
-				<h3><em></em></h3>
-					<p>
-					</p> 
-			</article>
-		</div>
-	</div>
+            <div class="canchas-container">
+            <?php $resultado_1 = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
+            <?php while($variable_1 = mysqli_fetch_assoc($resultado_1)){?>
+            
+                <?php if($variable_1["tipo"] == $variable_2["nombre"]){?>
+                    <div class="cancha-card">
+                        <img src="imagenes/futbol.png" alt="Portada de cancha Futbol 5">
+                        <div class="cancha-card-body">
+                            <h4><?php echo $variable_1["nombre"]; ?></h4>
+                            <p><?php echo $variable_1["descripcion"]; ?></p>
+                            <p class="precio"><?php echo $variable_1["precio_hora"]; ?></p>
+                            <a href="inscripcion_1.php" class="btn-alquilar">Ver Horarios</a>
+                        </div>
+                    </div>
+                <?php }?>
+            <?php }?>
+            </div>
+        </section>
+    <?php }?>
+<?php ?>   
 
 <footer>
 <?php
