@@ -22,7 +22,7 @@
     include("conexion.php");
     ?>
     <?php
-        if ($_SESSION["VARIABLE"] == session_id()){?>
+        if ($_SESSION["VARIABLE"] =! session_id()){?>
 
             <div class="mobile-header-bar">
             <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
@@ -58,7 +58,7 @@
         <?php }?>
     <?php  
  } else {
-    header("Location:404.php");
+    header("Location:login.php");
  }
 ?>
 

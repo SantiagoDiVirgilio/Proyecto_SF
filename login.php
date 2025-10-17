@@ -7,14 +7,19 @@
 </head>
 
 <body>
+<header>
+	<?php
+    include("NAV.php");
+    ?>
+</header>
 
 <?php
-$usuario=$_POST['usuario'];
+$nombre=$_POST['nombre'];
 $clave=md5($_POST['clave']);
 
 include("conexion.php");
 
-$consulta=mysqli_query($conexion, "SELECT id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol FROM usuarios WHERE usuario='$usuario' AND clave='$clave'");
+$consulta=mysqli_query($conexion, "SELECT id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol FROM usuarios WHERE nombre='$nombre' AND clave='$clave'");
 
 $resultado=mysqli_num_rows($consulta);
 

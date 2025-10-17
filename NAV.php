@@ -1,7 +1,5 @@
-
 <html>
-   
-     <?php session_start (); 
+<?php session_start (); 
  $_SESSION['VARIABLE'] = session_id()
  ?>
     <nav id="menu_hamburguesa">
