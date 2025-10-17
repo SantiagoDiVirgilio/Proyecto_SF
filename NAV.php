@@ -1,6 +1,9 @@
+
 <html>
-    <?php session_start (); ?>
-    
+   
+     <?php session_start (); 
+ $_SESSION['VARIABLE'] = session_id()
+ ?>
     <nav id="menu_hamburguesa">
     <a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
     <ul>

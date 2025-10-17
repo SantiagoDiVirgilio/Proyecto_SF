@@ -19,41 +19,58 @@
 	
 	<?php
     include("NAV.php");
+    include("conexion.php");
     ?>
+    <?php
+        if ($_SESSION["VARIABLE"] == session_id()){?>
 
-	<div class="mobile-header-bar">
-	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-	</header>
-<?php
-   include("conexion.php");
-   $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
- ?>
+            <div class="mobile-header-bar">
+            <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+            </header>
+        <?php
+
+        include("conexion.php");
+        $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
+        ?>
 <!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
- deporte-->
-<?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
-        <section class="titulo_deportes"id="<?php echo $variable_2["nombre"]; ?>">
-            <h2 id="<?php $variable_2["nombre"]; ?>"><?php echo $variable_2["nombre"]; ?></h2> 
+        deporte-->
+        <?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
+            <section class="titulo_deportes"id="<?php echo $variable_2["nombre"]; ?>">
+                    <h2 id="<?php $variable_2["nombre"]; ?>"><?php echo $variable_2["nombre"]; ?></h2> 
+                <div class="canchas-container">
+                    <?php $resultado_1 = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
+                    <?php while($variable_1 = mysqli_fetch_assoc($resultado_1)){?>
+                    
+                        <?php if($variable_1["tipo"] == $variable_2["nombre"]){?>
+                            <div class="cancha-card">
+                                <img src="imagenes/<?php echo $variable_1['tipo'].'.png'; ?>" alt="<?php echo $variable_1['nombre']; ?>">
+                            <div class="cancha-card-body">
+                                <h4><?php echo $variable_1["nombre"]; ?></h4>
+                                <p><?php echo $variable_1["horario_cancha"]; ?></p>
+                                <p class="precio"><?php echo $variable_1["precio_hora"]; ?></p>
+                                <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_1['id_cancha']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_1['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
+                            </div>
+                            </div>
+                        <?php }?>
+                    <?php }?>
+                </div>
+            </section>
+        <?php }?>
+    <?php  
+ } else {
+    header("Location:404.php");
+ }
+?>
 
-            <div class="canchas-container">
-            <?php $resultado_1 = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
-            <?php while($variable_1 = mysqli_fetch_assoc($resultado_1)){?>
-            
-                <?php if($variable_1["tipo"] == $variable_2["nombre"]){?>
-                    <div class="cancha-card">
-                        <img src="imagenes/futbol.png" alt="Portada de cancha Futbol 5">
-                        <div class="cancha-card-body">
-                            <h4><?php echo $variable_1["nombre"]; ?></h4>
-                            <p><?php echo $variable_1["descripcion"]; ?></p>
-                            <p class="precio"><?php echo $variable_1["precio_hora"]; ?></p>
-                            <a href="inscripcion_1.php" class="btn-alquilar">Ver Horarios</a>
-                        </div>
-                    </div>
-                <?php }?>
-            <?php }?>
-            </div>
-        </section>
-    <?php }?>
-<?php ?>   
+<!-- Modal -->
+<div id="horariosModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 id="modalCanchaNombre"></h3>
+    <div id="modalHorariosBody">
+    </div>
+  </div>
+</div>
 
 <footer>
 <?php
@@ -81,6 +98,41 @@ function toggleMenu() {
     x.className += " responsive";
   }
 }
+
+// --- Lógica del Modal ---
+const modal = document.getElementById("horariosModal");
+const modalCanchaNombre = document.getElementById("modalCanchaNombre");
+const modalHorariosBody = document.getElementById("modalHorariosBody");
+const closeModal = document.querySelector(".close");
+
+// Funcion para abrir modal
+function openModal(canchaNombre, canchaHorario) {
+    modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
+    modalHorariosBody.innerHTML = (canchaHorario || "No disponible");
+    modal.style.display = "block";
+}
+
+// Funcion para cerrar modal
+function closeModalFunction() {
+    modal.style.display = "none";
+}
+
+// Evento de delegacion de modal
+document.addEventListener("click", function(event) {
+    if (event.target.classList.contains("btn-ver-horarios")) {
+        const canchaNombre = event.target.getAttribute("data-cancha-nombre");
+        const canchaHorario = event.target.parentElement.querySelector("p").textContent;
+        openModal(canchaNombre, canchaHorario);
+    }
+});
+
+// Eventos para cerrar el modal
+closeModal.addEventListener("click", closeModalFunction);
+window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        closeModalFunction();
+    }
+});
 </script>
 </body>
 
