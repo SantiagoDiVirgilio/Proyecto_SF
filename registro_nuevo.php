@@ -23,23 +23,19 @@
     <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 </header>
 
-<?php 
+<?php
 $nombre=$_POST['nombre'];
-$clave=$_POST['clave'];
-//$clave=md5($_POST['clave']);
-
-// Debugging code
-//echo "Nombre: " . $nombre . "<br>";
-//echo "Clave (MD5): " . $clave . "<br>";
-//echo "Error de la base de datos: " . mysqli_error($conexion) . "<br>";
+$clave=md5($_POST['clave']);
 
 include("conexion.php");
 
 $consulta=mysqli_query($conexion, "SELECT id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol FROM usuarios WHERE nombre='$nombre' AND clave='$clave'");
+
 $resultado=mysqli_num_rows($consulta);
 
 if($resultado!=0){
 	$respuesta=mysqli_fetch_array($consulta);
+	include("perfil.php");
 	$_SESSION['VARIABLE'] = session_id();
 	$_SESSION['ID'] = $respuesta['id_usuario'];
 	$_SESSION['NOMBRE'] = $respuesta['nombre'];
@@ -50,7 +46,7 @@ if($resultado!=0){
 	$_SESSION['FECHA_ALTA'] = $respuesta['fecha_alta'];
 	$_SESSION['ROL'] = $respuesta['rol'];
 
-	header("Location:deportes.php");
+	header("Location:perfil.php");
 }
 else{
 	echo '<h2 class="registro">NO ESTAS REGISTRADO O LOS DATOS SON INCORRECTOS</h2>';

@@ -25,28 +25,27 @@
 	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
 
-	<div class="container-principal">
-		<div class="columna-texto">
-			<article >
-				<h3>Sobre Nosotros:</h3>
-					<p>Somos un equipo de trabajo dedicado y unido, estudiantes de la TUP en la UTN regional de Haedo
-					</p>
-			</article>
+	<article >
+    <section class="formu">
+        <h3>Inicie Sesión</h3><br>
+	<form action="login.php" method="post">
+    	<label>Nombre de usuario:
+        	<input name="nombre" type="text" maxlength="12" /><br>
+        </label>
+        <label>Contraseña:
+        	<input type="password" name="clave" maxlength="12" /><br>
+        </label>
+        <label>Email:
+        	<input name="email" type="text" maxlength="40" /><br>
+        </label>
+        <div class="form-buttons">
+            <input id="Enviar" type="submit" value="Enviar">
+            <input id="Resetear" type="reset" value="Resetear Información">
+        </div>
+    </form>
+    </section>
+</article>
 	
-			<article>
-				<h3>¿Que es S.G.S.F?</h3>
-					<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (O por sus siglas S.G.S.F)
-					</p>
-			</article>
-	
-			<article>
-				<h3><em></em></h3>
-					<p>
-					</p> 
-			</article>
-		</div>
-	</div>
-
 <footer>
 <?php
     include("FOOTER.php");
