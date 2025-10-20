@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sociedad_fomento`
 --
+CREATE DATABASE IF NOT EXISTS `sociedad_fomento` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+USE `sociedad_fomento`;
 
 -- --------------------------------------------------------
 
