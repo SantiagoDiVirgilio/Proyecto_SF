@@ -29,15 +29,28 @@
 <?php
         include("conexion.php");
         $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
+        $resultado_usu = mysqli_query($conexion, "SELECT * FROM usuarios");
+        $variable_usu = mysqli_fetch_assoc($resultado_usu);
 ?>
 <!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
         deporte-->
+        <h2 class="perfil"> 
+        <?php
+          if(!empty($_SESSION['VARIABLE'])){
+          echo "Bienvenido"." ". $variable_usu["nombre"];
+          echo"<br>";
+          echo "Telefono: ".$variable_usu["telefono"];
+          echo"<br>";
+          echo "Gmail: ".$variable_usu["email"];
+        }
+          ?>
+          </h2>
         <?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
             <section class="titulo_deportes"id="<?php echo $variable_2["nombre"]; ?>">
                     <h2 id="<?php $variable_2["nombre"]; ?>"><?php echo $variable_2["nombre"]; ?></h2> 
                 <div class="canchas-container">
                     <?php $resultado_1 = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
-                    <?php $resultado_3 = mysqli_query($conexion, "SELECT * FROM horario_cancha"); 
+                    <?php $resultado_3 = mysqli_query($conexion, "SELECT * FROM horario_cancha");
                     $variable_3 = mysqli_fetch_assoc($resultado_3);?>
                     <?php while($variable_1 = mysqli_fetch_assoc($resultado_1)){?>
                     
@@ -48,7 +61,7 @@
                                 <h4><?php echo $variable_1["nombre"]; ?></h4>
                                 <p><?php echo $variable_3["horario"]; ?></p>
                                 <p class="precio"><?php echo $variable_1["precio_hora"]; ?></p>
-                                <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_1['id_cancha']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_1['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
+                                <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_1['id_cancha']?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_1['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
                             </div>
                             </div>
                         <?php }?>

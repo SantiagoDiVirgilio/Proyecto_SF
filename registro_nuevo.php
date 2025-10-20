@@ -1,5 +1,6 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
 	<link rel="icon" href="imagenes/favicon.webp" type="image/webp">
 	<title>Sistema de Gestion de Sociedad de Fomento</title>
@@ -13,45 +14,65 @@
 </head>
 
 <body>
-<header>
-	<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
+	<header>
+		<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
+	
 	<?php
-    	include("NAV.php");
-    	include("conexion.php");
+    include("NAV.php");
     ?>
-    <div class="mobile-header-bar">
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-</header>
 
+	<div class="mobile-header-bar">
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+	</header>
+
+	<article >
+    <section class="formu">
+        <h3>Registro de Usuario</h3><br>
+	<form action="login.php" method="post">
+    	<label>Nombre de usuario:
+        	<input name="nombre" type="text" maxlength="12" /><br>
+        </label>
+        <label>Contraseña:
+        	<input type="password" name="clave" maxlength="12" /><br>
+        </label>
+        <label>Email:
+        	<input name="email" type="text" maxlength="40" /><br>
+        </label>
+        <div class="form-buttons">
+            <input id="Enviar" type="submit" value="Enviar">
+            <input id="Resetear" type="reset" value="Resetear Información">
+        </div>
+    </form>
+    </section>
+</article>
+	
+<footer>
 <?php
-$nombre=$_POST['nombre'];
-$clave=md5($_POST['clave']);
+    include("FOOTER.php");
+?>
+</footer>
 
-include("conexion.php");
+<!-- Script de efecto zoom -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-$consulta=mysqli_query($conexion, "SELECT id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol FROM usuarios WHERE nombre='$nombre' AND clave='$clave'");
+<script>
+$(document).ready(function(){
+    $('.redes').hover(function() {
+        $(this).addClass('transition');
+    }, function() {
+        $(this).removeClass('transition');
+    });
+});
 
-$resultado=mysqli_num_rows($consulta);
-
-if($resultado!=0){
-	$respuesta=mysqli_fetch_array($consulta);
-	include("perfil.php");
-	$_SESSION['VARIABLE'] = session_id();
-	$_SESSION['ID'] = $respuesta['id_usuario'];
-	$_SESSION['NOMBRE'] = $respuesta['nombre'];
-	$_SESSION['CLAVE'] = $respuesta['clave'];
-	$_SESSION['DNI'] = $respuesta['dni'];
-	$_SESSION['EMAIL'] = $respuesta['email'];
-	$_SESSION['TELEFONO'] = $respuesta['telefono'];
-	$_SESSION['FECHA_ALTA'] = $respuesta['fecha_alta'];
-	$_SESSION['ROL'] = $respuesta['rol'];
-
-	header("Location:perfil.php");
+function toggleMenu() {
+  var x = document.getElementById("myTopnav");
+  if (x.className.includes("responsive")) {
+    x.className = "";
+  } else {
+    x.className += " responsive";
+  }
 }
-else{
-	echo '<h2 class="registro">NO ESTAS REGISTRADO O LOS DATOS SON INCORRECTOS</h2>';
-	echo('<a class="registro" href="registro_nuevo.php">¡REGISTRATE!</a>');
-}?>
-
+</script>
 </body>
+
 </html>
