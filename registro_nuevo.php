@@ -29,26 +29,32 @@
     <section class="formu">
         <h3>Registro de Usuario</h3><br>
 	<form action="registro.php" method="post">
-    	<label>Nombre de usuario:
-        	<input name="nombre" type="text" maxlength="12" /><br>
-        </label>
-        <label>Contraseña:
-        	<input type="password" name="clave" maxlength="12" /><br>
-        </label>
-        <label>Email:
-        	<input name="email" type="text" maxlength="40" /><br>
-        </label>
-        <label>Telefono:
-        	<input name="telefono" type="text" maxlength="15" /><br>
-        </label>
-        <label>DNI:
-        	<input name="dni" type="text" maxlength="12" /><br>
-        </label>
+        <div class="form-group">
+            <label for="nombre">Nombre de usuario:</label>
+            <input id="nombre" name="nombre" type="text" maxlength="12" />
+        </div>
+        <div class="form-group">
+            <label for="clave">Contraseña:</label>
+            <input id="clave" type="password" name="clave" maxlength="12" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="text" maxlength="40" />
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input id="telefono" name="telefono" type="text" maxlength="15" />
+        </div>
+        <div class="form-group">
+            <label for="dni">DNI:</label>
+            <input id="dni" name="dni" type="text" maxlength="12" />
+        </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
             <input id="Resetear" type="reset" value="Resetear Información">
         </div>
     </form>
+    <p class="registro-prompt">¿Ya tienes una cuenta? <a href="iniciar_sesion.php">¡Inicia Sesión!</a></p>
     </section>
 </article>
 

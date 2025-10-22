@@ -43,7 +43,7 @@ nav > ul {
   display: flex; 
   list-style: none;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 1.2rem; /* Aumentado el tamaño de la fuente del NAV para mayor legibilidad */
   font-family: Arial, sans-serif;
   gap: 2rem;
   font-weight: bold;
@@ -124,10 +124,33 @@ p a{
 }
 
 .titulo_deportes{
-  color: #000000;
-  text-align: center;
+  text-align: center; /* Para centrar el h2 */
   margin-top: 3%;
-  font-size: 1.8rem; /* Tamaño ajustado y corregido */
+  margin-bottom: 2rem; /* Espacio debajo de la sección del título */
+}
+
+.titulo_deportes h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #000000;
+  margin: 0; /* Eliminar margen predeterminado del h2 */
+  width: 100%; /* Asegurar que ocupe todo el ancho para las líneas */
+}
+
+.titulo_deportes h2::before,
+.titulo_deportes h2::after {
+  content: '';
+  flex-grow: 1;
+  height: 2px; /* Grosor de la línea */
+  background-color: #b0c4de; /* Color de la línea (usando el del header) */
+  margin: 0 1em; /* Espacio entre la línea y el texto */
+}
+
+.titulo_deportes h2 span {
+  background-color: #dcdcdc; /* Mismo color que el fondo del body para que se integre */
+  padding: 0 0.5em; /* Relleno alrededor del texto */
 }
 
 /* --- Estilos para las tarjetas de canchas --- */
@@ -285,6 +308,30 @@ form label {
   background-color: #0056b3;
 }
 
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Espacio entre la etiqueta y el input */
+    align-items: center; /* Centra los elementos dentro del grupo */
+}
+
+/* Estilos para el mensaje "¿No estás registrado? ¡Regístrate!" */
+.registro-prompt {
+    margin-top: 1.5rem; /* Espacio superior para separarlo del formulario */
+    font-size: 1rem;
+    color: #333; /* Color de texto general */
+}
+
+.registro-prompt a {
+    color: #007bff; /* Color del enlace */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.registro-prompt a:hover {
+    text-decoration: underline;
+}
+
 .formu_side{
   flex: 1;
   background-image: url("../imagenes/Fondo_Formu.webp");
@@ -335,6 +382,20 @@ form label {
   background-position: center;
 }
 
+.columna-imagen {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Para que la imagen no se salga del contenedor */
+}
+
+.columna-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+}
+
  img.redes{
     width: 35px;
     height: 35px;
@@ -352,10 +413,16 @@ form label {
     transform: scale(0.8);
 }
 
-article h3{
+.titulo_deportes h2 span {
+  background-color: #dcdcdc; /* Color de fondo para que el texto resalte */
+  padding: 0 0.5em; /* Relleno alrededor del texto */
+  white-space: nowrap; /* Evitar que el texto se envuelva */
+}
+
+article h3 {
   margin-left: 2.5%;
   margin-bottom: 1.5%;
-  margin-top: 2%;
+  margin-top: 2%; /* Ajustado para consistencia */
   font-size: 1.4rem; /* Tamaño ajustado */
   color: #000000;
 }

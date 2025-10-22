@@ -24,18 +24,18 @@
 </header>
 
 <?php 
-$nombre=$_POST['nombre'];
+$email=mysqli_real_escape_string($conexion, $_POST['email']);
 $clave=$_POST['clave'];
 //$clave=md5($_POST['clave']);
 
 // Debugging code
-//echo "Nombre: " . $nombre . "<br>";
+//echo "Email: " . $email . "<br>";
 //echo "Clave (MD5): " . $clave . "<br>";
 //echo "Error de la base de datos: " . mysqli_error($conexion) . "<br>";
 
 include("conexion.php");
 
-$consulta=mysqli_query($conexion, "SELECT id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol FROM usuarios WHERE nombre='$nombre' AND clave='$clave'");
+$consulta=mysqli_query($conexion, "SELECT id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol FROM usuarios WHERE email='$email' AND clave='$clave'");
 $resultado=mysqli_num_rows($consulta);
 
 if($resultado!=0){

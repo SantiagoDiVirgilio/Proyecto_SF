@@ -18,11 +18,13 @@
 	<header>
 		<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
 	
-	<?php 
-    // El NAV.php debe contener <nav id="myTopnav">
+	<?php
     include("NAV.php");
     include("conexion.php");
     ?>
+    <div class="mobile-header-bar">
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    </div>
     </header>
 
 <?php
@@ -33,18 +35,18 @@
         deporte-->
         <h2 class="perfil"> 
         <?php
-          if(isset($_SESSION['id_usuario'])){
-            $id_usuario_actual = $_SESSION['id_usuario'];
-            $stmt_usuario = mysqli_prepare($conexion, "SELECT nombre FROM usuarios WHERE id_usuario = ?");
-            mysqli_stmt_bind_param($stmt_usuario, "i", $id_usuario_actual);
-            mysqli_stmt_execute($stmt_usuario);
-            $resultado_usuario = mysqli_stmt_get_result($stmt_usuario);
-            if($usuario_actual = mysqli_fetch_assoc($resultado_usuario)){
-              echo "Bienvenido " . htmlspecialchars($usuario_actual["nombre"]);
+            if(isset($_SESSION['id_usuario'])){
+                $id_usuario_actual = $_SESSION['id_usuario'];
+                $stmt_usuario = mysqli_prepare($conexion, "SELECT nombre FROM usuarios WHERE id_usuario = ?");
+                mysqli_stmt_bind_param($stmt_usuario, "i", $id_usuario_actual);
+                mysqli_stmt_execute($stmt_usuario);
+                $resultado_usuario = mysqli_stmt_get_result($stmt_usuario);
+                if($usuario_actual = mysqli_fetch_assoc($resultado_usuario)){
+                  echo "Bienvenido " . htmlspecialchars($usuario_actual["nombre"]);
+                }
+                mysqli_stmt_close($stmt_usuario);
             }
-            mysqli_stmt_close($stmt_usuario);
-          }
-          ?>
+        ?>
           </h2>
         <div class="canchas-container">
             <?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
@@ -52,7 +54,7 @@
                     <div class="deporte-card">
                         <img src="imagenes/<?php echo $variable_2['nombre'].'.png'; ?>" alt="<?php echo $variable_2['nombre']; ?>">
                         <div class="deporte-card-body">
-                            <h4><?php echo $variable_2["nombre"]; ?></h4>
+                            <h4><?php echo htmlspecialchars($variable_2["nombre"]); ?></h4>
                             <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_2['nombre']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_2['nombre'], ENT_QUOTES); ?>">Reservar</button>
                         </div>
                     </div>
@@ -96,7 +98,7 @@
 </footer>
 
 <script>
-    const isLoggedIn = <?php echo json_encode(!empty($_SESSION['VARIABLE'])); ?>;
+    const isLoggedIn = <?php echo json_encode(isset($_SESSION['id_usuario'])); ?>;
 </script>
 <!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -112,10 +114,10 @@ $(document).ready(function(){
 
 function toggleMenu() {
   var x = document.getElementById("myTopnav");
-  if (x.className === "responsive") {
-    x.className = ""; // Quita la clase responsive
+  if (x.className.includes("responsive")) {
+    x.className = "";
   } else {
-    x.className = "responsive"; // Añade la clase responsive
+    x.className += " responsive";
   }
 }
 
@@ -140,10 +142,12 @@ function closeModalFunction() {
 // Evento de delegacion de modal
 document.addEventListener("click", function(event) {
     if (event.target.classList.contains("btn-ver-horarios")) {
+        // La lógica del modal aquí está incompleta.
+        // Si el usuario está logueado, se intenta abrir un modal pero no hay horarios que mostrar.
         if (isLoggedIn) {
             const canchaNombre = event.target.getAttribute("data-cancha-nombre");
-            const canchaHorario = event.target.parentElement.querySelector("p").textContent;
-            openModal(canchaNombre, canchaHorario);
+            // Redirigimos al usuario a la página de alquileres donde está la lógica completa.
+            window.location.href = 'alquileres.php#' + encodeURIComponent(canchaNombre);
         } else {
             var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
             loginModal.show();

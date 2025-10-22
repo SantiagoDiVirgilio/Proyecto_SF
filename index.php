@@ -58,6 +58,9 @@
 					</p> 
 			</article>
 		</div>
+		<div class="columna-imagen">
+			<img src="imagenes/fondo_inicio.webp" alt="Imagen del club">
+		</div>
 	</div>
 
 <footer>

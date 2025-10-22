@@ -28,21 +28,25 @@
 	<article >
     <section class="formu">
         <h3>Inicie Sesión</h3><br>
-	<form action="login.php" method="post">
-    	<label>Nombre de usuario:
-        	<input name="nombre" type="text" maxlength="12" /><br>
-        </label>
-        <label>Contraseña:
-        	<input type="password" name="clave" maxlength="12" /><br>
-        </label>
-        <label>Email:
-        	<input name="email" type="text" maxlength="40" /><br>
-        </label>
+	<form action="login.php" method="post"> 
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="text" maxlength="40" />
+        </div>
+        
+        <div class="form-group">
+            <label for="clave">Contraseña:</label>
+            <input id="clave" type="password" name="clave" maxlength="12" />
+        </div>
+        
+       
+        <p class="registro-prompt">¿No estás registrado? <a href="registro_nuevo.php">¡Regístrate!</a></p>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
             <input id="Resetear" type="reset" value="Resetear Información">
         </div>
     </form>
+    
     </section>
 </article>
 	
