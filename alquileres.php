@@ -38,10 +38,6 @@
         <?php
           if(!empty($_SESSION['VARIABLE'])){
           echo "Bienvenido"." ". $variable_usu["nombre"];
-          echo"<br>";
-          echo "Telefono: ".$variable_usu["telefono"];
-          echo"<br>";
-          echo "Gmail: ".$variable_usu["email"];
         }
           ?>
           </h2>
@@ -61,7 +57,7 @@
                                 <h4><?php echo $variable_1["nombre"]; ?></h4>
                                 <p><?php echo $variable_1["descripcion"]; ?></p>
                                 <p class="precio"><?php echo $variable_1["precio_hora"]; ?></p>
-                                <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_1['id_cancha']?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_1['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
+                                <button class="btn-ver-horarios" data-deporte-id="<?php echo $variable_2['id_deporte']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_1['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
                             </div>
                             </div>
                         <?php }?>
@@ -107,38 +103,70 @@ function toggleMenu() {
   }
 }
 
-// --- Lógica del Modal -- -
+// --- Lógica del Modal ---
 const modal = document.getElementById("horariosModal");
 const modalCanchaNombre = document.getElementById("modalCanchaNombre");
 const modalHorariosBody = document.getElementById("modalHorariosBody");
-const closeModal = document.querySelector(".close");
+const closeModalBtn = document.querySelector(".close");
 
-// Funcion para abrir modal
-function openModal(canchaNombre, canchaHorario) {
-    modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
-    modalHorariosBody.innerHTML = (canchaHorario || "No disponible");
+// Función para abrir el modal
+function openModal() {
     modal.style.display = "block";
 }
 
-// Funcion para cerrar modal
-function closeModalFunction() {
+// Función para cerrar el modal
+function closeModal() {
     modal.style.display = "none";
 }
 
-// Evento de delegacion de modal
+// Evento de delegación para los botones "Ver Horarios"
 document.addEventListener("click", function(event) {
     if (event.target.classList.contains("btn-ver-horarios")) {
+        const deporteId = event.target.getAttribute("data-deporte-id");
         const canchaNombre = event.target.getAttribute("data-cancha-nombre");
-        const canchaHorario = event.target.parentElement.querySelector('h4').textContent;
-        openModal(canchaNombre, canchaHorario);
+
+        // Actualizar el nombre de la cancha en el modal y mostrar "cargando"
+        modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
+        modalHorariosBody.innerHTML = "<p>Cargando horarios...</p>";
+        openModal();
+
+        // Realizar la petición fetch para obtener los horarios
+        fetch(`obtener_horarios.php?id_deporte=${deporteId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    modalHorariosBody.innerHTML = `<p>${data.error}</p>`;
+                    return;
+                }
+
+                let horariosHtml = "<h4>Horarios</h4>";
+                if (data.length > 0) {
+                    horariosHtml += "<table>";
+                    horariosHtml += "<thead><tr><th>Horario</th><th>Disponibilidad</th></tr></thead>";
+                    horariosHtml += "<tbody>";
+                    data.forEach(item => {
+                        let disponibilidad = item.disponible == 1 ? 'Disponible' : 'No Disponible';
+                        let claseCss = item.disponible == 1 ? 'disponible' : 'no-disponible';
+                        horariosHtml += `<tr><td>${item.horario}</td><td class="${claseCss}">${disponibilidad}</td></tr>`;
+                    });
+                    horariosHtml += "</tbody></table>";
+                } else {
+                    horariosHtml += "<p>No hay horarios definidos para este deporte.</p>";
+                }
+                modalHorariosBody.innerHTML = horariosHtml;
+            })
+            .catch(error => {
+                console.error('Error al obtener los horarios:', error);
+                modalHorariosBody.innerHTML = "<p>No se pudieron cargar los horarios. Intente más tarde.</p>";
+            });
     }
 });
 
 // Eventos para cerrar el modal
-closeModal.addEventListener("click", closeModalFunction);
+closeModalBtn.addEventListener("click", closeModal);
 window.addEventListener("click", function(event) {
     if (event.target === modal) {
-        closeModalFunction();
+        closeModal();
     }
 });
 </script>

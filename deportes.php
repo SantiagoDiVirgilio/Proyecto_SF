@@ -39,10 +39,6 @@
         <?php
           if(!empty($_SESSION['VARIABLE'])){
           echo "Bienvenido"." ". $variable_usu["nombre"];
-          echo"<br>";
-          echo "Telefono: ".$variable_usu["telefono"];
-          echo"<br>";
-          echo "Gmail: ".$variable_usu["email"];
         }
           ?>
           </h2>

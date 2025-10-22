@@ -39,10 +39,13 @@
             <input class="input_formu" type="email" name="email" maxlength="40">
             <label for="comentario">Haga su comentario <strong>aquí:</strong></label>
             <textarea class="input_formu" arows="400" cols="60" maxlength="700" name="comentario"></textarea>
-            <div class="form-buttons">
-                <input id="Enviar" type="submit" value="Enviar">
-                <input id="Resetear" type="reset" value="Resetear Información">
-            </div>
+        <div class="form-buttons">
+            <input id="Enviar" type="submit" value="Enviar">
+            <input id="Resetear" type="reset" value="Resetear Información">
+        </div>
+        <div class="map-container">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.4184902620996!2d-58.60460592514448!3d-34.64057945944432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc951c0fe2d9f5%3A0x9f1c540898efecbe!2sUTN%20HAEDO!5e1!3m2!1ses!2sar!4v1761099590832!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		</div>
         </form>
     </section>
 </article>

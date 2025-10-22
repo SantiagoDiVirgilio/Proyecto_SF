@@ -402,6 +402,8 @@ footer div a{
   color: #000000;
   text-align: center;
   margin: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 3rem;
 }
 
 
@@ -795,4 +797,33 @@ body.lb-disable-scrolling {
     background-color: #270e03;
     position: static;
   }
+}
+
+/* Estilos para la tabla del modal de horarios */
+#horariosModal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#horariosModal th,
+#horariosModal td {
+  border: 1px solid #ddd;
+  padding: 8px 12px; /* Aumenta el padding para más espacio */
+  text-align: left;
+}
+
+#horariosModal th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Clases para disponibilidad */
+.disponible {
+    color: green;
+    font-weight: bold;
+}
+.no-disponible {
+    color: red;
+    font-weight: bold;
 }
