@@ -28,7 +28,7 @@
 	<article >
     <section class="formu">
         <h3>Registro de Usuario</h3><br>
-	<form action="login.php" method="post">
+	<form action="registro.php" method="post">
     	<label>Nombre de usuario:
         	<input name="nombre" type="text" maxlength="12" /><br>
         </label>
@@ -38,6 +38,12 @@
         <label>Email:
         	<input name="email" type="text" maxlength="40" /><br>
         </label>
+        <label>Telefono:
+        	<input name="telefono" type="text" maxlength="15" /><br>
+        </label>
+        <label>DNI:
+        	<input name="dni" type="text" maxlength="12" /><br>
+        </label>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
             <input id="Resetear" type="reset" value="Resetear Información">
@@ -45,7 +51,7 @@
     </form>
     </section>
 </article>
-	
+
 <footer>
 <?php
     include("FOOTER.php");
