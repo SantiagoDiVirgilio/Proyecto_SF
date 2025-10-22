@@ -19,7 +19,7 @@ $fecha_alta = date('Y-m-d');
 
 	$_SESSION['VARIABLE'] = session_id();
 
-	$consulta = mysqli_query($conexion, "INSERT INTO usuarios (id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol, id_sesion) VALUES('', '$nombre','$password','$dni', '$email','$telefono','$fecha_alta', 'usuario', '')");
+	$consulta = mysqli_query($conexion, "INSERT INTO usuarios (nombre, clave, dni, email, telefono, fecha_alta, rol, id_sesion) VALUES('$nombre','$password','$dni', '$email','$telefono','$fecha_alta', 'usuario', '')");
 
 	header("Location:iniciar_sesion.php");
 ?>  

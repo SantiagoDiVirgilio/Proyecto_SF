@@ -76,7 +76,7 @@
                                 <h4><?php echo $variable_1["nombre"]; ?></h4>
                                 <p><?php echo $variable_1["descripcion"]; ?></p>
                                 <p class="precio"><?php echo $variable_1["precio_hora"]; ?></p>
-                                <button class="btn-ver-horarios" data-deporte-id="<?php echo $variable_2['id_deporte']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_1['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
+                                <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_1['id_cancha']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_1['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
                             </div>
                             </div>
                         <?php }?>
@@ -154,14 +154,14 @@
     
     document.addEventListener("click", function(event) {
         if (event.target.classList.contains("btn-ver-horarios")) {
-            const deporteId = event.target.getAttribute("data-deporte-id");
+            const canchaId = event.target.getAttribute("data-cancha-id");
             const canchaNombre = event.target.getAttribute("data-cancha-nombre");
     
             modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
             modalHorariosBody.innerHTML = "<p>Cargando horarios...</p>";
             openModal();
     
-            fetch(`obtener_horarios.php?id_deporte=${deporteId}`)
+            fetch(`obtener_horarios.php?id_cancha=${canchaId}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.error) {
@@ -191,7 +191,7 @@
                 })
                 .catch(error => {
                     console.error('Error al obtener los horarios:', error);
-                    modalHorariosBody.innerHTML = "<p>No se pudieron cargar los horarios. Intente más tarde.</p>";
+                    modalHorariosBody.innerHTML = "<p>No se pudieron cargar los horarios. Verifique el archivo 'obtener_horarios.php' y la consola para más detalles.</p>";
                 });
         }
     });

@@ -77,16 +77,22 @@ INSERT INTO `deportes` (`id_deporte`, `nombre`, `descripcion`, `cupo_maximo`) VA
 --
 
 CREATE TABLE `horario_cancha` (
+  `id_horario` int(11) NOT NULL,
   `id_cancha` int(5) NOT NULL,
-  `horario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+  `horario` time NOT NULL,
+  `disponible` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `horario_cancha`
 --
 
-INSERT INTO `horario_cancha` (`id_cancha`, `horario`) VALUES
-(1, '12:00hs a 21:00hs');
+INSERT INTO `horario_cancha` (`id_horario`, `id_cancha`, `horario`, `disponible`) VALUES
+(1, 1, '10:00:00', 1),
+(2, 1, '11:00:00', 1),
+(3, 1, '12:00:00', 0),
+(4, 2, '15:00:00', 1),
+(5, 2, '16:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -183,7 +189,8 @@ ALTER TABLE `deportes`
 -- Indices de la tabla `horario_cancha`
 --
 ALTER TABLE `horario_cancha`
-  ADD PRIMARY KEY (`id_cancha`);
+  ADD PRIMARY KEY (`id_horario`),
+  ADD KEY `id_cancha` (`id_cancha`);
 
 --
 -- Indices de la tabla `inscripciones`

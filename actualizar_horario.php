@@ -5,12 +5,6 @@ include("conexion.php");
 
 $response = [];
 
-// Verificar que el usuario esté logueado
-//if (!isset($_SESSION['id_usuario'])) {
-  //  $response['error'] = "No has iniciado sesión.";
- //   echo json_encode($response);
- //   exit;
-//}
 
 if (isset($_POST['id_horario']) && isset($_POST['accion'])) {
     $id_horario = $_POST['id_horario'];
