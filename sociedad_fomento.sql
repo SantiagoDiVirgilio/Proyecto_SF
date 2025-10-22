@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2025 a las 14:21:34
+-- Tiempo de generación: 22-10-2025 a las 16:26:50
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sociedad_fomento`
 --
-CREATE DATABASE IF NOT EXISTS `sociedad_fomento` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-USE `sociedad_fomento`;
 
 -- --------------------------------------------------------
 
@@ -88,9 +86,10 @@ CREATE TABLE `horario_cancha` (
 --
 
 INSERT INTO `horario_cancha` (`id_horario`, `id_cancha`, `horario`, `disponible`) VALUES
+(0, 3, '12:00:00', 1),
 (1, 1, '10:00:00', 1),
 (2, 1, '11:00:00', 1),
-(3, 1, '12:00:00', 0),
+(3, 1, '12:00:00', 1),
 (4, 2, '15:00:00', 1),
 (5, 2, '16:00:00', 1);
 
@@ -236,7 +235,7 @@ ALTER TABLE `deportes`
 -- AUTO_INCREMENT de la tabla `horario_cancha`
 --
 ALTER TABLE `horario_cancha`
-  MODIFY `id_cancha` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cancha` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripciones`
