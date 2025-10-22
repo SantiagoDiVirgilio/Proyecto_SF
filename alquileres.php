@@ -42,16 +42,22 @@
 
 <?php
         $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
-        $resultado_usu = mysqli_query($conexion, "SELECT * FROM usuarios");
-        $variable_usu = mysqli_fetch_assoc($resultado_usu);
 ?>
 <!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
         deporte-->
         <h2 class="perfil"> 
         <?php
-          if(!empty($_SESSION['VARIABLE'])){
-          echo "Bienvenido"." ". $variable_usu["nombre"];
-        }
+          if(isset($_SESSION['id_usuario'])){
+            $id_usuario_actual = $_SESSION['id_usuario'];
+            $stmt_usuario = mysqli_prepare($conexion, "SELECT nombre FROM usuarios WHERE id_usuario = ?");
+            mysqli_stmt_bind_param($stmt_usuario, "i", $id_usuario_actual);
+            mysqli_stmt_execute($stmt_usuario);
+            $resultado_usuario = mysqli_stmt_get_result($stmt_usuario);
+            if($usuario_actual = mysqli_fetch_assoc($resultado_usuario)){
+              echo "Bienvenido " . htmlspecialchars($usuario_actual["nombre"]);
+            }
+            mysqli_stmt_close($stmt_usuario);
+          }
           ?>
           </h2>
         <?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
