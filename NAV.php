@@ -17,8 +17,12 @@
 			<li><a href="contacto.php">Contacto</a></li>
 			<?php
 			if (!empty($_SESSION['VARIABLE'])){
+				echo '<li><a href="administracion.php">Administracion</a></li>';
                 echo '<li><a href="cerrar_sesion.php">Cerrar Sesion</a></li>';
             }
+			else{
+			echo '<li><a href="iniciar_sesion.php">Iniciar Sesion</a></li>';
+			}
 		    ?>
         </ul>
     </nav>

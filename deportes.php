@@ -30,12 +30,25 @@
 <?php
         include("conexion.php");
         $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
+        $resultado_usu = mysqli_query($conexion, "SELECT * FROM usuarios");
+        $variable_usu = mysqli_fetch_assoc($resultado_usu);
 ?>
 <!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
         deporte-->
+        <h2 class="perfil"> 
+        <?php
+          if(!empty($_SESSION['VARIABLE'])){
+          echo "Bienvenido"." ". $variable_usu["nombre"];
+          echo"<br>";
+          echo "Telefono: ".$variable_usu["telefono"];
+          echo"<br>";
+          echo "Gmail: ".$variable_usu["email"];
+        }
+          ?>
+          </h2>
         <div class="canchas-container">
             <?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
-                <?php if($variable_2["nombre"] != NULL){?>
+                <?php if($variable_2["nombre"] != NULL && $variable_2['nombre'] != 'SALON'){?>
                     <div class="deporte-card">
                         <img src="imagenes/<?php echo $variable_2['nombre'].'.png'; ?>" alt="<?php echo $variable_2['nombre']; ?>">
                         <div class="deporte-card-body">
