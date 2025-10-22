@@ -11,7 +11,7 @@ if (!isset($_GET['id_deporte'])) {
 $id_deporte = intval($_GET['id_deporte']);
 
 // Consultar los horarios para el ID de deporte específico
-$query = "SELECT horario, disponible FROM horario_cancha WHERE deporte = ?";
+$query = "SELECT id_horario, horario, disponible FROM horario_cancha WHERE deporte = ?";
 $stmt = mysqli_prepare($conexion, $query);
 // "i" indica que el parámetro es un integer (número entero)
 mysqli_stmt_bind_param($stmt, "i", $id_deporte);
