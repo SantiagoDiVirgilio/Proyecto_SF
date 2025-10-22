@@ -45,6 +45,10 @@
 				<h3>¿Que es S.G.S.F?</h3>
 					<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (O por sus siglas S.G.S.F) es un sistema web de gestion de reservas de canchas y salones 
 					<br>del club Sociedad De Fomento. Fue diseñado con los lenguajes HTML5, PHP, JavaScript y MySQL.
+					<br>En este sistema se puede reservar distintas canchas (de diversos deportes realizados en el Club) y del salon de fiestas, asi como inscribirse mensulamente
+					a los deportes presentados. 
+					<br>Si bien, para reservar las canchas no es necesario ser un usuario registrado, SI debe serlo para inscribirse
+					mensualmente a los deportes presentados. Para cosnultas particulares drigrise al formulario de "Contacto" de nuestro sitio web.
 					</p>
 			</article>
 	

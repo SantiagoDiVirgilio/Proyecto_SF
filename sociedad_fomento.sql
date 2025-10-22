@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2025 a las 02:50:35
+-- Tiempo de generación: 20-10-2025 a las 14:21:34
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -34,19 +34,19 @@ CREATE TABLE `canchas` (
   `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `tipo` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `precio_hora` decimal(10,2) NOT NULL,
-  `horario_cancha` varchar(30) NOT NULL
+  `precio_hora` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `canchas`
 --
 
-INSERT INTO `canchas` (`id_cancha`, `nombre`, `tipo`, `descripcion`, `precio_hora`, `horario_cancha`) VALUES
-(1, 'CANCHA PARA 5', 'FUTBOL 5', 'Cancha de Futbol 5 apta para 8 personas. Materiales: Dos arcos, una pelota', 4000.00, '12:00hs a 21:00hs'),
-(2, 'CANCHA PARA 8', 'FUTBOL 5', 'Cancha de Futbol 5 apta para 12 personas. Materiales: Dos arcos, dos pelotas', 4500.00, 'Horario: 12:00hs hasta 21:00hs'),
-(3, 'CANCHA PARA 5', 'BASQUET', 'Cancha de Basquet apta para 10 personas. Materiales: Dos arcos, una pelota', 4500.00, 'Horario: 12:00hs hasta 21:00hs'),
-(4, 'CANCHA PARA 10', 'BASQUET', 'Cancha de Basquet apta para 15 personas. Materiales: Dos arcos, una pelota', 5000.00, '12:00 a 16:00');
+INSERT INTO `canchas` (`id_cancha`, `nombre`, `tipo`, `descripcion`, `precio_hora`) VALUES
+(1, 'CANCHA PARA 5', 'FUTBOL', 'Cancha de Futbol 5 apta para 8 personas. Materiales: Dos arcos, una pelota', 4000.00),
+(2, 'CANCHA PARA 8', 'FUTBOL', 'Cancha de Futbol 5 apta para 12 personas. Materiales: Dos arcos, dos pelotas', 4500.00),
+(3, 'CANCHA PARA 5', 'BASQUET', 'Cancha de Basquet apta para 10 personas. Materiales: Dos arcos, una pelota', 4500.00),
+(4, 'CANCHA PARA 10', 'BASQUET', 'Cancha de Basquet apta para 15 personas. Materiales: Dos arcos, una pelota', 5000.00),
+(5, 'SALON 1', 'SALON', '', 500.00);
 
 -- --------------------------------------------------------
 
@@ -66,9 +66,27 @@ CREATE TABLE `deportes` (
 --
 
 INSERT INTO `deportes` (`id_deporte`, `nombre`, `descripcion`, `cupo_maximo`) VALUES
-(1, 'FUTBOL 5', '', 30),
+(1, 'FUTBOL', '', 30),
 (2, 'BASQUET', '', 40),
 (3, 'SALON', '¡Hace tu reserva para el Salon de Fiestas!', 200);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `horario_cancha`
+--
+
+CREATE TABLE `horario_cancha` (
+  `id_cancha` int(5) NOT NULL,
+  `horario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `horario_cancha`
+--
+
+INSERT INTO `horario_cancha` (`id_cancha`, `horario`) VALUES
+(1, '12:00hs a 21:00hs');
 
 -- --------------------------------------------------------
 
@@ -142,7 +160,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `clave`, `dni`, `email`, `telefono`, `fecha_alta`, `rol`, `id_sesion`) VALUES
-(1, 'Santiago', '123456', '45316151', 'santiagodivirgilio073@gmail.com', '11 4082-2338', '0000-00-00', 'Admin', NULL);
+(1, 'Santiago', '123456', '45316151', 'santiagodivirgilio073@gmail.com', '11 4082-2338', '0000-00-00', 'Admin', NULL),
+(2, 'Mateo', '123123', '45919324', 'mateoalvarezsanjuan@hotmail.com', '1133204357', '0000-00-00', 'admin', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -159,6 +178,12 @@ ALTER TABLE `canchas`
 --
 ALTER TABLE `deportes`
   ADD PRIMARY KEY (`id_deporte`);
+
+--
+-- Indices de la tabla `horario_cancha`
+--
+ALTER TABLE `horario_cancha`
+  ADD PRIMARY KEY (`id_cancha`);
 
 --
 -- Indices de la tabla `inscripciones`
@@ -192,13 +217,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `canchas`
 --
 ALTER TABLE `canchas`
-  MODIFY `id_cancha` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_cancha` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `deportes`
 --
 ALTER TABLE `deportes`
   MODIFY `id_deporte` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `horario_cancha`
+--
+ALTER TABLE `horario_cancha`
+  MODIFY `id_cancha` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripciones`
@@ -222,7 +253,7 @@ ALTER TABLE `reservas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
