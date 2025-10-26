@@ -6,7 +6,7 @@
     <ul>
 			<li><a href="index.php">Inicio</a></li>
 			<li class="dropdown">
-				<a>Alquileres</a>
+				<a href="pago.php" class="dropdown-toggle">Alquileres</a>
 				<div class="dropdown-content">
 				<a href="alquileres.php #FUTBOL">Futbol 5</a>
 				<a href="alquileres.php #BASQUET">Basquet</a>
