@@ -27,6 +27,19 @@
     </div>
     </header>
 
+
+
+    <div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
+    <fieldset>
+        <input type="search" id="s" name="buscar_deporte" placeholder="Buscar..." required />
+        <input class="button" type="submit" value="" >
+        <i class="search"></i>
+    </fieldset>
+</form>
+</div>
+
+
+
 <?php
         include("conexion.php");
         $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
@@ -55,6 +68,7 @@
                         <img src="imagenes/<?php echo $variable_2['nombre'].'.png'; ?>" alt="<?php echo $variable_2['nombre']; ?>">
                         <div class="deporte-card-body">
                             <h4><?php echo htmlspecialchars($variable_2["nombre"]); ?></h4>
+                            <h5><?php echo htmlspecialchars($variable_2["descripcion"]); ?></h5>
                             <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_2['nombre']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_2['nombre'], ENT_QUOTES); ?>">Reservar</button>
                         </div>
                     </div>

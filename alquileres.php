@@ -40,6 +40,7 @@
     </div>
     </header>
 
+
 <?php
         $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
 ?>
