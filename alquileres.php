@@ -146,7 +146,7 @@
     
         let botonHTML = '';
         if (disponible) {
-            botonHTML = `<button class="btn-reservar" data-horario-id="${horarioId}">Reservar</button>`;
+            botonHTML = `<button class="btn-reservar data-horario-id="${horarioId}">Reservar</button>`;
         } else if (esAdmin) {
             botonHTML = `<button class="btn-liberar" data-horario-id="${horarioId}">Liberar</button>`;
         }
@@ -214,7 +214,13 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    actualizarFilaHorario(horarioId, accion === 'liberar');
+                    if (accion === 'reservar') {
+                        // Redirigir a la página de pago después de una reserva exitosa
+                        window.location.href = 'index.php?id_horario=' + horarioId;
+                    } else {
+                        // Si la acción es 'liberar', solo actualiza la fila
+                        actualizarFilaHorario(horarioId, true);
+                    }
                 } else {
                     alert(data.error || `No se pudo ${accion} el horario.`);
                 }

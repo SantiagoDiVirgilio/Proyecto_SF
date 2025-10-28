@@ -29,7 +29,7 @@
 
 
 
-    <div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
+<div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
     <fieldset>
         <input type="search" id="s" name="buscar_deporte" placeholder="Buscar..." required />
         <input class="button" type="submit" value="" >
