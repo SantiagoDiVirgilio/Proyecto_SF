@@ -26,41 +26,88 @@
 <?php
 	include('conexion.php');
 
-	if($_GET['name'] == 'buscar_usuario'){
-	$buscar = $_GET['buscar_usuario'];
-	echo "Resultados de búsqueda para: <em>".$buscar."</em><br>";
-
-	$resultado_1 = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre LIKE '%$buscar%' ");
+	if (isset($_GET['buscar_usuario']) && !empty($_GET['buscar_usuario'])) {
+		$buscar = $_GET['buscar_usuario'];
+		echo "Resultados de búsqueda para: <em>".htmlspecialchars($buscar)."</em><br>";
 ?>
 </h3>
 </article>
 <article class="busqueda">
+<?php
+		$buscar_seguro = mysqli_real_escape_string($conexion, $buscar);
+		$resultado_1 = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre LIKE '%$buscar_seguro%' ");
+
+		if ($resultado_1 && mysqli_num_rows($resultado_1) > 0) {
+			$nros = mysqli_num_rows($resultado_1);
+?>
 		<p>
-		<h2>Cantidad de Resultados:
-		<?php
-			$nros=mysqli_num_rows($resultado_1);
-			echo $nros;
-		?>
-		</h2> 
+		<h2>Cantidad de Resultados: <?php echo $nros; ?></h2> 
 		</p>
 	    <section class="canchas-container">
-		<?php
-			while($variable_1=mysqli_fetch_array($resultado_1)) {?>
-
+<?php
+			while($variable_1 = mysqli_fetch_array($resultado_1)) {
+?>
 	    <div class="deporte-card">
-			<a href="deportes.php?ID=<?php echo $variable_1["id_usuario"];?>">
-			<br><?php echo $variable_1["nombre"]; ?></a>		
-			</div>
-	    <?php
-			}
-		}
-		else{
-			print("Jaja bobo");
-		}
-			mysqli_free_result($resultado_1);
-			mysqli_close($conexion);
-		?>
+			<a href="perfil.php?id=<?php echo $variable_1["id_usuario"];?>">
+			<br><?php echo htmlspecialchars($variable_1["nombre"]); ?></a>	
+		</div>
+<?php
+			} // fin while
+?>
 		</section>
+<?php
+            mysqli_free_result($resultado_1);
+        } else {
+            echo "<p>No se encontraron resultados para usuarios.</p>";
+        }
+		mysqli_close($conexion);
+	} elseif (isset($_GET['buscar_deporte']) && !empty($_GET['buscar_deporte'])) {
+		$buscar = $_GET['buscar_deporte'];
+		echo "Resultados de búsqueda para: <em>".htmlspecialchars($buscar)."</em><br>";
+?>
+</h3>
+</article>
+<article class="busqueda">
+<?php
+		$buscar_seguro = mysqli_real_escape_string($conexion, $buscar);
+		$resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes WHERE nombre LIKE '%$buscar_seguro%' ");
+
+		if ($resultado_2 && mysqli_num_rows($resultado_2) > 0) {
+			$nros = mysqli_num_rows($resultado_2);
+?>
+		<p>
+		<h2>Cantidad de Resultados: <?php echo $nros; ?></h2> 
+		</p>
+	    <section class="canchas-container">
+<?php
+			while($variable_2 = mysqli_fetch_array($resultado_2)) {
+?>
+	    <div class="deporte-card">
+			<a href="deportes.php?ID=<?php echo $variable_2["id_deporte"];?>">
+			<br><?php echo htmlspecialchars($variable_2["nombre"]); ?></a>	
+		</div>
+<?php
+			} // fin while
+?>
+		</section>
+<?php
+            mysqli_free_result($resultado_2);
+        } else {
+            echo "<p>No se encontraron resultados para deportes.</p>";
+        }
+		mysqli_close($conexion);
+	} else {
+?>
+</h3>
+</article>
+<article class="busqueda">
+<?php
+		echo "<p>Por favor, ingrese un término de búsqueda.</p>";
+        if (isset($conexion)) {
+            mysqli_close($conexion);
+        }
+	}
+?>
 </article>
 </section>
 <footer>
