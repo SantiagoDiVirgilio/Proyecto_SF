@@ -894,3 +894,77 @@ body.lb-disable-scrolling {
     color: red;
     font-weight: bold;
 }
+
+/*-------------------BUSCADOR-------------------*/
+
+.cajabuscar {
+  float: none;
+  width: 100%;
+  max-width: 453px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+  text-align: left;
+  align-self: center;
+  align-items: center;
+  margin-left:2%;
+
+}
+
+#buscarform {
+  padding: 0;
+  float: left;
+  clear: both;
+  width: 100%;
+  position: relative;
+}
+#buscarform fieldset { float: left }
+
+#buscarform .search {
+  background-size: cover;
+  background-image: url("../images/Icono_Buscar.png");
+  position: absolute;
+  width: 0.5%;
+  height: 0.5%;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 10%;
+  background-repeat: no-repeat;
+}
+#buscarform fieldset { width: 100% }
+
+#s {
+  width: 100%;
+  background-color: #fff;
+  float: left;
+  padding: 8px 0;
+  text-indent: 10px;
+  color: #555555;
+  border: 1px solid #fff; 
+  box-sizing: border-box;
+  height: 42px;
+}
+
+.button{
+  right: 0;
+  top: 0;
+  padding: 9px 0;
+  float: right;
+  border: 0;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 10px;
+  color: #a4a4a4;
+  transition: all 0.25s linear;
+  background: transparent;
+  z-index: 10;
+  position: absolute;
+  border: 0;
+  vertical-align: top;
+}
+
+/*-------------------CIERRA BUSCADOR-------------------*/
