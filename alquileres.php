@@ -160,6 +160,7 @@
     
             modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
             modalHorariosBody.innerHTML = "<p>Cargando horarios...</p>";
+            modalHorariosBody.dataset.canchaId = canchaId; // Guardar el id de la cancha
             openModal();
     
             fetch(`obtener_horarios.php?id_cancha=${canchaId}`)
@@ -201,7 +202,6 @@
         const target = event.target;
         const esBotonReservar = target.classList.contains("btn-reservar");
         const esBotonLiberar = target.classList.contains("btn-liberar");
-        //const canchaId = event.target.getAttribute("data-cancha-id");
     
         if (esBotonReservar || esBotonLiberar) {
             const horarioId = target.getAttribute("data-horario-id");
@@ -217,8 +217,9 @@
                 if (data.success) {
                     if (accion === 'reservar') {
                         // Redirigir a la página de pago después de una reserva exitosa
-                        window.location.href = 'index.php';
-                        //window.location.href = "pago_reserva.php?id_cancha=" + canchaId;
+                        const canchaId = modalHorariosBody.dataset.canchaId;
+                        window.location.href = `pago_reserva.php?id_cancha=${canchaId}&id_horario=${horarioId}`;
+                    } else { 
                         // Si la acción es 'liberar', solo actualiza la fila
                         actualizarFilaHorario(horarioId, true);
                     }
