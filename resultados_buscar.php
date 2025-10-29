@@ -25,7 +25,7 @@
 <h3>
 <?php
 	include('conexion.php');
-
+//Hola Mateo
 	if (isset($_GET['buscar_usuario']) && !empty($_GET['buscar_usuario'])) {
 		$buscar = $_GET['buscar_usuario'];
 		echo "Resultados de búsqueda para: <em>".htmlspecialchars($buscar)."</em><br>";
