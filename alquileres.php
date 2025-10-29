@@ -216,8 +216,10 @@
                 if (data.success) {
                     if (accion === 'reservar') {
                         // Redirigir a la página de pago después de una reserva exitosa
-                        window.location.href = 'index.php?id_horario=' + horarioId;
-                    } else {
+                         //original = window.location.href = 'index.php?id_horario=' + horarioId;
+                        window.location.href = 'pago_reserva.php?id_cancha=' + canchaId;
+                        //window.location.href = 'index.php';
+
                         // Si la acción es 'liberar', solo actualiza la fila
                         actualizarFilaHorario(horarioId, true);
                     }
