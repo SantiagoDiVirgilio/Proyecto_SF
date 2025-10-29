@@ -52,13 +52,14 @@
                     <h4>
                         <a href="perfil.php?id=<?php echo $variable_1["id_usuario"];?>">
                             <?php echo htmlspecialchars($variable_1["nombre"]); ?>
+							<?php echo htmlspecialchars($variable_1["dni"]); ?>
                         </a>
                     </h4>
                     <p>Ver perfil de usuario.</p>
                 </div>
             </div>
 <?php
-			} // fin while
+			} // fin while de BUSQUEDA DE USUARIOS
 ?>
 		</section>
 <?php
@@ -102,7 +103,7 @@
                 </div>
             </div>
 <?php
-			} // fin while
+			} // fin while DE BUSQUEDA DE DEPORTES
 ?>
 		</section>
 <?php

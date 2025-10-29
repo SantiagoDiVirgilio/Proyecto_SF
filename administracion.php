@@ -44,7 +44,6 @@
     <fieldset>
         <input type="search" id="s" name="buscar_usuario" placeholder="Buscar..." required />
         <input class="button" type="submit" value="" >
-        <i class="search"></i>
     </fieldset>
 </form>
 </div>

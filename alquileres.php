@@ -216,7 +216,7 @@
                 if (data.success) {
                     if (accion === 'reservar') {
                         // Redirigir a la página de pago después de una reserva exitosa
-                        window.location.href = 'index.php?id_horario=' + horarioId;
+                        window.location.href = 'pago.php?id_horario=' + horarioId;
                     } else {
                         // Si la acción es 'liberar', solo actualiza la fila
                         actualizarFilaHorario(horarioId, true);
