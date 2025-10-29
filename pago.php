@@ -40,9 +40,9 @@ try {
     $preference = $client->create([
         "items" => [
             [
-                "title" => "Reserva de Cancha",
+                "title" => "PRUEBA GENERAL",
                 "quantity" => 1,
-                "unit_price" => 1500
+                "unit_price" => 1
             ]
         ]
     ]);
