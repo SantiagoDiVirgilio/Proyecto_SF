@@ -201,6 +201,7 @@
         const target = event.target;
         const esBotonReservar = target.classList.contains("btn-reservar");
         const esBotonLiberar = target.classList.contains("btn-liberar");
+        //const canchaId = event.target.getAttribute("data-cancha-id");
     
         if (esBotonReservar || esBotonLiberar) {
             const horarioId = target.getAttribute("data-horario-id");
@@ -216,10 +217,8 @@
                 if (data.success) {
                     if (accion === 'reservar') {
                         // Redirigir a la página de pago después de una reserva exitosa
-                         //original = window.location.href = 'index.php?id_horario=' + horarioId;
-                        window.location.href = 'pago_reserva.php?id_cancha=' + canchaId;
-                        //window.location.href = 'index.php';
-
+                        window.location.href = 'index.php';
+                        //window.location.href = "pago_reserva.php?id_cancha=" + canchaId;
                         // Si la acción es 'liberar', solo actualiza la fila
                         actualizarFilaHorario(horarioId, true);
                     }
