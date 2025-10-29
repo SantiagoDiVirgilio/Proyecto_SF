@@ -47,10 +47,16 @@
 <?php
 			while($variable_1 = mysqli_fetch_array($resultado_1)) {
 ?>
-	    <div class="deporte-card">
-			<a href="perfil.php?id=<?php echo $variable_1["id_usuario"];?>">
-			<br><?php echo htmlspecialchars($variable_1["nombre"]); ?></a>	
-		</div>
+	    <div class="cancha-card">
+                <div class="cancha-card-body">
+                    <h4>
+                        <a href="perfil.php?id=<?php echo $variable_1["id_usuario"];?>">
+                            <?php echo htmlspecialchars($variable_1["nombre"]); ?>
+                        </a>
+                    </h4>
+                    <p>Ver perfil de usuario.</p>
+                </div>
+            </div>
 <?php
 			} // fin while
 ?>
@@ -82,10 +88,19 @@
 <?php
 			while($variable_2 = mysqli_fetch_array($resultado_2)) {
 ?>
-	    <div class="deporte-card">
-			<a href="deportes.php?ID=<?php echo $variable_2["id_deporte"];?>">
-			<br><?php echo htmlspecialchars($variable_2["nombre"]); ?></a>	
-		</div>
+	    <div class="cancha-card">
+                <a href="deportes.php?ID=<?php echo $variable_2["id_deporte"];?>">
+                    <img src="imagenes/<?php echo htmlspecialchars(strtoupper($variable_2["nombre"])).'.png'; ?>" alt="<?php echo htmlspecialchars($variable_2["nombre"]); ?>">
+                </a>
+                <div class="cancha-card-body">
+                    <h4>
+                        <a href="deportes.php?ID=<?php echo $variable_2["id_deporte"];?>">
+                            <?php echo htmlspecialchars($variable_2["nombre"]); ?>
+                        </a>
+                    </h4>
+                    <p>Más detalles sobre <?php echo htmlspecialchars(strtolower($variable_2["nombre"])); ?>.</p>
+                </div>
+            </div>
 <?php
 			} // fin while
 ?>
