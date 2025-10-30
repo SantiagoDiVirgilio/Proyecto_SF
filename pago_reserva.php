@@ -37,6 +37,17 @@ $preference = $client->create([
     ]]
 ]);
 
+$preference = new MercadoPago\Preference();
+
+$preference->back_urls = array(
+    "success" => "https://www.tu-sitio/success",
+    "failure" => "https://www.tu-sitio/failure",
+    "pending" => "https://www.tu-sitio/pending"
+);
+
+//$preference->auto_return = "approved";
+
+
 $paymentUrl = $preference->init_point;
 
 mysqli_stmt_close($stmt);
