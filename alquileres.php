@@ -68,8 +68,7 @@
                     <?php $resultado_1 = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
                     <?php $resultado_3 = mysqli_query($conexion, "SELECT * FROM horario_cancha");
                     $variable_3 = mysqli_fetch_assoc($resultado_3);?>
-                    <?php while($variable_1 = mysqli_fetch_assoc($resultado_1)){?>
-                    
+                    <?php while($variable_1 = mysqli_fetch_assoc($resultado_1)){?>                   
                         <?php if($variable_1["tipo"] == $variable_2["nombre"]){?>
                             <div class="cancha-card">
                                 <img src="imagenes/<?php echo $variable_1['tipo'].'.png'; ?>" alt="<?php echo $variable_1['nombre']; ?>">
@@ -85,7 +84,6 @@
                 </div>
             </section>
         <?php }?>
-
 <!-- Modal -->
 <div id="horariosModal" class="modal">
   <div class="modal-content">
@@ -101,10 +99,8 @@
     include("FOOTER.php");
 ?>
 </footer>
-
 <!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
 <script>
     const esAdmin = <?php echo json_encode($es_admin); ?>;
     
@@ -157,6 +153,8 @@
         if (event.target.classList.contains("btn-ver-horarios")) {
             const canchaId = event.target.getAttribute("data-cancha-id");
             const canchaNombre = event.target.getAttribute("data-cancha-nombre");
+
+            canchaIdGlobal = canchaId; // Guardar el ID de la cancha en una variable global esto es una prueba
     
             modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
             modalHorariosBody.innerHTML = "<p>Cargando horarios...</p>";
@@ -201,11 +199,12 @@
         const target = event.target;
         const esBotonReservar = target.classList.contains("btn-reservar");
         const esBotonLiberar = target.classList.contains("btn-liberar");
+        
     
         if (esBotonReservar || esBotonLiberar) {
-            const horarioId = target.getAttribute("data-horario-id");
+            const horarioId = target.getAttribute("data-horario-id");     
             const accion = esBotonReservar ? 'reservar' : 'liberar';
-    
+            
             fetch(`actualizar_horario.php`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -216,7 +215,8 @@
                 if (data.success) {
                     if (accion === 'reservar') {
                         // Redirigir a la página de pago después de una reserva exitosa
-                        window.location.href = 'pago.php?id_horario=' + horarioId;
+                        //const canchaId = target.getAttribute("data-cancha-id");
+                        window.location.href = 'pago.php?id_horario=' + horarioId + '&id_cancha=' + canchaIdGlobal;
                     } else {
                         // Si la acción es 'liberar', solo actualiza la fila
                         actualizarFilaHorario(horarioId, true);

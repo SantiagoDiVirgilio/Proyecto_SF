@@ -20,54 +20,49 @@
 	<?php
     include("NAV.php");
     include("conexion.php");
-    ?>
-</header>
-
-<!--------------------------------------- SISTEMA DE PAGO ---------------------------------->
-<?php
-require_once __DIR__ . '/vendor/autoload.php';
-
-use MercadoPago\MercadoPagoConfig;
-use MercadoPago\Client\Preference\PreferenceClient;
-use MercadoPago\Exceptions\MPApiException;
-
-// Configurar el access token
-MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a3bc8b5805d6f726606e-2946101958");
-
-try {
-    $client = new PreferenceClient();
-    
-    $preference = $client->create([
-        "items" => [
-            [
-                "title" => "PRUEBA GENERAL",
-                "quantity" => 1,
-                "unit_price" => 1
-            ]
-        ]
-    ]);
-    
-    $paymentUrl = $preference->init_point;
-    
-} catch (MPApiException $e) {
-    echo "Error: " . $e->getMessage();
-    $paymentUrl = null;
-} catch (Exception $e) {
-    echo "Error general: " . $e->getMessage();
-    $paymentUrl = null;
-}
+    /*
+    session_start();
+    $_SESSION['preference_id'] = $preference->id;
+    */
 ?>
+</header>
+<h3>DETALLES DE LA COMPRA</h3>
+<!--------------------------------------- SISTEMA DE PAGO ---------------------------------->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+  const publicKey = "APP_USR-226856e1-5fbf-4b6b-9534-a5dbeef03d2b";
+  const mp = new MercadoPago(publicKey);
+  const bricksBuilder = mp.bricks();
 
-<h4 class="pago">
-<?php if ($paymentUrl): ?>
-    <a href="<?php echo htmlspecialchars($paymentUrl); ?>" target="_blank"><img src="imagenes/mercado_pago.webp" alt="Logo de mercado pago" class="logo_mp"> 
-        Pagar con Mercado Pago
-    </a>
-<?php else: ?>
-    <p>Error al procesar el pago.</p>
-<?php endif; ?>
-</h4>
+  // Função para renderizar o botão de pagamento
+  const renderWalletBrick = async (preferenceId) => {
+    await bricksBuilder.create("wallet", "walletBrick_container", {
+      initialization: {
+        preferenceId: preferenceId,
+      }
+    });
+  };
+  // Faz a chamada para o backend para obter o preferenceId
+  const url = new URL('crear_preferencia.php', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/');
+  url.searchParams.append('id_cancha', <?php echo isset($_GET['id_cancha']) ? json_encode($_GET['id_cancha']) : 'null'; ?>);
 
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      if (data.preference_id) {
+        renderWalletBrick(data.preference_id);
+      } else {
+        console.error('Error: preference_id no encontrado en la respuesta');
+        // Opcional: mostrar un mensaje de error al usuario
+      }
+    })
+    .catch(error => {
+      console.error('Error al obtener preference_id:', error);
+      // Opcional: mostrar un mensaje de error al usuario
+    });
+</script>
+<!-- Container para o botão de pagamento -->
+<div id="walletBrick_container">ESTO ES EL BOTON</div>
 <!--------------------------------------- FIN SISTEMA DE PAGO ---------------------------------->
 <footer>
 <?php
