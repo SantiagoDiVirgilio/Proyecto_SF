@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -48,7 +52,7 @@
 </form>
 </div>
 
-        <h2 class="perfil"> 
+    <h2 class="perfil"> 
         <?php
           if(isset($_SESSION['id_usuario'])){
             $id_usuario_actual = $_SESSION['id_usuario'];
@@ -62,15 +66,7 @@
             mysqli_stmt_close($stmt_usuario);
           }
           ?>
-          </h2>
-
-
-
-
-
-
-
-
+    </h2>
 
 <footer>
 <?php
