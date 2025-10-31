@@ -34,6 +34,7 @@
   const mp = new MercadoPago(publicKey);
   const bricksBuilder = mp.bricks();
 
+<<<<<<< HEAD
   // Função para renderizar o botão de pagamento
   const renderWalletBrick = async (preferenceId) => {
     await bricksBuilder.create("wallet", "walletBrick_container", {
@@ -45,6 +46,36 @@
   // Faz a chamada para o backend para obter o preferenceId
   const url = new URL('crear_preferencia.php', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/');
   url.searchParams.append('id_cancha', <?php echo isset($_GET['id_cancha']) ? json_encode($_GET['id_cancha']) : 'null'; ?>);
+=======
+    <form action="registro_reserva.php" method="post">
+        <!-- Campo oculto para pasar el id_horario -->
+        <input type="hidden" name="id_horario" value="<?php echo htmlspecialchars($_GET['id_horario']); ?>">
+
+        <label for="nom">Nombre:</label>
+        <input class="input_formu" type="text" name="nombre" maxlength="20" required>
+        
+        <label for="email">Email:</label>
+        <input class="input_formu" type="email" name="email" maxlength="40" required>
+        
+        <label for="tel">Telefono:</label>
+        <input class="input_formu" type="text" name="telefono" maxlength="20" required>
+        
+        <label for="fecha_pago">Fecha y Hora del Pago:</label>
+        <input class="input_formu" type="datetime-local" id="fecha_pago" name="fecha_pago" required>
+
+        <h4 class="pago">
+            <?php if ($paymentUrl): ?>
+                <a href="<?php echo htmlspecialchars($paymentUrl); ?>" target="_blank"><img src="imagenes/mercado_pago.webp" alt="Logo de mercado pago" class="logo_mp"> 
+                    Pagar con Mercado Pago
+                </a>
+            <?php else: ?>
+                <p>Error al procesar el link de pago.</p>
+            <?php endif; ?>
+        </h4>
+        
+        <input type="submit" value="Registrar Reserva">
+    </form>
+>>>>>>> b467ad13257f1c7889e8d20b0c25dcab57e28fe1
 
   fetch(url)
     .then(response => response.json())

@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -20,7 +24,6 @@
 	
 	<?php
     include("NAV.php");
-    include("conexion.php");
     ?>
     <div class="mobile-header-bar">
         <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
@@ -41,7 +44,6 @@
 
 
 <?php
-        include("conexion.php");
         $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
 ?>
 <!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
@@ -69,7 +71,7 @@
                         <div class="deporte-card-body">
                             <h4><?php echo htmlspecialchars($variable_2["nombre"]); ?></h4>
                             <h5><?php echo htmlspecialchars($variable_2["descripcion"]); ?></h5>
-                            <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_2['nombre']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_2['nombre'], ENT_QUOTES); ?>">Reservar</button>
+                            <button class="btn-ver-horarios" data-deporte-id="<?php echo $variable_2['id_deporte']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_2['nombre'], ENT_QUOTES); ?>">Inscribirse</button>
                         </div>
                     </div>
                 <?php }?>
@@ -135,18 +137,14 @@ function toggleMenu() {
   }
 }
 
-// --- Lógica del Modal ---
-const modal = document.getElementById("horariosModal");
-const modalCanchaNombre = document.getElementById("modalCanchaNombre");
-const modalHorariosBody = document.getElementById("modalHorariosBody");
-const closeModal = document.querySelector(".close");
-
 // Funcion para abrir modal
 function openModal(canchaNombre, canchaHorario) {
     modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
     modalHorariosBody.innerHTML = (canchaHorario || "No disponible");
     modal.style.display = "block";
 }
+
+
 
 // Funcion para cerrar modal
 function closeModalFunction() {
@@ -156,12 +154,41 @@ function closeModalFunction() {
 // Evento de delegacion de modal
 document.addEventListener("click", function(event) {
     if (event.target.classList.contains("btn-ver-horarios")) {
-        // La lógica del modal aquí está incompleta.
-        // Si el usuario está logueado, se intenta abrir un modal pero no hay horarios que mostrar.
+        console.log("Botón 'Inscribirse' clickeado.");
+        console.log("isLoggedIn:", isLoggedIn);
+
         if (isLoggedIn) {
-            const canchaNombre = event.target.getAttribute("data-cancha-nombre");
-            // Redirigimos al usuario a la página de alquileres donde está la lógica completa.
-            window.location.href = 'alquileres.php#' + encodeURIComponent(canchaNombre);
+            const deporteId = event.target.getAttribute("data-deporte-id");
+            console.log("ID de deporte:", deporteId);
+
+            if (!deporteId) {
+                alert("Error: No se pudo obtener el ID del deporte.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('id_deporte', deporteId);
+
+            fetch('inscribir_deporte.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                console.log("Respuesta del servidor:", response);
+                return response.json();
+            })
+            .then(data => {
+                console.log("Datos JSON de la respuesta:", data);
+                if (data.success) {
+                    alert('¡Inscripción exitosa!');
+                } else {
+                    alert('Error en la inscripción: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error en fetch:', error);
+                alert('Ocurrió un error al procesar la solicitud. Revisa la consola para más detalles.');
+            });
         } else {
             var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
             loginModal.show();
@@ -169,13 +196,19 @@ document.addEventListener("click", function(event) {
     }
 });
 
+// Get Modal Elements
+const modal = document.getElementById("horariosModal");
+const closeModal = document.querySelector("#horariosModal .close");
+
 // Eventos para cerrar el modal
-closeModal.addEventListener("click", closeModalFunction);
-window.addEventListener("click", function(event) {
-    if (event.target === modal) {
-        closeModalFunction();
-    }
-});
+if(closeModal && modal) {
+    closeModal.addEventListener("click", closeModalFunction);
+    window.addEventListener("click", function(event) {
+        if (event.target === modal) {
+            closeModalFunction();
+        }
+    });
+}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

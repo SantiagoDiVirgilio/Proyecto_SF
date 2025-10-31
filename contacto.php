@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -32,9 +36,11 @@
                   ¡Todos sus mensajes son bienvenidos!<br>
             ¡Complete el formulario y envíelo!
         </p>
-        <form action="contacto.php" method="post">
+        <form action="mensajes_contacto.php" method="post">
             <label for="nom">Nombre:</label>
             <input class="input_formu" type="text" name="nombre" maxlength="20">
+            <label for="tel">Telefono:</label>
+            <input class="input_formu" type="text" name="telefono" maxlength="20">
             <label for="email">Email:</label>
             <input class="input_formu" type="email" name="email" maxlength="40">
             <label for="comentario">Haga su comentario <strong>aquí:</strong></label>
