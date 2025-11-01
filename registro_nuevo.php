@@ -35,7 +35,11 @@
         </div>
         <div class="form-group">
             <label for="clave">Contraseña:</label>
+<<<<<<< HEAD
+            <input id="password" type="password" name="clave" maxlength="12" />
+=======
             <input id="password" type="password" name="password" maxlength="12" />
+>>>>>>> b467ad13257f1c7889e8d20b0c25dcab57e28fe1
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
