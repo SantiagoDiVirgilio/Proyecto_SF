@@ -25,12 +25,7 @@ include("conexion.php");
 	<?php
     include("NAV.php");
     ?>
-    <div class="mobile-header-bar">
-        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-    </div>
     </header>
-
-
 
 <div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
     <fieldset>
@@ -44,7 +39,7 @@ include("conexion.php");
 
 
 <?php
-        $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
+        $llamado_deportes = mysqli_query($conexion, "SELECT * FROM deportes");
 ?>
 <!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
         deporte-->
@@ -64,14 +59,14 @@ include("conexion.php");
         ?>
           </h2>
         <div class="canchas-container">
-            <?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
-                <?php if($variable_2["nombre"] != NULL && $variable_2['nombre'] != 'SALON'){?>
+            <?php while($var_deportes = mysqli_fetch_assoc($llamado_deportes)){?>
+                <?php if($var_deportes["nombre"] != NULL && $var_deportes['nombre'] != 'SALON'){?>
                     <div class="deporte-card">
-                        <img src="imagenes/<?php echo $variable_2['nombre'].'.png'; ?>" alt="<?php echo $variable_2['nombre']; ?>">
+                        <img src="imagenes/<?php echo $var_deportes['nombre'].'.png'; ?>" alt="<?php echo $var_deportes['nombre']; ?>">
                         <div class="deporte-card-body">
-                            <h4><?php echo htmlspecialchars($variable_2["nombre"]); ?></h4>
-                            <h5><?php echo htmlspecialchars($variable_2["descripcion"]); ?></h5>
-                            <button class="btn-ver-horarios" data-deporte-id="<?php echo $variable_2['id_deporte']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_2['nombre'], ENT_QUOTES); ?>">Inscribirse</button>
+                            <h4><?php echo htmlspecialchars($var_deportes["nombre"]); ?></h4>
+                            <h5><?php echo htmlspecialchars($var_deportes["descripcion"]); ?></h5>
+                            <button class="btn-ver-horarios" data-deporte-id="<?php echo $var_deportes['id_deporte']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($var_deportes['nombre'], ENT_QUOTES); ?>">Inscribirse</button>
                         </div>
                     </div>
                 <?php }?>
@@ -79,9 +74,9 @@ include("conexion.php");
         </div>
 
 <!-- Modal (Utiliza el mismo modal que alquileres.php)-->
-<div id="horariosModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
+<div id="customHorariosModal" class="modal">
+  <div class="custom-modal-content">
+    <span class="custom-close">&times;</span>
     <h3 id="modalCanchaNombre"></h3>
     <div id="modalHorariosBody">
     </div>
@@ -197,8 +192,8 @@ document.addEventListener("click", function(event) {
 });
 
 // Get Modal Elements
-const modal = document.getElementById("horariosModal");
-const closeModal = document.querySelector("#horariosModal .close");
+const modal = document.getElementById("customHorariosModal");
+const closeModal = document.querySelector("#customHorariosModal .custom-close");
 
 // Eventos para cerrar el modal
 if(closeModal && modal) {

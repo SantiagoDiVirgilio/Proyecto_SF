@@ -68,6 +68,23 @@ include("conexion.php");
           ?>
     </h2>
 
+    <div class="formu-card-container">
+        <h2 class="formu-card"> 
+            <a href="formu_deporte.php" class="perfil">Añadir Deporte Nuevo</a>
+        </h2>
+        <h2 class="formu-card"> 
+            <a href="deportes_tablas.php" class="perfil">Deportes</a>
+        </h2>
+        <h2 class="formu-card"> 
+            <a href="formu_cancha.php" class="perfil">Añadir Cancha Nueva</a>
+        </h2>
+        <h2 class="formu-card"> 
+            <a href="eliminar_cancha.php" class="perfil">Eliminar Cancha</a>
+        </h2>
+        <h2 class="formu-card"> 
+            <a href="formu_horario.php" class="perfil">Añadir Horario a Cancha</a>
+        </h2>
+    </div>
 <footer>
 <?php
     include("FOOTER.php");

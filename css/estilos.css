@@ -15,8 +15,7 @@ body{
 }
 
 header{
-	display: flex;
-	justify-content: space-between;
+	text-align: center;
 	background-color: #b0c4de;
 	padding: 10px;
 	position: relative;
@@ -33,26 +32,30 @@ a{
   color:rgb(42, 75, 138);
 }
 
-nav{
-  display: flex;
-  justify-content: flex-end;
-  flex-grow: 1; /* Permite que la navegación ocupe el espacio restante */
+header > nav{
+
+  display: inline-block;
+
+  vertical-align: middle;
+
 }
 
-/* Esta es la regla para alinear los elementos del menú */
-nav > ul {
+#myTopnav > ul {
+  margin: 0;
+  padding: 0;
   display: flex; 
   list-style: none;
   align-items: center;
-  font-size: 1.2rem; /* Aumentado el tamaño de la fuente del NAV para mayor legibilidad */
+  font-size: 1rem; /* Aumentado el tamaño de la fuente del NAV para mayor legibilidad */
   font-family: Arial, sans-serif;
-  gap: 2rem;
+  margin-right: 1%;
+  
   font-weight: bold;
 }
 
-nav > ul a {
+#myTopnav ul li a {
   color: #333; 
-  padding: 12px 24px; 
+  padding: 5px 10px; 
   border-radius: 5px;
   white-space: nowrap;
   transition: all 0.3s ease;
@@ -77,21 +80,23 @@ nav ul li:hover a {
 }
 
 .logo{
-  width: 15%;
+  width: 5%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
  /* Menú desplegable de la versión de escritorio */
-.dropdown-content a:hover{
+.custom-dropdown-content a:hover{
   background-color: #0056b3;
   color: rgb(255, 255, 255);
 }
 
-.dropdown {
+.custom-dropdown {
   position: relative;
   display: inline-block;
 }
 
-.dropdown-content {
+.custom-dropdown-content {
   display: none;
   position: absolute;
   z-index: 1;
@@ -103,19 +108,19 @@ nav ul li:hover a {
   overflow: hidden; 
 }
 
-.dropdown a {
+.custom-dropdown a {
   display: block;
   color: #333 !important;
   padding: 12px 20px; 
   transition: all 0.3s ease;
 }
 
-.dropdown:hover .dropdown-content {
+.custom-dropdown:hover .custom-dropdown-content {
   display: block;
 }
 
 /
-.dropdown > a::after {
+.custom-dropdown > a::after {
   content: ' \25BC'; 
   font-size: 0.8em; 
 }
@@ -235,6 +240,33 @@ p a{
   color: rgb(0, 0, 0);
 }
 
+.formu-card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.formu-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 30%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 2%;
+  padding: 20px;
+}
+.formu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #6589af;
+}
+.formu-card a{
+  font-size: 2rem;
+}
+.formu-card:hover a{
+  color: rgb(255, 255, 255);
+}
 .pago{
   padding: 1.5rem;
   display: block;
@@ -243,7 +275,12 @@ p a{
   margin-left: 15%;
   margin-top: 5%;
 }
-
+.tablas{
+  padding: 1.5rem;
+  display: block;
+  flex-direction:column;
+  margin-left: 10%;
+}
 .logo_mp{
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -511,7 +548,7 @@ footer div a{
 }
 
 /* Contenido del Modal */
-#horariosModal .modal-content {
+#customHorariosModal .custom-modal-content {
   background-color: #fefefe;
   margin: 15% auto; 
   padding: 20px;
@@ -531,7 +568,7 @@ footer div a{
 }
 
 /* El botón de cerrar (x) */
-#horariosModal .close {
+#customHorariosModal .custom-close {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -831,7 +868,7 @@ body.lb-disable-scrolling {
     width: 100%;
   }
 
-  nav ul li {
+#myTopnav ul li {
     padding: 0.5rem 0;
     text-align: center;
     width: 100%;

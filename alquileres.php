@@ -46,7 +46,7 @@ include("conexion.php");
 
 
 <?php
-        $resultado_2 = mysqli_query($conexion, "SELECT * FROM deportes");
+        $conexdeportes = mysqli_query($conexion, "SELECT * FROM deportes");
 ?>
 <!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
         deporte-->
@@ -65,23 +65,23 @@ include("conexion.php");
           }
           ?>
           </h2>
-        <?php while($variable_2 = mysqli_fetch_assoc($resultado_2)){?>
-            <section class="titulo_deportes" id="<?php echo htmlspecialchars($variable_2["nombre"]); ?>">
-                <h2><span><?php echo htmlspecialchars($variable_2["nombre"]); ?></span></h2>
+        <?php while($deportes = mysqli_fetch_assoc($conexdeportes)){?>
+            <section class="titulo_deportes" id="<?php echo htmlspecialchars($deportes["nombre"]); ?>">
+                <h2><span><?php echo htmlspecialchars($deportes["nombre"]); ?></span></h2>
                 <div class="canchas-container">
-                    <?php $resultado_1 = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
-                    <?php $resultado_3 = mysqli_query($conexion, "SELECT * FROM horario_cancha");
-                    $variable_3 = mysqli_fetch_assoc($resultado_3);?>
-                    <?php while($variable_1 = mysqli_fetch_assoc($resultado_1)){?>
+                    <?php $canchas = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
+                    <?php $horarioscanchas = mysqli_query($conexion, "SELECT * FROM horario_cancha");
+                    $varhorarios = mysqli_fetch_assoc($horarioscanchas);?>
+                    <?php while($varcanchas = mysqli_fetch_assoc($canchas)){?>
                     
-                        <?php if($variable_1["tipo"] == $variable_2["nombre"]){?>
+                        <?php if($varcanchas["tipo"] == $deportes["nombre"]){?>
                             <div class="cancha-card">
-                                <img src="imagenes/<?php echo $variable_1['tipo'].'.png'; ?>" alt="<?php echo $variable_1['nombre']; ?>">
+                                <img src="imagenes/<?php echo $varcanchas['tipo'].'.png'; ?>" alt="<?php echo $varcanchas['nombre']; ?>">
                             <div class="cancha-card-body">
-                                <h4><?php echo $variable_1["nombre"]; ?></h4>
-                                <p><?php echo $variable_1["descripcion"]; ?></p>
-                                <p class="precio"><?php echo $variable_1["precio_hora"]; ?></p>
-                                <button class="btn-ver-horarios" data-cancha-id="<?php echo $variable_1['id_cancha']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($variable_1['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
+                                <h4><?php echo $varcanchas["nombre"]; ?></h4>
+                                <p><?php echo $varcanchas["descripcion"]; ?></p>
+                                <p class="precio"><?php echo $varcanchas["precio_hora"]; ?></p>
+                                <button class="btn-ver-horarios" data-cancha-id="<?php echo $varcanchas['id_cancha']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($varcanchas['nombre'], ENT_QUOTES); ?>">Ver Horarios</button>
                             </div>
                             </div>
                         <?php }?>

@@ -1,10 +1,10 @@
-<nav id="menu_hamburguesa">
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+<nav id="myTopnav">
+    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()"><i class="fa fa-bars"></i></a>
     <ul>
         <li><a href="index.php">Inicio</a></li>
-        <li class="dropdown">
-            <a href="pago_reserva.php?id_cancha=1" class="dropdown-toggle">Alquileres</a>
-            <div class="dropdown-content">
+        <li class="custom-dropdown">
+            <a href="pago_reserva.php?id_cancha=1">Alquileres</a>
+            <div class="custom-dropdown-content">
                 <a href="alquileres.php#FUTBOL">Futbol</a>
                 <a href="alquileres.php#BASQUET">Basquet</a>
                 <a href="alquileres.php#SALON">Salon</a>
