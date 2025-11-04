@@ -70,19 +70,10 @@ include("conexion.php");
 
     <div class="formu-card-container">
         <h2 class="formu-card"> 
-            <a href="formu_deporte.php" class="perfil">Añadir Deporte Nuevo</a>
+            <a href="deportes_tablas.php" class="perfil">Gestionar Deportes</a>
         </h2>
         <h2 class="formu-card"> 
-            <a href="deportes_tablas.php" class="perfil">Deportes</a>
-        </h2>
-        <h2 class="formu-card"> 
-            <a href="formu_cancha.php" class="perfil">Añadir Cancha Nueva</a>
-        </h2>
-        <h2 class="formu-card"> 
-            <a href="eliminar_cancha.php" class="perfil">Eliminar Cancha</a>
-        </h2>
-        <h2 class="formu-card"> 
-            <a href="formu_horario.php" class="perfil">Añadir Horario a Cancha</a>
+            <a href="canchas_tablas.php" class="perfil">Gestionar Canchas</a>
         </h2>
     </div>
 <footer>

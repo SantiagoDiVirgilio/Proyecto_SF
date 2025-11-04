@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,6 +23,12 @@
 	
 	<?php
     include("NAV.php");
+    include("conexion.php");
+	$_SESSION['VARIABLE'] = session_id();
+
+$id = $_GET['id_cancha'];
+$conexion_cancha= mysqli_query($conexion, "SELECT * FROM canchas WHERE id_cancha = '$id'");
+$cancha = mysqli_fetch_array($conexion_cancha);
     ?>
 
 	<div class="mobile-header-bar">
@@ -27,15 +37,27 @@
 
 	<article >
     <section class="formu">
-        <h3>Eliminacion de Canchas</h3><br>
-	<form action="darbaja_cancha.php" method="post">
+        <h3>Edicion de Cancha</h3><br>
+	<form action="modificar_cancha.php" method="post">
         <div class="form-group">
-            <label for="nombre">Nombre de Cancha:</label>
-            <input id="nombre" name="nombre" type="text" maxlength="12" />
+            <label for="id_cancha">ID de la Cancha:</label>
+            <input type="text" readonly="readonly" name="id_cancha" value="<?php echo $cancha["id_cancha"]?>" />
         </div>
         <div class="form-group">
-            <label for="tipo">Nombre de Deporte:</label>
-            <input id="tipo" name="tipo" type="text" maxlength="12" />
+            <label for="nombre">Nombre de la Cancha:</label>
+            <input type="text" name="nombre" value="<?php echo $cancha["nombre"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="tipo">Tipo de Deporte jugado:</label>
+            <input type="text" name="tipo" value="<?php echo $cancha["tipo"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripcion:</label>
+            <input type="text" name="descripcion" value="<?php echo $cancha["descripcion"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio por Hora:</label>
+            <input type="text" name="precio" value="<?php echo $cancha["precio_hora"]?>" />
         </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">

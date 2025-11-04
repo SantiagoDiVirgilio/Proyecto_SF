@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,6 +23,12 @@
 	
 	<?php
     include("NAV.php");
+    include("conexion.php");
+	$_SESSION['VARIABLE'] = session_id();
+
+$id = $_GET['id_deporte'];
+$conexion_deporte= mysqli_query($conexion, "SELECT * FROM deportes WHERE id_deporte = '$id'");
+$deporte = mysqli_fetch_array($conexion_deporte);
     ?>
 
 	<div class="mobile-header-bar">
@@ -27,11 +37,23 @@
 
 	<article >
     <section class="formu">
-        <h3>Eliminacion de Deportes</h3><br>
-	<form action="darbaja_deporte.php" method="post">
+        <h3>Edicion de Deporte</h3><br>
+	<form action="modificar_deporte.php" method="post">
         <div class="form-group">
-            <label for="nombre">Nombre de Deporte:</label>
-            <input id="nombre" name="nombre" type="text" maxlength="12" />
+            <label for="id_deporte">ID del Deporte:</label>
+            <input type="text" readonly="readonly" name="id_deporte" value="<?php echo $deporte["id_deporte"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre del Deporte:</label>
+            <input type="text" name="nombre" value="<?php echo $deporte["nombre"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripcion:</label>
+            <input type="text" name="descripcion" value="<?php echo $deporte["descripcion"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="cupo_maximo">Cupo Maximo:</label>
+            <input type="text" name="cupo_maximo" maxlength="3" value="<?php echo $deporte["cupo_maximo"]?>" />
         </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">

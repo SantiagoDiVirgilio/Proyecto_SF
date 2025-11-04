@@ -10,6 +10,6 @@ $cupo_maximo = $_POST['cupo_maximo'];
 
 	$consulta = mysqli_query($conexion, "INSERT INTO deportes (nombre, descripcion, cupo_maximo) VALUES('$nombre','$descripcion','$cupo_maximo')");
 
-	header("Location:administracion.php");
+	header("Location:deportes_tablas.php");
 	exit();
 ?>

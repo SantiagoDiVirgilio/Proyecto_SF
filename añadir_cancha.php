@@ -11,6 +11,6 @@ $precio = $_POST['precio'];
 
 	$consulta = mysqli_query($conexion, "INSERT INTO canchas (nombre, tipo, descripcion, precio_hora) VALUES('$nombre','$tipo', '$descripcion','$precio')");
 
-	header("Location:administracion.php");
+	header("Location:canchas_tablas.php");
 	exit();
 ?>

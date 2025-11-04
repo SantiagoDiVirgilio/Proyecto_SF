@@ -24,7 +24,7 @@ include("conexion.php");
 	    <?php
 	    include("NAV.php");
 	    include("conexion.php");
-	    $llamado_deportes = mysqli_query($conexion, "SELECT * FROM deportes");
+	    $llamado_canchas = mysqli_query($conexion, "SELECT * FROM canchas");
 	    ?>
 	
 	    <?php
@@ -43,26 +43,28 @@ include("conexion.php");
                 <thead>
                 </thead>
                     <tr>
-                        <td><a class="btn-añadir-deporte" href="formu_deporte.php">AÑADIR NUEVO</a></td>
+                        <td><a class="btn-añadir-deporte" href="formu_cancha.php">AÑADIR NUEVO</a></td>
                     </tr>
                 </table>
 
                 <table>
                     <thead>
-                        <th class="tabla-deporte">ID</th>
-                        <th class="tabla-deporte">Nombre</th>
-                        <th class="tabla-deporte">Descripcion</th>
-                        <th class="tabla-deporte">Cupo Maximo</th>
+                        <th class="tabla_cancha">ID</th>
+                        <th class="tabla_cancha">Nombre</th>
+                        <th class="tabla_cancha">Deporte Jugado</th>
+                        <th class="tabla_cancha">Descripcion</th>
+                        <th class="tabla_cancha">Precio Por Hora</th>
                     </thead>
-                    <?php while($var_deportes = mysqli_fetch_assoc($llamado_deportes)){?>
+                    <?php while($var_canchas = mysqli_fetch_assoc($llamado_canchas)){?>
                     <tr>
-                        <td class="tabla-deporte"><?php echo $var_deportes["id_deporte"];?></td>
-                        <td class="tabla-deporte"><?php echo $var_deportes["nombre"];?></td>
-                        <td class="tabla-deporte"><?php echo $var_deportes["descripcion"];?></td>
-                        <td class="tabla-deporte"><?php echo $var_deportes["cupo_maximo"];?></td>
+                        <td class="tabla_cancha"><?php echo $var_canchas["id_cancha"];?></td>
+                        <td class="tabla_cancha"><?php echo $var_canchas["nombre"];?></td>
+                        <td class="tabla_cancha"><?php echo $var_canchas["tipo"];?></td>
+                        <td class="tabla_cancha"><?php echo $var_canchas["descripcion"];?></td>
+                        <td class="tabla_cancha"><?php echo $var_canchas["precio_hora"];?></td>
                         <td>
-                            <a class="btn-editar-deporte" href="darbaja_deporte.php?id_deporte=<?php echo $var_deportes["id_deporte"];?>">Eliminar</a>
-                            <a class="btn-editar-deporte" href="modificar_deporte_formu.php?id_deporte=<?php echo $var_deportes["id_deporte"];?>">Modificar</a>
+                            <a class="btn-editar-deporte" href="darbaja_cancha.php?id_cancha=<?php echo $var_canchas["id_cancha"];?>">Eliminar</a>
+                            <a class="btn-editar-deporte" href="modificar_cancha_formu.php?id_cancha=<?php echo $var_canchas["id_cancha"];?>">Modificar</a>
                         </td>
                     </tr>
                     <?php }?>
