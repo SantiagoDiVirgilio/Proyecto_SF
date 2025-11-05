@@ -24,7 +24,7 @@ include("conexion.php");
 	    <?php
 	    include("NAV.php");
 	    include("conexion.php");
-	    $llamado_canchas = mysqli_query($conexion, "SELECT * FROM canchas");
+	    $llamado_usuarios = mysqli_query($conexion, "SELECT * FROM usuarios");
 	    ?>
 	
 	    <?php
@@ -43,28 +43,32 @@ include("conexion.php");
                 <thead>
                 </thead>
                     <tr>
-                        <td><a class="btn-añadir-deporte" href="formu_cancha.php">AÑADIR NUEVO</a></td>
+                        <td><a class="btn-añadir-deporte" href="registro_nuevo.php">AÑADIR NUEVO</a></td>
                     </tr>
                 </table>
 
                 <table>
                     <thead>
-                        <th class="tabla_cancha">ID</th>
-                        <th class="tabla_cancha">Nombre</th>
-                        <th class="tabla_cancha">Deporte Jugado</th>
-                        <th class="tabla_cancha">Descripcion</th>
-                        <th class="tabla_cancha">Precio Por Hora</th>
+                        <th class="tabla-usuario">ID</th>
+                        <th class="tabla-usuario">Nombre</th>
+                        <th class="tabla-usuario">DNI</th>
+                        <th class="tabla-usuario">Email</th>
+                        <th class="tabla-usuario">Telefono</th>
+                        <th class="tabla-usuario">Fecha Alta</th>
+                        <th class="tabla-usuario">Rol</th>
                     </thead>
-                    <?php while($var_canchas = mysqli_fetch_assoc($llamado_canchas)){?>
+                    <?php while($var_usuarios = mysqli_fetch_assoc($llamado_usuarios)){?>
                     <tr>
-                        <td class="tabla_cancha"><?php echo $var_canchas["id_cancha"];?></td>
-                        <td class="tabla_cancha"><?php echo $var_canchas["nombre"];?></td>
-                        <td class="tabla_cancha"><?php echo $var_canchas["tipo"];?></td>
-                        <td class="tabla_cancha"><?php echo $var_canchas["descripcion"];?></td>
-                        <td class="tabla_cancha"><?php echo $var_canchas["precio_hora"];?></td>
+                        <td class="tabla-usuario"><?php echo $var_usuarios["id_usuario"];?></td>
+                        <td class="tabla-usuario"><?php echo $var_usuarios["nombre"];?></td>
+                        <td class="tabla-usuario"><?php echo $var_usuarios["dni"];?></td>
+                        <td class="tabla-usuario"><?php echo $var_usuarios["email"];?></td>
+                        <td class="tabla-usuario"><?php echo $var_usuarios["telefono"];?></td>
+                        <td class="tabla-usuario"><?php echo $var_usuarios["fecha_alta"];?></td>
+                        <td class="tabla-usuario"><?php echo $var_usuarios["rol"];?></td>
                         <td>
-                            <a class="btn-editar-deporte" href="darbaja_cancha.php?id_cancha=<?php echo $var_canchas["id_cancha"];?>" onclick="return confirm('¿Estás seguro de que deseas eliminar esta cancha?');">Eliminar</a>
-                            <a class="btn-editar-deporte" href="modificar_cancha_formu.php?id_cancha=<?php echo $var_canchas["id_cancha"];?>">Modificar</a>
+                            <a class="btn-editar-deporte" href="darbaja_usuario.php?id_usuario=<?php echo $var_usuarios["id_usuario"];?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a>
+                            <a class="btn-editar-deporte" href="modificar_usuario_formu.php?id_usuario=<?php echo $var_usuarios["id_usuario"];?>">Modificar</a>
                         </td>
                     </tr>
                     <?php }?>

@@ -75,6 +75,12 @@ include("conexion.php");
         <h2 class="formu-card"> 
             <a href="canchas_tablas.php" class="perfil">Gestionar Canchas</a>
         </h2>
+        <h2 class="formu-card"> 
+            <a href="usuarios_tablas.php" class="perfil">Gestionar Usuarios</a>
+        </h2>
+        <h2 class="formu-card"> 
+            <a href="horarios_tablas.php" class="perfil">Gestionar Horarios</a>
+        </h2>
     </div>
 <footer>
 <?php

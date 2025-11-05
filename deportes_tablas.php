@@ -61,7 +61,7 @@ include("conexion.php");
                         <td class="tabla-deporte"><?php echo $var_deportes["descripcion"];?></td>
                         <td class="tabla-deporte"><?php echo $var_deportes["cupo_maximo"];?></td>
                         <td>
-                            <a class="btn-editar-deporte" href="darbaja_deporte.php?id_deporte=<?php echo $var_deportes["id_deporte"];?>">Eliminar</a>
+                            <a class="btn-editar-deporte" href="darbaja_deporte.php?id_deporte=<?php echo $var_deportes["id_deporte"];?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este deporte?');">Eliminar</a>
                             <a class="btn-editar-deporte" href="modificar_deporte_formu.php?id_deporte=<?php echo $var_deportes["id_deporte"];?>">Modificar</a>
                         </td>
                     </tr>

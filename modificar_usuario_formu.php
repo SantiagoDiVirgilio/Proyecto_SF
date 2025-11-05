@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,6 +23,12 @@
 	
 	<?php
     include("NAV.php");
+    include("conexion.php");
+	$_SESSION['VARIABLE'] = session_id();
+
+$id = $_GET['id_usuario'];
+$conexion_usuario= mysqli_query($conexion, "SELECT * FROM usuarios WHERE id_usuario = '$id'");
+$usuario = mysqli_fetch_array($conexion_usuario);
     ?>
 
 	<div class="mobile-header-bar">
@@ -27,34 +37,19 @@
 
 	<article >
     <section class="formu">
-        <h3>Registro de Usuario</h3><br>
-	<form action="registro.php" method="post">
+        <h3>Edicion de Rol</h3><br>
+	<form action="modificar_usuario.php" method="post">
         <div class="form-group">
-            <label for="nombre">Nombre de usuario:</label>
-            <input id="nombre" name="nombre" type="text" maxlength="12" />
-        </div>
-        <div class="form-group">
-            <label for="clave">Contraseña:</label>
-            <input id="password" type="password" name="clave" maxlength="12" />
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input id="email" name="email" type="text" maxlength="40" />
-        </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono:</label>
-            <input id="telefono" name="telefono" type="text" maxlength="15" />
-        </div>
-        <div class="form-group">
-            <label for="dni">DNI:</label>
-            <input id="dni" name="dni" type="text" maxlength="12" />
+            <label for="rol">Actualizar Rol a Administrador:</label>
+            <input type="radio" id="rol" name="rol" value="Admin">Admin</input>
+            <label for="rol">Actualizar Rol a Usuario:</label>
+            <input type="radio" id="rol" name="rol" value="Usuario">Usuario</input>
         </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
             <input id="Resetear" type="reset" value="Resetear Información">
         </div>
     </form>
-    <p class="registro-prompt">¿Ya tienes una cuenta? <a href="iniciar_sesion.php">¡Inicia Sesión!</a></p>
     </section>
 </article>
 

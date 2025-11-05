@@ -239,22 +239,21 @@ p a{
   margin-left: 27%;
   color: rgb(0, 0, 0);
 }
-
 .formu-card-container {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
-
 .formu-card {
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 30%;
+  width: 15%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-bottom: 2%;
   padding: 20px;
+  text-align: center;
 }
 .formu-card:hover {
   transform: translateY(-5px);
@@ -652,14 +651,26 @@ footer div a{
   color: #000000;
   text-align: center;
   line-height: 2;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
 }
-
 .tabla-cancha {
 	font-size: 1rem; /* Tamaño ajustado */
 	margin-left: 3%;
   color: #000000;
   text-align: center;
   line-height: 2;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.tabla-usuario {
+	font-size: 1.3rem; /* Tamaño ajustado */
+	margin-left: 3%;
+  color: #000000;
+  text-align: center;
+  line-height: 2;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
 }
 /*-------------------------------------------- Inciio Código de Lightbox ----------------------------------------*/
 .lightbox-min{ /*Para las imágenes de la primer fila*/

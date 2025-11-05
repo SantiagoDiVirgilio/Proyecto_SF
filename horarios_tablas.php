@@ -24,7 +24,7 @@ include("conexion.php");
 	    <?php
 	    include("NAV.php");
 	    include("conexion.php");
-	    $llamado_canchas = mysqli_query($conexion, "SELECT * FROM canchas");
+	    $llamado_horarios = mysqli_query($conexion, "SELECT * FROM horario_cancha");
 	    ?>
 	
 	    <?php
@@ -43,28 +43,28 @@ include("conexion.php");
                 <thead>
                 </thead>
                     <tr>
-                        <td><a class="btn-añadir-deporte" href="formu_cancha.php">AÑADIR NUEVO</a></td>
+                        <td><a class="btn-añadir-deporte" href="formu_deporte.php">AÑADIR NUEVO</a></td>
                     </tr>
                 </table>
 
                 <table>
                     <thead>
-                        <th class="tabla_cancha">ID</th>
-                        <th class="tabla_cancha">Nombre</th>
-                        <th class="tabla_cancha">Deporte Jugado</th>
-                        <th class="tabla_cancha">Descripcion</th>
-                        <th class="tabla_cancha">Precio Por Hora</th>
+                        <th class="tabla-deporte">ID del Horario</th>
+                        <th class="tabla-deporte">ID de la Cancha donde se usa</th>
+                        <th class="tabla-deporte">Horario</th>
+                        <th class="tabla-deporte">Disponibilidad</th>
+                        <th class="tabla-deporte">Fecha del Horario</th>
                     </thead>
-                    <?php while($var_canchas = mysqli_fetch_assoc($llamado_canchas)){?>
+                    <?php while($var_horarios = mysqli_fetch_assoc($llamado_horarios)){?>
                     <tr>
-                        <td class="tabla_cancha"><?php echo $var_canchas["id_cancha"];?></td>
-                        <td class="tabla_cancha"><?php echo $var_canchas["nombre"];?></td>
-                        <td class="tabla_cancha"><?php echo $var_canchas["tipo"];?></td>
-                        <td class="tabla_cancha"><?php echo $var_canchas["descripcion"];?></td>
-                        <td class="tabla_cancha"><?php echo $var_canchas["precio_hora"];?></td>
+                        <td class="tabla-deporte"><?php echo $var_horarios["id_horario"];?></td>
+                        <td class="tabla-deporte"><?php echo $var_horarios["id_cancha"];?></td>
+                        <td class="tabla-deporte"><?php echo $var_horarios["horario"];?></td>
+                        <td class="tabla-deporte"><?php echo $var_horarios["disponible"];?></td>
+                        <td class="tabla-deporte"><?php echo $var_horarios["fecha_horario"];?></td>
                         <td>
-                            <a class="btn-editar-deporte" href="darbaja_cancha.php?id_cancha=<?php echo $var_canchas["id_cancha"];?>" onclick="return confirm('¿Estás seguro de que deseas eliminar esta cancha?');">Eliminar</a>
-                            <a class="btn-editar-deporte" href="modificar_cancha_formu.php?id_cancha=<?php echo $var_canchas["id_cancha"];?>">Modificar</a>
+                            <a class="btn-editar-deporte" href="darbaja_horario.php?id_horario=<?php echo $var_horarios["id_horario"];?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este horario?');">Eliminar</a>
+                            <a class="btn-editar-deporte" href="modificar_horario_formu.php?id_horario=<?php echo $var_horarios["id_horario"];?>">Modificar</a>
                         </td>
                     </tr>
                     <?php }?>

@@ -178,7 +178,7 @@ include("conexion.php");
                     if (data.length > 0) {
                         horariosHtml += "<table><thead><tr><th>Horario</th><th>Disponibilidad</th><th>Acción</th></tr></thead><tbody>";
                         data.forEach(item => {
-                            let disponibilidad = item.disponible == 1;
+                            let disponibilidad = item.disponible && item.disponible.toLowerCase() === 'libre';
                             let claseCss = disponibilidad ? 'disponible' : 'no-disponible';
                             let botonHTML = '';
                             if (disponibilidad) {
