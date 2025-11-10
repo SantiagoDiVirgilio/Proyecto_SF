@@ -1,6 +1,4 @@
 
-
-
 <?php
 
 include("conexion.php");
@@ -16,6 +14,7 @@ if (!isset($_GET['id_cancha'])) {
     exit("Error: falta el parámetro id_cancha");
 }
 $cancha_id = intval($_GET['id_cancha']);
+
 
 $query = "SELECT nombre,precio_hora FROM canchas WHERE id_cancha = ?"; 
 $stmt = $conexion->prepare($query);
@@ -37,7 +36,7 @@ $preference = $client->create([
             "currency_id" => "ARS",
             "unit_price" => floatval($cancha['precio_hora'])
         ]
-        ],
+        ]/*,
     "back_urls" => [
         "success" => "localhost/Proyecto_SF/success.php",
         "failure" => "http://localhost/Proyecto_SF/failure.php",
@@ -46,8 +45,9 @@ $preference = $client->create([
     "auto_return" => "approved"
     */
 ]);
-
+/*
 $preference->auto_return = "approved";
+*/
 
 $_SESSION['preference_id'] = $preference->id;
 ob_end_clean();

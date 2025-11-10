@@ -8,7 +8,7 @@ body{
 	font-size: 1.3rem;
 	background-size: cover; 
 	background-position: center; /* Centra la imagen */
-	min-height: 100vh; /
+	min-height: 100vh; 
 	background-attachment: fixed;
 	display: flex;
 	flex-direction: column;
@@ -119,7 +119,7 @@ nav ul li:hover a {
   display: block;
 }
 
-/
+
 .custom-dropdown > a::after {
   content: ' \25BC'; 
   font-size: 0.8em; 
