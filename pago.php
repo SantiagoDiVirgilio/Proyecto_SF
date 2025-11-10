@@ -40,7 +40,7 @@
         preferenceId: preferenceId,
       }
     });
-  };
+};
   //el get id_cancha es para pasar a la preferencia para poder crear la orden de pago.
   // Faz a chamada para o backend para obter o preferenceId
   const url = new URL('crear_preferencia.php', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/');
