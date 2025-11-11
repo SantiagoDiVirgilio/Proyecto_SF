@@ -20,11 +20,9 @@
 	<?php
     include("NAV.php");
     ?>
-	<div class="mobile-header-bar">
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-	</div>
 
 	</header>
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
     <h1>SUCCESS</h1>
     <p>¡Tu pago ha sido procesado con éxito!</p>
     <p>Gracias por tu compra.</p>

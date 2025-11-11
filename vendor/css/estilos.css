@@ -1,0 +1,1187 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	background-color: #dcdcdc;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 1.3rem;
+	background-size: cover; 
+	background-position: center; /* Centra la imagen */
+	min-height: 100vh; 
+	background-attachment: fixed;
+	display: flex;
+	flex-direction: column;
+}
+
+body.home-background {
+    background-image: url('../imagenes/fondo_inicio.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.home-background::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    z-index: -1;
+    filter: blur(3px); /* Ligero desenfoque */
+}
+
+header{
+	text-align: center;
+	background-color: #b0c4de;
+	padding: 10px 20px;
+	position: relative;
+	align-items: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.icon{ 
+  display: none; 
+}
+
+a{
+	text-decoration: none;
+  color:rgb(42, 75, 138);
+}
+
+header > nav{
+
+  display: inline-block;
+
+  vertical-align: middle;
+
+}
+
+#myTopnav > ul {
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  list-style: none;
+  align-items: center;
+  font-size: 1rem; /* Aumentado el tamaño de la fuente del NAV para mayor legibilidad */
+  font-family: Arial, sans-serif;
+  margin-right: 1%;
+  
+  font-weight: bold;
+}
+
+#myTopnav ul li a {
+  color: #333; 
+  padding: 5px 10px; 
+  border-radius: 5px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+nav ul li a{
+  list-style: none;
+}
+
+li {
+  list-style: none;
+  padding: 8px 0; /* Aumenta el espacio vertical para un área de hover más grande */
+}
+
+nav ul li:hover {
+  background-color: #0056b3; 
+  border-radius: 5px;
+}
+
+nav ul li:hover a {
+  color: #ffffff;
+}
+
+.logo{
+  width: 5%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+ /* Menú desplegable de la versión de escritorio */
+.custom-dropdown-content a:hover{
+  background-color: #0056b3;
+  color: rgb(255, 255, 255);
+}
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  min-width: 220px;
+  background-color: #f8f9fa;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  border-radius: 5px; 
+  padding: 0.5rem 0;
+  overflow: hidden; 
+}
+
+.custom-dropdown a {
+  display: block;
+  color: #333 !important;
+  padding: 12px 20px; 
+  transition: all 0.3s ease;
+}
+
+.custom-dropdown:hover .custom-dropdown-content {
+  display: block;
+}
+
+
+.custom-dropdown > a::after {
+  content: ' \25BC'; 
+  font-size: 0.8em; 
+}
+
+p a{
+  color: #000000;
+}
+
+.titulo_deportes{
+  text-align: center; /* Para centrar el h2 */
+  margin-top: 3%;
+  margin-bottom: 2rem; /* Espacio debajo de la sección del título */
+}
+
+.titulo_deportes h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #000000;
+  margin: 0; /* Eliminar margen predeterminado del h2 */
+  width: 100%; /* Asegurar que ocupe todo el ancho para las líneas */
+}
+
+.titulo_deportes h2::before,
+.titulo_deportes h2::after {
+  content: '';
+  flex-grow: 1;
+  height: 2px; /* Grosor de la línea */
+  background-color: #b0c4de; /* Color de la línea (usando el del header) */
+  margin: 0 1em; /* Espacio entre la línea y el texto */
+}
+
+.titulo_deportes h2 span {
+  background-color: #dcdcdc; /* Mismo color que el fondo del body para que se integre */
+  padding: 0 0.5em; /* Relleno alrededor del texto */
+}
+
+/* --- Estilos para las nuevas tarjetas de canchas y deportes --- */
+.canchas-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.cancha-card, .deporte-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cancha-card:hover, .deporte-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.cancha-card img, .deporte-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cancha-card-body, .deporte-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cancha-card-body h4, .deporte-card-body h4 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.cancha-card-body p, .deporte-card-body h5 {
+  font-size: 1rem;
+  color: #666;
+  flex-grow: 1;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.cancha-card-body .precio {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+/* --- Estilos para las tarjetas de canchas --- */
+.tarjeta-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem 0;
+}
+.tarjeta-body h4 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+.tarjeta-body p {
+  font-size: 1rem;
+  color: #666;
+  flex-grow: 1; 
+}
+.tarjeta-body .precio {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  margin-top: 1rem;
+}
+.tarjeta {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 320px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.tarjeta img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.tarjeta-body {
+  padding: 1.5rem;
+  display: block;
+  flex-direction:column;
+  flex-grow: 1; /* Para que el cuerpo de la tarjeta crezca y empuje el botón hacia abajo */
+}
+.registro{
+  margin-top: 4%;
+  margin-left: 27%;
+  color: rgb(0, 0, 0);
+}
+.formu-card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.formu-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 15%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 2%;
+  padding: 20px;
+  text-align: center;
+}
+.formu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #6589af;
+}
+.formu-card a{
+  font-size: 2rem;
+}
+.formu-card:hover a{
+  color: rgb(255, 255, 255);
+}
+.pago{
+  padding: 1.5rem;
+  display: block;
+  flex-direction:column;
+  flex-grow: 1; /* Para que el cuerpo de la tarjeta crezca y empuje el botón hacia abajo */
+  margin-left: 15%;
+  margin-top: 5%;
+}
+.tablas{
+  padding: 1.5rem;
+  display: block;
+  flex-direction:column;
+  margin-left: 10%;
+}
+.logo_mp{
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  width: 180px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  margin-left: 3%;
+}
+
+/* --- Estilos para la sección del equipo --- */
+.team-section {
+  padding: 2rem 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 2rem;
+  border-radius: 10px;
+}
+
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.team-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  text-align: center;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.team-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #b0c4de;
+  margin-bottom: 1rem;
+}
+
+.team-card-body h4 {
+  font-size: 1.4rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.team-card-body .team-role {
+  font-size: 1rem;
+  color: #0056b3;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.team-card-body .team-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/*----------------------------- INICIO ESTILOS DE PAGINA CONTACTO --------------------------------------*/
+.formu{
+  width: 100%;
+  max-width: 600px; 
+  margin: 2rem auto; 
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px; /* Espacio interno */
+  text-align: center; /* Centra el texto */;
+  display: flex;
+  flex-direction: column;
+}
+.formu h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.formu p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.formu label {
+  font-size: 1rem;
+  font-weight: normal;
+}
+.formu form {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+form label {
+  display: block !important; 
+  text-align: center; 
+}
+.formu form input[type="text"],
+.formu form input[type="password"],
+.formu form input[type="email"],
+.formu form textarea {
+  width: 90%;
+  align-self: center;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+}
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  gap: 20px;
+}
+.form-buttons input {
+  padding: 8px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff; 
+  color: white;
+  transition: background-color 0.3s ease;
+}
+.form-buttons input#Resetear {
+  background-color: #6c757d; 
+}
+.form-buttons input:hover {
+  opacity: 0.9;
+}
+.form-buttons input#Enviar:hover {
+  background-color: #0056b3;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Espacio entre la etiqueta y el input */
+    align-items: center; /* Centra los elementos dentro del grupo */
+}
+
+/* Estilos para el mensaje "¿No estás registrado? ¡Regístrate!" */
+.registro-prompt {
+    margin-top: 1.5rem; /* Espacio superior para separarlo del formulario */
+    font-size: 1rem;
+    color: #333; /* Color de texto general */
+}
+
+.registro-prompt a {
+    color: #007bff; /* Color del enlace */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.registro-prompt a:hover {
+    text-decoration: underline;
+}
+
+.formu_side{
+  flex: 1;
+  background-image: url("../imagenes/Fondo_Formu.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+/*----------------------------- FIN ESTILOS DE PAGINA CONTACTO ----------------------------------------*/
+
+/*----------------------------- INICIO ESTILOS DE MAPA ----------------------------------------*/
+.map-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; 
+  margin-top: 20px;
+}
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/*----------------------------- FIN ESTILOS DE MAPA ----------------------------------------*/
+.container-principal {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+}
+
+.hero-section {
+  color: #ffffff;
+  text-align: center;
+  padding: 4rem 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.columna-fondo {
+  flex: 1;
+  background-image: url('../imagenes/fondo_inicio.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+ img.redes{
+    width: 35px;
+    height: 35px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    margin-left: 2%;
+}
+
+.transition {
+    -webkit-transform: scale(0.8); 
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+}
+
+.titulo_deportes h2 span {
+  background-color: #dcdcdc; /* Color de fondo para que el texto resalte */
+  padding: 0 0.5em; /* Relleno alrededor del texto */
+  white-space: nowrap; /* Evitar que el texto se envuelva */
+}
+
+article h3 {
+  margin-left: 2.5%;
+  margin-bottom: 1.5%;
+  margin-top: 1rem; /* Ajustado para consistencia */
+  font-size: 1.4rem; /* Tamaño ajustado */
+  color: #000000;
+}
+
+h3{
+	margin-left: 3%;
+	color: #000000;
+}
+
+article p{
+	font-size: 1rem; /* Tamaño ajustado */
+	margin: 0 3% 1rem 3%;
+  display: block;
+  color: #000000;
+  line-height: 1.6; /* Mejora la legibilidad de los párrafos */
+}
+
+article ul li {
+  font-size: 1rem; /* Tamaño ajustado */
+  margin-left: 8%;
+  margin-top: 1%;
+  color: #000000;
+}
+
+footer{
+	background-color: #b0c4de; /* Mismo color que el header para consistencia */
+	text-align: center;
+  padding: 1rem 0;
+}
+
+footer div a{
+  color: #000000;
+  display: inline-block;
+  margin: 0 7px;
+}
+#sobre_nosotros_footer li{
+  font-size: 1.1rem;
+  color: #000000;
+  display: inline-block;
+  margin-top: 1%;
+  padding: 0.7rem;
+}
+.perfil{
+  color: #000000;
+  text-align: center;
+  margin: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 3rem;
+}
+
+
+/* --- Estilos para la ventana modal de horarios --- */
+
+/* El fondo del modal (overlay) */
+#horariosModal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Habilita el scroll si es necesario */
+  background-color: rgb(0,0,0); /* Color de fondo */
+  background-color: rgba(0,0,0,0.4); 
+}
+
+/* Contenido del Modal */
+#customHorariosModal .custom-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Podría ser más pequeño o más grande dependiendo del contenido */
+  max-width: 600px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: animatetop 0.4s;
+}
+
+/* Animación de entrada */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+/* El botón de cerrar (x) */
+#customHorariosModal .custom-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#horariosModal .close:hover,
+#horariosModal .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilo para el botón que abre el modal */
+.btn-ver-horarios {
+  display: block;
+  background-color: #3888ad;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  width: 100%; /* Hacemos que ocupe todo el ancho del contenedor padre */
+  font-family: inherit; /* Hereda la fuente del body */
+  font-size: 1rem;
+}
+
+.btn-ver-horarios:hover {
+  background-color: #2a6a8a;
+}
+
+.btn-añadir-deporte {
+  display: block;
+  background-color: #3888ad;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 2%;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  width: 80%; /* Hacemos que ocupe todo el ancho del contenedor padre */
+  font-family: inherit; /* Hereda la fuente del body */
+  font-size: 1rem;
+  margin-bottom: 4%;
+  text-align: center;
+}
+.btn-añadir-deporte:hover {
+  background-color: #2a6a8a;
+}
+
+.btn-editar-deporte {
+  display: block;
+  background-color: #3888ad;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; 
+  border: none; 
+  margin-bottom: 2%;
+  cursor: pointer;
+  width: 70%; /* Hacemos que ocupe todo el ancho del contenedor padre */
+  font-family: inherit; /* Hereda la fuente del body */
+  font-size: 0.8rem;
+}
+.btn-editar-deporte:hover {
+  background-color: #2a6a8a;
+}
+
+.tabla-deporte {
+	font-size: 1.2rem; /* Tamaño ajustado */
+	margin-left: 3%;
+  color: #000000;
+  text-align: center;
+  line-height: 2;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.tabla-cancha {
+	font-size: 1rem; /* Tamaño ajustado */
+	margin-left: 3%;
+  color: #000000;
+  text-align: center;
+  line-height: 2;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.tabla-usuario {
+	font-size: 1.3rem; /* Tamaño ajustado */
+	margin-left: 3%;
+  color: #000000;
+  text-align: center;
+  line-height: 2;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+/*-------------------------------------------- Inciio Código de Lightbox ----------------------------------------*/
+.lightbox-min{ /*Para las imágenes de la primer fila*/
+	margin-left: 1.7%;
+  margin-top: 1.7%;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+}
+
+.lightbox-min-2{ /*Para las imágenes de la segunda fila en adelante*/
+	margin-top: 2%; 
+	margin-left: 1.7%;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+}
+
+.lb-loader,.lightbox{
+	text-align:center;
+	line-height:0;
+	position:absolute;
+	left:0
+}
+
+body.lb-disable-scrolling {
+  overflow: hidden;
+}
+
+.lightboxOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: black;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  display: none;
+}
+
+.lightbox {
+  position: absolute;
+  left: 0;
+  width: 100%; /*--> Modifica las coordenadas de expansión de las imágenes*/
+  z-index: 10000;
+  text-align: center;
+  line-height: 0;
+  font-weight: normal;
+  outline: none;
+}
+
+.lightbox .lb-image {
+  display: block;
+  height: auto;
+  max-width: inherit;
+  max-height: none;
+  border-radius: 3px;
+  /* Borde de la imagen */
+  border: 4px solid rgb(161, 114, 52);
+  box-shadow: 0 0 15px rgba(161, 114, 52, 7);
+}
+
+.lightbox a img {
+  border: none;
+  box-shadow: 0 0 15px rgba(161, 114, 52, 7);
+}
+
+.lb-outerContainer { /*Opciones de imagen expandida*/
+  position: relative;
+  zoom: 1;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  border-radius: 4px;
+
+  /* Color de fondo detrás de la imagen.
+     Es visible durante las transiciones. */
+  background-color: white;
+}
+
+.lb-outerContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.lb-loader {
+  position: absolute;
+  top: 43%;
+  left: 0;
+  height: 25%;
+  width: 100%;
+  text-align: center;
+  line-height: 0;
+}
+
+.lb-cancel {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  background: url(../Imagenes/loading.gif) no-repeat;
+}
+
+.lb-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.lb-container > .nav {
+  left: 0;
+}
+
+.lb-nav a {
+  outline: none;
+  background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+}
+
+.lb-prev, .lb-next {
+  height: 100%;
+  cursor: pointer;
+  display: block;
+}
+
+.lb-nav a.lb-prev {
+  width: 34%;
+  left: 0;
+  float: left;
+  background: url(../Imagenes/prev.png) left 48% no-repeat;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+
+.lb-nav a.lb-prev:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+.lb-nav a.lb-next {
+  width: 64%;
+  right: 0;
+  float: right;
+  background: url(../Imagenes/next.png) right 48% no-repeat;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+
+.lb-nav a.lb-next:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+.lb-dataContainer { /*Opciones del texto agregado a las imágenes*/
+  margin: 0 auto;
+  padding-top: 5px;
+  zoom: 1;
+  width: 100%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.lb-dataContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.lb-data { /*Opciones del texto agregado de las imágenes*/
+  padding: 0 4px;
+  color: #ccc;
+}
+
+.lb-data .lb-details { /*Opciones del texto agregado de las imágenes*/
+  width: 85%;
+  float: left;
+  text-align: left;
+  line-height: 1.1em;
+}
+
+.lb-data .lb-caption { /*Opciones del texto agregado de las imágenes*/
+  font-size: 15px; 
+  font-weight: bold;
+  line-height: 1em;
+}
+
+.lb-data .lb-caption a {
+  color: #4ae;
+}
+
+.lb-data .lb-number { /*Opciones del texto "Imagen 1 de 2"*/
+  display: block;
+  clear: left;
+  padding-bottom: 1em;
+  font-size: 15px;
+  color: #999999; 
+}
+
+.lb-data .lb-close {
+  display: block;
+  float: right;
+  width: 30px;
+  height: 30px;
+  background: url(../Imagenes/close.png) top right no-repeat;
+  text-align: right;
+  outline: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.lb-data .lb-close:hover {
+  cursor: pointer;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/*---------------------------------------- Fin del código de Lightbox -------------------------------------------*/
+
+/*-----------------------------------------------VERSIÓN DE MÓBILES----------------------------------------------*/
+@media screen and (max-width: 480px) {
+  /* Ajustes generales del body */
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header y Navegación */
+  header {
+    flex-direction: column; /* Revertido a column */
+    align-items: center;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 40%; /* Ajusta el tamaño del logo para móvil */
+    margin-bottom: 10px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  nav > ul {
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+  }
+  
+    padding: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #444;
+  }
+
+  nav ul li:last-child {
+    border-bottom: none;
+  }
+
+  .container-principal {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .columna-texto {
+    margin: 1rem;
+    padding: 20px;
+  }
+
+  .formu {
+    width: 90%;
+    margin: 1rem auto;
+  }
+
+  footer {
+    padding: 2rem 1rem;
+  }
+
+  /* Ocultar menú de escritorio y mostrar ícono de hamburguesa */
+  nav > ul {
+    display: none;
+  }
+
+  .icon {
+    display: block;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+
+/* Estilos para la tabla del modal de horarios */
+#horariosModal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#horariosModal th,
+#horariosModal td {
+  border: 1px solid #ddd;
+  padding: 8px 12px; /* Aumenta el padding para más espacio */
+  text-align: left;
+}
+
+#horariosModal th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Clases para disponibilidad */
+.disponible {
+    color: green;
+    font-weight: bold;
+}
+.no-disponible {
+    color: red;
+    font-weight: bold;
+}
+
+/*-------------------BUSCADOR-------------------*/
+
+.cajabuscar {
+  float: none;
+  width: 100%;
+  max-width: 453px;
+  margin-top: 50px;
+  display: inline-block;
+  text-align: left;
+  align-self: center;
+  align-items: center;
+}
+
+#buscarform {
+  padding: 0;
+  float: center;
+  clear: both;
+  width: 100%;
+  position: relative;
+}
+#buscarform fieldset { width: 100% }
+
+#s {
+  width: 100%;
+  background-color: #fff;
+  float: left;
+  padding: 8px 0;
+  text-indent: 10px;
+  color: #555555;
+  border: 1px solid #fff; 
+  box-sizing: border-box;
+  height: 42px;
+}
+
+.button{
+  right: 0;
+  top: 0;
+  padding: 9px 0;
+  float: right;
+  border: 0;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 10px;
+  color: #a4a4a4;
+  transition: all 0.25s linear;
+  z-index: 10;
+  position: absolute;
+  border: 0;
+  vertical-align: top;
+  background-image: url("../imagenes/Icono_Buscar.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+}
+
+/*-------------------CIERRA BUSCADOR-------------------*/
+
+  /* Estilos para el menú desplegable en móvil */
+  nav.responsive > ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #270e03;
+  }

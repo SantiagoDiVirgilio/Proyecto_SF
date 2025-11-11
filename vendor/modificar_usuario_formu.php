@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,31 +23,36 @@
 	
 	<?php
     include("NAV.php");
+    include("conexion.php");
+	$_SESSION['VARIABLE'] = session_id();
+
+$id = $_GET['id_usuario'];
+$conexion_usuario= mysqli_query($conexion, "SELECT * FROM usuarios WHERE id_usuario = '$id'");
+$usuario = mysqli_fetch_array($conexion_usuario);
     ?>
+
 	<div class="mobile-header-bar">
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-	</div>
-
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
-    <h1>SUCCESS</h1>
-    <p>¡Tu pago ha sido procesado con éxito!</p>
-    <p>Gracias por tu compra.</p>
-    <?php
-  
-    $collection_id = $_GET['collection_id'];
-    $collection_status = $_GET['collection_status'];
-    $payment_id = $_GET['payment_id'];
-    $status = $_GET['status'];
-    $preference_id = $_GET['preference_id'];
-    $external_reference = $_GET['external_reference']; // sera necesario?
 
-    echo "<p>ID de Colección: " . htmlspecialchars($collection_id) . "</p>";
-    echo "<p>Estado de la Colección: " . htmlspecialchars($collection_status) . "</p>";
-    echo "<p>ID de Pago: " . htmlspecialchars($payment_id) . "</p>";
-    echo "<p>Estado del Pago: " . htmlspecialchars($status) . "</p>";
-    echo "<p>ID de Preferencia: " . htmlspecialchars($preference_id) . "</p>";
-    echo "<p>Referencia Externa: " . htmlspecialchars($external_reference) . "</p>";
-    ?>
+	<article >
+    <section class="formu">
+        <h3>Edicion de Rol</h3><br>
+	<form action="modificar_usuario.php" method="post">
+        <div class="form-group">
+            <label for="rol">Actualizar Rol a Administrador:</label>
+            <input type="radio" id="rol" name="rol" value="Admin">Admin</input>
+            <label for="rol">Actualizar Rol a Usuario:</label>
+            <input type="radio" id="rol" name="rol" value="Usuario">Usuario</input>
+        </div>
+        <div class="form-buttons">
+            <input id="Enviar" type="submit" value="Enviar">
+            <input id="Resetear" type="reset" value="Resetear Información">
+        </div>
+    </form>
+    </section>
+</article>
+
 <footer>
 <?php
     include("FOOTER.php");

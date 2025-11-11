@@ -23,40 +23,46 @@ include("conexion.php");
 	
 	<?php
     include("NAV.php");
-    ?>
-	<div class="mobile-header-bar">
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-	</div>
+    include("conexion.php");
+	$_SESSION['VARIABLE'] = session_id();
 
+$id = $_GET['id_horario'];
+$conexion_horarios= mysqli_query($conexion, "SELECT * FROM horario_cancha WHERE id_horario = '$id'");
+$horario = mysqli_fetch_array($conexion_horarios);
+    ?>
+
+	<div class="mobile-header-bar">
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
 
 	<article >
     <section class="formu">
-        <h3>CONTACTO</h3><br>
-        <p>¿Quiere hacer algún comentario en cuanto a nuestra página web?<br>
-                  ¡Todos sus mensajes son bienvenidos!<br>
-            ¡Complete el formulario y envíelo!
-        </p>
-        <form action="mensajes_contacto.php" method="post">
-            <label for="nom">Nombre:</label>
-            <input class="input_formu" type="text" name="nombre" maxlength="20">
-            <label for="tel">Telefono:</label>
-            <input class="input_formu" type="text" name="telefono" maxlength="20">
-            <label for="email">Email:</label>
-            <input class="input_formu" type="email" name="email" maxlength="40">
-            <label for="comentario">Haga su comentario <strong>aquí:</strong></label>
-            <textarea class="input_formu" arows="400" cols="60" maxlength="700" name="comentario"></textarea>
+        <h3>Edicion de Horarios</h3><br>
+	<form action="modificar_horario.php" method="post">
+        <div class="form-group">
+            <label for="id_horario">ID del Horario:</label>
+            <input type="text" readonly="readonly" name="id_horario" value="<?php echo $horario["id_horario"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="nombre">ID de Cancha donde se usa:</label>
+            <input type="text" name="nombre" value="<?php echo $deporte["nombre"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="cupo_maximo">Horario:</label>
+            <input type="text" name="horario" maxlength="3" value="<?php echo $deporte["cupo_maximo"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="disponible">Disponibilidad:</label>
+            <input type="text" name="disponible" value="<?php echo $disponible["disponible"]?>" />
+        </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
             <input id="Resetear" type="reset" value="Resetear Información">
         </div>
-        <div class="map-container">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.4184902620996!2d-58.60460592514448!3d-34.64057945944432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc951c0fe2d9f5%3A0x9f1c540898efecbe!2sUTN%20HAEDO!5e1!3m2!1ses!2sar!4v1761099590832!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-		</div>
-        </form>
+    </form>
     </section>
 </article>
-	
+
 <footer>
 <?php
     include("FOOTER.php");

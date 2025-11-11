@@ -20,30 +20,39 @@
 	<?php
     include("NAV.php");
     ?>
+
 	<div class="mobile-header-bar">
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-	</div>
-
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
-    <h1>SUCCESS</h1>
-    <p>¡Tu pago ha sido procesado con éxito!</p>
-    <p>Gracias por tu compra.</p>
-    <?php
-  
-    $collection_id = $_GET['collection_id'];
-    $collection_status = $_GET['collection_status'];
-    $payment_id = $_GET['payment_id'];
-    $status = $_GET['status'];
-    $preference_id = $_GET['preference_id'];
-    $external_reference = $_GET['external_reference']; // sera necesario?
 
-    echo "<p>ID de Colección: " . htmlspecialchars($collection_id) . "</p>";
-    echo "<p>Estado de la Colección: " . htmlspecialchars($collection_status) . "</p>";
-    echo "<p>ID de Pago: " . htmlspecialchars($payment_id) . "</p>";
-    echo "<p>Estado del Pago: " . htmlspecialchars($status) . "</p>";
-    echo "<p>ID de Preferencia: " . htmlspecialchars($preference_id) . "</p>";
-    echo "<p>Referencia Externa: " . htmlspecialchars($external_reference) . "</p>";
-    ?>
+	<article >
+    <section class="formu">
+        <h3>Registro de Canchas</h3><br>
+	<form action="añadir_cancha.php" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre de la Cancha:</label>
+            <input id="nombre" name="nombre" type="text" maxlength="12" />
+        </div>
+        <div class="form-group">
+            <label for="tipo">Tipo de Deporte jugado:</label>
+            <input id="tipo" name="tipo" type="text" maxlength="12" />
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripcion:</label>
+            <textarea class="input_formu" arows="400" cols="60" maxlength="700" name="descripcion"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio por Hora:</label>
+            <input id="precio" name="precio" type="text" maxlength="7" />
+        </div>
+        <div class="form-buttons">
+            <input id="Enviar" type="submit" value="Enviar">
+            <input id="Resetear" type="reset" value="Resetear Información">
+        </div>
+    </form>
+    </section>
+</article>
+
 <footer>
 <?php
     include("FOOTER.php");

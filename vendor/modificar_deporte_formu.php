@@ -23,40 +23,46 @@ include("conexion.php");
 	
 	<?php
     include("NAV.php");
-    ?>
-	<div class="mobile-header-bar">
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-	</div>
+    include("conexion.php");
+	$_SESSION['VARIABLE'] = session_id();
 
+$id = $_GET['id_deporte'];
+$conexion_deporte= mysqli_query($conexion, "SELECT * FROM deportes WHERE id_deporte = '$id'");
+$deporte = mysqli_fetch_array($conexion_deporte);
+    ?>
+
+	<div class="mobile-header-bar">
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
 
 	<article >
     <section class="formu">
-        <h3>CONTACTO</h3><br>
-        <p>¿Quiere hacer algún comentario en cuanto a nuestra página web?<br>
-                  ¡Todos sus mensajes son bienvenidos!<br>
-            ¡Complete el formulario y envíelo!
-        </p>
-        <form action="mensajes_contacto.php" method="post">
-            <label for="nom">Nombre:</label>
-            <input class="input_formu" type="text" name="nombre" maxlength="20">
-            <label for="tel">Telefono:</label>
-            <input class="input_formu" type="text" name="telefono" maxlength="20">
-            <label for="email">Email:</label>
-            <input class="input_formu" type="email" name="email" maxlength="40">
-            <label for="comentario">Haga su comentario <strong>aquí:</strong></label>
-            <textarea class="input_formu" arows="400" cols="60" maxlength="700" name="comentario"></textarea>
+        <h3>Edicion de Deporte</h3><br>
+	<form action="modificar_deporte.php" method="post">
+        <div class="form-group">
+            <label for="id_deporte">ID del Deporte:</label>
+            <input type="text" readonly="readonly" name="id_deporte" value="<?php echo $deporte["id_deporte"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre del Deporte:</label>
+            <input type="text" name="nombre" value="<?php echo $deporte["nombre"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripcion:</label>
+            <input type="text" name="descripcion" value="<?php echo $deporte["descripcion"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="cupo_maximo">Cupo Maximo:</label>
+            <input type="text" name="cupo_maximo" maxlength="3" value="<?php echo $deporte["cupo_maximo"]?>" />
+        </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
             <input id="Resetear" type="reset" value="Resetear Información">
         </div>
-        <div class="map-container">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.4184902620996!2d-58.60460592514448!3d-34.64057945944432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc951c0fe2d9f5%3A0x9f1c540898efecbe!2sUTN%20HAEDO!5e1!3m2!1ses!2sar!4v1761099590832!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-		</div>
-        </form>
+    </form>
     </section>
 </article>
-	
+
 <footer>
 <?php
     include("FOOTER.php");

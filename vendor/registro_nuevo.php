@@ -1,7 +1,3 @@
-<?php
-session_start();
-include("conexion.php");
-?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -24,39 +20,44 @@ include("conexion.php");
 	<?php
     include("NAV.php");
     ?>
-	<div class="mobile-header-bar">
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-	</div>
 
+	<div class="mobile-header-bar">
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
 
 	<article >
     <section class="formu">
-        <h3>CONTACTO</h3><br>
-        <p>¿Quiere hacer algún comentario en cuanto a nuestra página web?<br>
-                  ¡Todos sus mensajes son bienvenidos!<br>
-            ¡Complete el formulario y envíelo!
-        </p>
-        <form action="mensajes_contacto.php" method="post">
-            <label for="nom">Nombre:</label>
-            <input class="input_formu" type="text" name="nombre" maxlength="20">
-            <label for="tel">Telefono:</label>
-            <input class="input_formu" type="text" name="telefono" maxlength="20">
+        <h3>Registro de Usuario</h3><br>
+	<form action="registro.php" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre de usuario:</label>
+            <input id="nombre" name="nombre" type="text" maxlength="12" />
+        </div>
+        <div class="form-group">
+            <label for="clave">Contraseña:</label>
+            <input id="password" type="password" name="clave" maxlength="12" />
+        </div>
+        <div class="form-group">
             <label for="email">Email:</label>
-            <input class="input_formu" type="email" name="email" maxlength="40">
-            <label for="comentario">Haga su comentario <strong>aquí:</strong></label>
-            <textarea class="input_formu" arows="400" cols="60" maxlength="700" name="comentario"></textarea>
+            <input id="email" name="email" type="text" maxlength="40" />
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input id="telefono" name="telefono" type="text" maxlength="15" />
+        </div>
+        <div class="form-group">
+            <label for="dni">DNI:</label>
+            <input id="dni" name="dni" type="text" maxlength="12" />
+        </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
             <input id="Resetear" type="reset" value="Resetear Información">
         </div>
-        <div class="map-container">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.4184902620996!2d-58.60460592514448!3d-34.64057945944432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc951c0fe2d9f5%3A0x9f1c540898efecbe!2sUTN%20HAEDO!5e1!3m2!1ses!2sar!4v1761099590832!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-		</div>
-        </form>
+    </form>
+    <p class="registro-prompt">¿Ya tienes una cuenta? <a href="iniciar_sesion.php">¡Inicia Sesión!</a></p>
     </section>
 </article>
-	
+
 <footer>
 <?php
     include("FOOTER.php");
