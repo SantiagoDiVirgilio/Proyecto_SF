@@ -24,7 +24,7 @@ include("conexion.php");
 	    <?php
 	    include("NAV.php");
 	    include("conexion.php");
-	    $llamado_horarios = mysqli_query($conexion, "SELECT * FROM horario_cancha");
+	    	    $llamado_horarios = mysqli_query($conexion, "SELECT horario_cancha.*, canchas.nombre FROM horario_cancha JOIN canchas ON horario_cancha.id_cancha = canchas.id_cancha");
 	    ?>
 	
 	    <?php
@@ -43,22 +43,30 @@ include("conexion.php");
                 <thead>
                 </thead>
                     <tr>
-                        <td><a class="btn-añadir-deporte" href="formu_deporte.php">AÑADIR NUEVO</a></td>
+                        <td><a class="btn-añadir-deporte" href="formu_horario.php">AÑADIR NUEVO</a></td>
                     </tr>
                 </table>
 
                 <table>
                     <thead>
+<<<<<<< Updated upstream
                         <th class="tabla-deporte">ID del Horario</th>
                         <th class="tabla-deporte">ID de la Cancha donde se usa</th>
+=======
+                        <th class="tabla-deporte">Cancha</th>
+>>>>>>> Stashed changes
                         <th class="tabla-deporte">Horario</th>
                         <th class="tabla-deporte">Disponibilidad</th>
                         <th class="tabla-deporte">Fecha del Horario</th>
                     </thead>
                     <?php while($var_horarios = mysqli_fetch_assoc($llamado_horarios)){?>
                     <tr>
+<<<<<<< Updated upstream
                         <td class="tabla-deporte"><?php echo $var_horarios["id_horario"];?></td>
                         <td class="tabla-deporte"><?php echo $var_horarios["id_cancha"];?></td>
+=======
+                        <td class="tabla-deporte"><?php echo $var_horarios["nombre"];?></td>
+>>>>>>> Stashed changes
                         <td class="tabla-deporte"><?php echo $var_horarios["horario"];?></td>
                         <td class="tabla-deporte"><?php echo $var_horarios["disponible"];?></td>
                         <td class="tabla-deporte"><?php echo $var_horarios["fecha_horario"];?></td>

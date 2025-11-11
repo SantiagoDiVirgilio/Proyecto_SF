@@ -1,7 +1,3 @@
-<?php
-session_start();
-include("conexion.php");
-?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,38 +19,17 @@ include("conexion.php");
 	
 	<?php
     include("NAV.php");
-    include("conexion.php");
-	$_SESSION['VARIABLE'] = session_id();
-
-$id = $_GET['id_horario'];
-$conexion_horarios= mysqli_query($conexion, "SELECT horario_cancha.*, canchas.nombre FROM horario_cancha JOIN canchas ON horario_cancha.id_cancha = canchas.id_cancha WHERE horario_cancha.id_horario = '$id'");
-$horario = mysqli_fetch_array($conexion_horarios);
-
-$canchas_query = mysqli_query($conexion, "SELECT id_cancha, nombre FROM canchas");
-$canchas = mysqli_fetch_all($canchas_query, MYSQLI_ASSOC);
     ?>
 
 	<div class="mobile-header-bar">
 	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
+    
 
 	<article >
     <section class="formu">
-        <h3>Edicion de Horarios</h3><br>
-	<form action="modificar_horario.php" method="post">
-        <div class="form-group">
-            <label for="id_horario">ID del Horario:</label>
-            <input type="text" readonly="readonly" name="id_horario" value="<?php echo $horario["id_horario"]?>" />
-        </div>
-        <div class="form-group">
-<<<<<<< Updated upstream
-            <label for="nombre">ID de Cancha donde se usa:</label>
-            <input type="text" name="nombre" value="<?php echo $deporte["nombre"]?>" />
-        </div>
-        <div class="form-group">
-            <label for="cupo_maximo">Horario:</label>
-            <input type="text" name="horario" maxlength="3" value="<?php echo $deporte["cupo_maximo"]?>" />
-=======
+        <h3>Registro de Horarios</h3><br>
+	<form action="añadir_horario.php" method="post">
             <label for="id_cancha">Nombre de Cancha donde se usa:</label>
             <select name="id_cancha" required>
                 <?php foreach ($canchas as $cancha): ?>
@@ -63,15 +38,13 @@ $canchas = mysqli_fetch_all($canchas_query, MYSQLI_ASSOC);
                     </option>
                 <?php endforeach; ?>
             </select>
-        </div>
         <div class="form-group">
             <label for="horario">Horario:</label>
             <input type="text" name="horario" maxlength="9" value="<?php echo $horario["horario"]?>" />
->>>>>>> Stashed changes
         </div>
         <div class="form-group">
             <label for="disponible">Disponibilidad:</label>
-            <input type="text" name="disponible" value="<?php echo $disponible["disponible"]?>" />
+            <input type="text" name="disponible" value="<?php echo $horario["disponible"]?>" />
         </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
