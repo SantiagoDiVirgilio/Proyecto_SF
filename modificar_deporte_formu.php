@@ -40,8 +40,7 @@ $deporte = mysqli_fetch_array($conexion_deporte);
         <h3>Edicion de Deporte</h3><br>
 	<form action="modificar_deporte.php" method="post">
         <div class="form-group">
-            <label for="id_deporte">ID del Deporte:</label>
-            <input type="text" readonly="readonly" name="id_deporte" value="<?php echo $deporte["id_deporte"]?>" />
+            <input type="hidden" name="id_deporte" value="<?php echo $deporte["id_deporte"]?>" />
         </div>
         <div class="form-group">
             <label for="nombre">Nombre del Deporte:</label>

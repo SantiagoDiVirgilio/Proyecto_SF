@@ -3,7 +3,7 @@
     <ul>
         <li><a href="index.php">Inicio</a></li>
         <li class="custom-dropdown">
-            <a href="pago.php?id_cancha=1">Alquileres</a>
+            <a href="pago_reserva.php?id_cancha=1">Alquileres</a>
             <div class="custom-dropdown-content">
                 <a href="alquileres.php#FUTBOL">Futbol</a>
                 <a href="alquileres.php#BASQUET">Basquet</a>
@@ -18,6 +18,7 @@
             if (isset($_SESSION['ROL']) && (strtolower($_SESSION['ROL']) == 'admin')) {
                 echo '<li><a href="administracion.php">Administracion</a></li>';
             }
+            echo '<li><a href="perfil.php">Perfil</a></li>';
             echo '<li><a href="cerrar_sesion.php">Cerrar Sesion</a></li>';
         } else {
             echo '<li><a href="iniciar_sesion.php">Iniciar Sesion</a></li>';

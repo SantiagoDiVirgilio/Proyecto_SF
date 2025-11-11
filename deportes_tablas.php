@@ -49,14 +49,12 @@ include("conexion.php");
 
                 <table>
                     <thead>
-                        <th class="tabla-deporte">ID</th>
                         <th class="tabla-deporte">Nombre</th>
                         <th class="tabla-deporte">Descripcion</th>
                         <th class="tabla-deporte">Cupo Maximo</th>
                     </thead>
                     <?php while($var_deportes = mysqli_fetch_assoc($llamado_deportes)){?>
                     <tr>
-                        <td class="tabla-deporte"><?php echo $var_deportes["id_deporte"];?></td>
                         <td class="tabla-deporte"><?php echo $var_deportes["nombre"];?></td>
                         <td class="tabla-deporte"><?php echo $var_deportes["descripcion"];?></td>
                         <td class="tabla-deporte"><?php echo $var_deportes["cupo_maximo"];?></td>

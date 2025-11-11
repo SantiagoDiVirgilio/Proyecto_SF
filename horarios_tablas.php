@@ -49,7 +49,6 @@ include("conexion.php");
 
                 <table>
                     <thead>
-                        <th class="tabla-deporte">ID del Horario</th>
                         <th class="tabla-deporte">ID de la Cancha donde se usa</th>
                         <th class="tabla-deporte">Horario</th>
                         <th class="tabla-deporte">Disponibilidad</th>
@@ -57,7 +56,6 @@ include("conexion.php");
                     </thead>
                     <?php while($var_horarios = mysqli_fetch_assoc($llamado_horarios)){?>
                     <tr>
-                        <td class="tabla-deporte"><?php echo $var_horarios["id_horario"];?></td>
                         <td class="tabla-deporte"><?php echo $var_horarios["id_cancha"];?></td>
                         <td class="tabla-deporte"><?php echo $var_horarios["horario"];?></td>
                         <td class="tabla-deporte"><?php echo $var_horarios["disponible"];?></td>

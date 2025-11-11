@@ -40,20 +40,19 @@ $horario = mysqli_fetch_array($conexion_horarios);
         <h3>Edicion de Horarios</h3><br>
 	<form action="modificar_horario.php" method="post">
         <div class="form-group">
-            <label for="id_horario">ID del Horario:</label>
-            <input type="text" readonly="readonly" name="id_horario" value="<?php echo $horario["id_horario"]?>" />
+            <input type="hidden" name="id_horario" value="<?php echo $horario["id_horario"]?>" />
         </div>
         <div class="form-group">
-            <label for="nombre">ID de Cancha donde se usa:</label>
-            <input type="text" name="nombre" value="<?php echo $deporte["nombre"]?>" />
+            <label for="id_cancha">ID de Cancha donde se usa:</label>
+            <input type="text" name="id_cancha" value="<?php echo $horario["id_cancha"]?>" />
         </div>
         <div class="form-group">
-            <label for="cupo_maximo">Horario:</label>
-            <input type="text" name="horario" maxlength="3" value="<?php echo $deporte["cupo_maximo"]?>" />
+            <label for="horario">Horario:</label>
+            <input type="text" name="horario" maxlength="3" value="<?php echo $horario["horario"]?>" />
         </div>
         <div class="form-group">
             <label for="disponible">Disponibilidad:</label>
-            <input type="text" name="disponible" value="<?php echo $disponible["disponible"]?>" />
+            <input type="text" name="disponible" value="<?php echo $horario["disponible"]?>" />
         </div>
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
