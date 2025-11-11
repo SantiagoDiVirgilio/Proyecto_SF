@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+
 *{
 	padding: 0;
 	margin: 0;
@@ -8,7 +10,7 @@ body{
 	font-size: 1.3rem;
 	background-size: cover; 
 	background-position: center; /* Centra la imagen */
-	min-height: 100vh; 
+	min-height: 100vh; /
 	background-attachment: fixed;
 	display: flex;
 	flex-direction: column;
@@ -119,7 +121,7 @@ nav ul li:hover a {
   display: block;
 }
 
-
+/
 .custom-dropdown > a::after {
   content: ' \25BC'; 
   font-size: 0.8em; 
@@ -160,55 +162,30 @@ p a{
 }
 
 /* --- Estilos para las tarjetas de canchas --- */
-.canchas-container {
+.tarjeta-container {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
   padding: 2rem 0;
 }
-.cancha-card {
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 320px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-.cancha-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-.cancha-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-.cancha-card-body {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; 
-}
-.cancha-card-body h4 {
+.tarjeta-body h4 {
   margin-top: 0;
   font-size: 1.5rem;
   color: #333;
 }
-.cancha-card-body p {
+.tarjeta-body p {
   font-size: 1rem;
   color: #666;
   flex-grow: 1; 
 }
-.cancha-card-body .precio {
+.tarjeta-body .precio {
   font-size: 1.2rem;
   font-weight: bold;
   color: #000;
   margin-top: 1rem;
 }
-.deporte-card {
+.tarjeta {
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -218,17 +195,17 @@ p a{
   display: flex;
   flex-direction: column;
 }
-.deporte-card:hover {
+.tarjeta:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-.deporte-card img {
+.tarjeta img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
-.deporte-card-body {
+.tarjeta-body {
   padding: 1.5rem;
   display: block;
   flex-direction:column;
@@ -282,13 +259,47 @@ p a{
 }
 .logo_mp{
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
   overflow: hidden;
   width: 180px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   margin-left: 3%;
+}
+.info_integrantes {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 3rem;
+  font-size: 18px;
+  line-height: 1.6;
+  background-color: #6a949c;
+  padding: 0;
+  border-radius: 15px;
+  border: 2px solid rgb(88, 210, 231);
+  box-shadow: 0 0 15px rgba(96, 172, 172, 0.7);
+  color: #FFFFFF;
+  overflow: hidden;
+}
+.foto_integrantes {
+  width: 250px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.info_integrantes:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.info_integrantes p {
+  flex: 1;
+  padding: 2rem;
+  align-self: center;
+}
+.info_integrantes a strong {
+    font-size: 1.5em; 
+    color: rgb(0, 0, 0); 
+    display: block; 
+    margin-bottom: 1rem;
+    display: left; 
 }
 /*----------------------------- INICIO ESTILOS DE PAGINA CONTACTO --------------------------------------*/
 .formu{

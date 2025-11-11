@@ -52,18 +52,66 @@
 					mensualmente a los deportes presentados. Para cosnultas particulares drigrise al formulario de "Contacto" de nuestro sitio web.
 					</p>
 			</article>
-	
-			<article>
-				<h3><em></em></h3>
-					<p>
-					</p> 
-			</article>
 		</div>
 		<div class="columna-imagen">
 			<img src="imagenes/fondo_inicio.webp" alt="Imagen del club">
 		</div>
 	</div>
-
+	<div>
+		
+	<article>
+		<h3></h3>
+		<ul>
+		<section class="personajes-list">
+			<div class="info_integrantes">
+			<img class="foto_integrantes" src="imagenes/Mateo.webp" alt="Icono de Loki">
+				<p><strong><u><i>Mateo Alvarez San Juan:</i></u></strong>Tras los eventos de <i>Avengers Endgame</i>, donde roba el Teseracto y crea una línea temporal alternativa, 
+				<br>es capturado por la <i>Agencia de Variación Temporal (TVA)</i>, una organización que mantiene la línea temporal sagrada. Obligado a colaborar con la TVA para atrapar a otra variante, Loki descubre la verdad detrás de la TVA y 
+				el control del tiempo, enfrentándose a dilemas existenciales y al multiverso que él mismo ayudó a crear.
+				<br>al final, Loki se sacrifica para salvar a Sylvie y el universo, y la línea del tiempo se fractura, llevando al nacimiento del multiverso. La TVA se encuentra al borde del colapso, y las líneas temporales se multiplican 
+				sin control. 
+				<br>Loki debe evitar que el Telar (el dispositivo que mantiene la línea temporal) se sobrecargue y destruya todo, sin embargo fracasa, y Loki asume la tarea de mantener las líneas temporales en una estructura en forma de árbol, 
+				convirtiéndose en el guardián solitario del tiempo. 
+				</p>
+			</div>
+		</section>
+		<div class="info_integrantes">
+			<img class="foto_integrantes" src="imagenes/Martin.webp" alt="Icono de Loki">
+				<p><strong><u><i>Martin Rodolfo Castaño:</i></u></strong>Tras los eventos de <i>Avengers Endgame</i>, donde roba el Teseracto y crea una línea temporal alternativa, 
+				<br>es capturado por la <i>Agencia de Variación Temporal (TVA)</i>, una organización que mantiene la línea temporal sagrada. Obligado a colaborar con la TVA para atrapar a otra variante, Loki descubre la verdad detrás de la TVA y 
+				el control del tiempo, enfrentándose a dilemas existenciales y al multiverso que él mismo ayudó a crear.
+				<br>al final, Loki se sacrifica para salvar a Sylvie y el universo, y la línea del tiempo se fractura, llevando al nacimiento del multiverso. La TVA se encuentra al borde del colapso, y las líneas temporales se multiplican 
+				sin control. 
+				<br>Loki debe evitar que el Telar (el dispositivo que mantiene la línea temporal) se sobrecargue y destruya todo, sin embargo fracasa, y Loki asume la tarea de mantener las líneas temporales en una estructura en forma de árbol, 
+				convirtiéndose en el guardián solitario del tiempo. 
+				</p>
+			</div>
+			<div class="info_integrantes">
+			<img class="foto_integrantes" src="imagenes/Agustin.webp" alt="Icono de Loki">
+				<p><strong><u><i>Agustin Dotto:</i></u></strong>Tras los eventos de <i>Avengers Endgame</i>, donde roba el Teseracto y crea una línea temporal alternativa, 
+				<br>es capturado por la <i>Agencia de Variación Temporal (TVA)</i>, una organización que mantiene la línea temporal sagrada. Obligado a colaborar con la TVA para atrapar a otra variante, Loki descubre la verdad detrás de la TVA y 
+				el control del tiempo, enfrentándose a dilemas existenciales y al multiverso que él mismo ayudó a crear.
+				<br>al final, Loki se sacrifica para salvar a Sylvie y el universo, y la línea del tiempo se fractura, llevando al nacimiento del multiverso. La TVA se encuentra al borde del colapso, y las líneas temporales se multiplican 
+				sin control. 
+				<br>Loki debe evitar que el Telar (el dispositivo que mantiene la línea temporal) se sobrecargue y destruya todo, sin embargo fracasa, y Loki asume la tarea de mantener las líneas temporales en una estructura en forma de árbol, 
+				convirtiéndose en el guardián solitario del tiempo. 
+				</p>
+			</div>
+			<div class="info_integrantes">
+			<img class="foto_integrantes" src="imagenes/Santiago.webp" alt="Icono de Loki">
+				<a href="https://www.linkedin.com/in/santiago-ezequiel-di-virgilio-a8569b319/" target="_blank"><strong><u><i>Santiago Ezequiel Di Virgilio:</i></u></strong></a>
+				<p>Tras los eventos de <i>Avengers Endgame</i>, donde roba el Teseracto y crea una línea temporal alternativa, 
+				<br>es capturado por la <i>Agencia de Variación Temporal (TVA)</i>, una organización que mantiene la línea temporal sagrada. Obligado a colaborar con la TVA para atrapar a otra variante, Loki descubre la verdad detrás de la TVA y 
+				el control del tiempo, enfrentándose a dilemas existenciales y al multiverso que él mismo ayudó a crear.
+				<br>al final, Loki se sacrifica para salvar a Sylvie y el universo, y la línea del tiempo se fractura, llevando al nacimiento del multiverso. La TVA se encuentra al borde del colapso, y las líneas temporales se multiplican 
+				sin control. 
+				<br>Loki debe evitar que el Telar (el dispositivo que mantiene la línea temporal) se sobrecargue y destruya todo, sin embargo fracasa, y Loki asume la tarea de mantener las líneas temporales en una estructura en forma de árbol, 
+				convirtiéndose en el guardián solitario del tiempo. 
+				</p>
+			</div>
+		</ul> 
+	</article>
+	</div>
 <footer>
 <?php
     include("FOOTER.php");
