@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2025 a las 15:34:53
+-- Tiempo de generación: 03-11-2025 a las 11:22:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -62,19 +62,18 @@ CREATE TABLE `deportes` (
   `id_deporte` int(5) NOT NULL,
   `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `cupo_maximo` int(3) NOT NULL,
-  `cupo_actual` int(3) UNSIGNED NOT NULL DEFAULT 0
+  `cupo_maximo` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `deportes`
 --
 
-INSERT INTO `deportes` (`id_deporte`, `nombre`, `descripcion`, `cupo_maximo`, `cupo_actual`) VALUES
-(1, 'FUTBOL', 'Días: Lunes, Jueves y Sábados.\nCategorías: Todas.', 20, 1),
-(2, 'BASQUET', 'Días: Martes y Miércoles.\nCategorías: Todas.', 2, 2),
-(3, 'SALON', '', 200, 0),
-(4, 'NATACION', 'Disfruta de nuestra pileta e inscribite a NATACION', 45, 0);
+INSERT INTO `deportes` (`id_deporte`, `nombre`, `descripcion`, `cupo_maximo`) VALUES
+(1, 'FUTBOL', 'Veni a divertirte jugando al FUTBOL con tus amigos', 30),
+(2, 'BASQUET', 'Veni a divertirte jugando al BASQUET con tus amigos', 40),
+(3, 'SALON', '¡Hace tu reserva para el Salon de Fiestas!', 200),
+(4, 'NATACION', 'Disfruta de nuestra pileta e inscribite a NATACION', 45);
 
 -- --------------------------------------------------------
 
@@ -124,38 +123,10 @@ CREATE TABLE `inscripciones` (
 --
 
 INSERT INTO `inscripciones` (`id_inscripcion`, `id_usuario`, `id_deporte`, `fecha_inscripcion`, `becado`) VALUES
-(2, 201, 2, 1762871548, 0),
-(3, 202, 2, 1762871602, 0);
-
---
--- Disparadores `inscripciones`
---
-DROP TRIGGER IF EXISTS `trg_aumentar_cupo_actual`;
-DELIMITER $$
-CREATE TRIGGER `trg_aumentar_cupo_actual` AFTER INSERT ON `inscripciones` FOR EACH ROW BEGIN
-    UPDATE deportes
-    SET cupo_actual = cupo_actual + 1
-    WHERE id_deporte = NEW.id_deporte;
-END
-$$
-DELIMITER ;
-DROP TRIGGER IF EXISTS `trg_validar_cupo_lleno`;
-DELIMITER $$
-CREATE TRIGGER `trg_validar_cupo_lleno` BEFORE INSERT ON `inscripciones` FOR EACH ROW BEGIN
-    DECLARE v_cupo_actual INT;
-    DECLARE v_cupo_maximo INT;
-
-    SELECT cupo_actual, cupo_maximo
-    INTO v_cupo_actual, v_cupo_maximo
-    FROM deportes
-    WHERE id_deporte = NEW.id_deporte;
-    IF v_cupo_actual >= v_cupo_maximo THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Error: El cupo para este deporte está lleno.';
-    END IF;
-END
-$$
-DELIMITER ;
+(1, 1, 2, 1761875694, 0),
+(2, 5, 1, 1761876898, 0),
+(3, 1, 5, 1761917390, 0),
+(4, 1, 14, 1761921492, 0);
 
 -- --------------------------------------------------------
 
@@ -185,25 +156,6 @@ INSERT INTO `mensajes_contacto` (`id_mensaje`, `nombre`, `email`, `telefono`, `m
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pagos`
---
-
-DROP TABLE IF EXISTS `pagos`;
-CREATE TABLE `pagos` (
-  `id_pago` int(11) NOT NULL,
-  `mercadopago_payment_id` bigint(20) NOT NULL,
-  `id_reserva` int(11) DEFAULT NULL,
-  `status` varchar(30) NOT NULL,
-  `transaction_amount` decimal(10,2) NOT NULL,
-  `date_created` datetime DEFAULT NULL,
-  `date_approved` datetime DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `reservas`
 --
 
@@ -212,13 +164,12 @@ CREATE TABLE `reservas` (
   `id_reserva` int(11) NOT NULL,
   `id_cancha` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_pago` int(11) NOT NULL,
-  `telefono` varchar(15) NOT NULL,
-  `estado` varchar(20) NOT NULL,
+  `nombre_cliente` varchar(50) NOT NULL,
+  `telefono` varchar(20) NOT NULL,
   `fecha_reserva` date NOT NULL,
-  `monto` decimal(10,2) NOT NULL,
-  `hora_inicio` int(11) NOT NULL,
-  `hora_fin` int(11) NOT NULL
+  `hora_reserva` time NOT NULL,
+  `monto_senia` decimal(10,2) NOT NULL,
+  `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
@@ -287,6 +238,12 @@ ALTER TABLE `mensajes_contacto`
   ADD PRIMARY KEY (`id_mensaje`);
 
 --
+-- Indices de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  ADD PRIMARY KEY (`id_reserva`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -306,7 +263,7 @@ ALTER TABLE `canchas`
 -- AUTO_INCREMENT de la tabla `deportes`
 --
 ALTER TABLE `deportes`
-  MODIFY `id_deporte` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_deporte` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `horario_cancha`
@@ -318,13 +275,19 @@ ALTER TABLE `horario_cancha`
 -- AUTO_INCREMENT de la tabla `inscripciones`
 --
 ALTER TABLE `inscripciones`
-  MODIFY `id_inscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_inscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes_contacto`
 --
 ALTER TABLE `mensajes_contacto`
   MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

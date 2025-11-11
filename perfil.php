@@ -61,6 +61,7 @@ include("conexion.php");
                 <th class="tabla-usuario">Telefono</th>
                 <th class="tabla-usuario">Fecha Alta</th>
                 <th class="tabla-usuario">Rol</th>
+                <th class="tabla-deporte">Acciones</th>
             </thead>
                 <tr>
                 <td class="tabla-usuario"><?php echo $resultado["nombre"];?></td>

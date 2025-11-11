@@ -52,6 +52,7 @@ include("conexion.php");
                         <th class="tabla-deporte">Nombre</th>
                         <th class="tabla-deporte">Descripcion</th>
                         <th class="tabla-deporte">Cupo Maximo</th>
+                        <th class="tabla-deporte">Acciones</th>
                     </thead>
                     <?php while($var_deportes = mysqli_fetch_assoc($llamado_deportes)){?>
                     <tr>

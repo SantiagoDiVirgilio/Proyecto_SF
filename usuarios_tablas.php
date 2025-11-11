@@ -55,6 +55,7 @@ include("conexion.php");
                         <th class="tabla-usuario">Telefono</th>
                         <th class="tabla-usuario">Fecha Alta</th>
                         <th class="tabla-usuario">Rol</th>
+                        <th class="tabla-deporte">Acciones</th>
                     </thead>
                     <?php while($var_usuarios = mysqli_fetch_assoc($llamado_usuarios)){?>
                     <tr>

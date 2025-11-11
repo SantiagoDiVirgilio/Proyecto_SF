@@ -53,6 +53,7 @@ include("conexion.php");
                         <th class="tabla_cancha">Deporte Jugado</th>
                         <th class="tabla_cancha">Descripcion</th>
                         <th class="tabla_cancha">Precio Por Hora</th>
+                        <th class="tabla-deporte">Acciones</th>
                     </thead>
                     <?php while($var_canchas = mysqli_fetch_assoc($llamado_canchas)){?>
                     <tr>

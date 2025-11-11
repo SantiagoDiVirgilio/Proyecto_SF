@@ -53,6 +53,7 @@ include("conexion.php");
                         <th class="tabla-deporte">Horario</th>
                         <th class="tabla-deporte">Disponibilidad</th>
                         <th class="tabla-deporte">Fecha del Horario</th>
+                        <th class="tabla-deporte">Acciones</th>
                     </thead>
                     <?php while($var_horarios = mysqli_fetch_assoc($llamado_horarios)){?>
                     <tr>
