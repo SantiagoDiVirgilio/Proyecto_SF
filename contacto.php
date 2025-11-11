@@ -25,9 +25,8 @@ include("conexion.php");
     include("NAV.php");
     ?>
 
-	<div class="mobile-header-bar">
-	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 
 	<article >
     <section class="formu">

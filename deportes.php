@@ -25,7 +25,9 @@ include("conexion.php");
 	<?php
     include("NAV.php");
     ?>
-    </header>
+
+	</header>
+	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 
 <div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
     <fieldset>
