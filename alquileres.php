@@ -90,23 +90,12 @@ include("conexion.php");
             </section>
         <?php }?>
 
-<!-- Modal -->
-<div id="horariosModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h3 id="modalCanchaNombre"></h3>
-    <div id="modalHorariosBody">
-    </div>
-  </div>
-</div>
-
 <footer>
 <?php
     include("FOOTER.php");
 ?>
 </footer>
 
-<!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 <script>
@@ -130,118 +119,16 @@ include("conexion.php");
     }
     
     // --- Lógica del Modal ---
-    const modal = document.getElementById("horariosModal");
-    const modalCanchaNombre = document.getElementById("modalCanchaNombre");
-    const modalHorariosBody = document.getElementById("modalHorariosBody");
-    const closeModalBtn = document.querySelector(".close");
-    
-    function openModal() { modal.style.display = "block"; }
-    function closeModal() { modal.style.display = "none"; }
-    
-    function actualizarFilaHorario(horarioId, disponible) {
-        const fila = modalHorariosBody.querySelector(`tr[data-horario-id="${horarioId}"]`);
-        if (!fila) return;
-    
-        const celdaDisponibilidad = fila.cells[1];
-        const celdaAccion = fila.cells[2];
-    
-        celdaDisponibilidad.textContent = disponible ? "Disponible" : "No Disponible";
-        celdaDisponibilidad.className = disponible ? "disponible" : "no-disponible";
-    
-        let botonHTML = '';
-        if (disponible) {
-            botonHTML = `<button class="btn-reservar data-horario-id="${horarioId}">Reservar</button>`;
-        } else if (esAdmin) {
-            botonHTML = `<button class="btn-liberar" data-horario-id="${horarioId}">Liberar</button>`;
-        }
-        celdaAccion.innerHTML = botonHTML;
-    }
-    
     document.addEventListener("click", function(event) {
+        // Si se hace clic en el botón para ver horarios/reservar
         if (event.target.classList.contains("btn-ver-horarios")) {
             const canchaId = event.target.getAttribute("data-cancha-id");
-            const canchaNombre = event.target.getAttribute("data-cancha-nombre");
     
-            modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
-            modalHorariosBody.innerHTML = "<p>Cargando horarios...</p>";
-            openModal();
-    
-            fetch(`obtener_horarios.php?id_cancha=${canchaId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        modalHorariosBody.innerHTML = `<p>${data.error}</p>`;
-                        return;
-                    }
-    
-                    let horariosHtml = "<h4>Horarios</h4>";
-                    if (data.length > 0) {
-                        horariosHtml += "<table><thead><tr><th>Horario</th><th>Disponibilidad</th><th>Acción</th></tr></thead><tbody>";
-                        data.forEach(item => {
-                            let disponibilidad = item.disponible && item.disponible.toLowerCase() === 'libre';
-                            let claseCss = disponibilidad ? 'disponible' : 'no-disponible';
-                            let botonHTML = '';
-                            if (disponibilidad) {
-                                botonHTML = `<button class="btn-reservar" data-horario-id="${item.id_horario}">Reservar</button>`;
-                            } else if (esAdmin) {
-                                botonHTML = `<button class="btn-liberar" data-horario-id="${item.id_horario}">Liberar</button>`;
-                            }
-                            horariosHtml += `<tr data-horario-id="${item.id_horario}"><td>${item.horario}</td><td class="${claseCss}">${disponibilidad ? 'Disponible' : 'No Disponible'}</td><td>${botonHTML}</td></tr>`;
-                        });
-                        horariosHtml += "</tbody></table>";
-                    } else {
-                        horariosHtml += "<p>No hay horarios definidos para este deporte.</p>";
-                    }
-                    modalHorariosBody.innerHTML = horariosHtml;
-                })
-                .catch(error => {
-                    console.error('Error al obtener los horarios:', error);
-                    modalHorariosBody.innerHTML = "<p>No se pudieron cargar los horarios. Verifique el archivo 'obtener_horarios.php' y la consola para más detalles.</p>";
-                });
+            // Abre Calendario.php en una nueva pestaña del navegador
+            window.open(`Calendario.php?id_cancha=${canchaId}`, '_blank');
         }
     });
     
-    modalHorariosBody.addEventListener("click", function(event) {
-        const target = event.target;
-        const esBotonReservar = target.classList.contains("btn-reservar");
-        const esBotonLiberar = target.classList.contains("btn-liberar");
-    
-        if (esBotonReservar || esBotonLiberar) {
-            const horarioId = target.getAttribute("data-horario-id");
-            const accion = esBotonReservar ? 'reservar' : 'liberar';
-    
-            fetch(`actualizar_horario.php`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `id_horario=${horarioId}&accion=${accion}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (accion === 'reservar') {
-                        // Redirigir a la página de pago después de una reserva exitosa
-                        window.location.href = 'pago.php?id_horario=' + horarioId;
-                    } else {
-                        // Si la acción es 'liberar', solo actualiza la fila
-                        actualizarFilaHorario(horarioId, true);
-                    }
-                } else {
-                    alert(data.error || `No se pudo ${accion} el horario.`);
-                }
-            })
-            .catch(error => {
-                console.error(`Error al ${accion} el horario:`, error);
-                alert(`No se pudo ${accion} el horario. Intente más tarde.`);
-            });
-        }
-    });
-    
-    closeModalBtn.addEventListener("click", closeModal);
-    window.addEventListener("click", function(event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
 </script>
 
 </body>

@@ -10,7 +10,7 @@ body{
 	font-size: 1.3rem;
 	background-size: cover; 
 	background-position: center; /* Centra la imagen */
-	min-height: 100vh; /
+	min-height: 100vh; 
 	background-attachment: fixed;
 	display: flex;
 	flex-direction: column;
@@ -121,7 +121,6 @@ nav ul li:hover a {
   display: block;
 }
 
-/
 .custom-dropdown > a::after {
   content: ' \25BC'; 
   font-size: 0.8em; 
@@ -544,7 +543,7 @@ footer div a{
 /* --- Estilos para la ventana modal de horarios --- */
 
 /* El fondo del modal (overlay) */
-#horariosModal {
+.modal {
   display: none; 
   position: fixed; 
   z-index: 1000; 
@@ -558,7 +557,7 @@ footer div a{
 }
 
 /* Contenido del Modal */
-#customHorariosModal .custom-modal-content {
+.modal-content {
   background-color: #fefefe;
   margin: 15% auto; 
   padding: 20px;
@@ -578,15 +577,17 @@ footer div a{
 }
 
 /* El botón de cerrar (x) */
-#customHorariosModal .custom-close {
+.close, .close-calendario {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-#horariosModal .close:hover,
-#horariosModal .close:focus {
+.close:hover,
+.close:focus,
+.close-calendario:hover,
+.close-calendario:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -1003,33 +1004,7 @@ body.lb-disable-scrolling {
 }
 
 /* Estilos para la tabla del modal de horarios */
-#horariosModal table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
 
-#horariosModal th,
-#horariosModal td {
-  border: 1px solid #ddd;
-  padding: 8px 12px; /* Aumenta el padding para más espacio */
-  text-align: left;
-}
-
-#horariosModal th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-/* Clases para disponibilidad */
-.disponible {
-    color: green;
-    font-weight: bold;
-}
-.no-disponible {
-    color: red;
-    font-weight: bold;
-}
 
 /*-------------------BUSCADOR-------------------*/
 

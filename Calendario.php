@@ -56,28 +56,64 @@
       justify-content: center; /* Centra horizontalmente (para flex) */
       height: 100%;
     }
+    
+    /* Estilos para cuando la página se carga en un modal */
+    body.en-modal {
+      background-color: transparent; /* Fondo transparente para que se vea el del modal padre */
+    }
+    body.en-modal #page-header,
+    body.en-modal #page-footer {
+      display: none; /* Oculta header y footer */
+    }
+    #btnCerrarModal {
+      display: none; /* Oculto por defecto */
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1001;
+      padding: 10px 20px;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
   </style>
 </head>
-<body>
+<body id="calendario-body">
+  <div id="page-header">
+    <?php
+      // Si tienes un NAV.php o header, debería ir aquí.
+      // include("NAV.php"); 
+    ?>
+  </div>
+
+  <div id="page-container">
   <div id='calendar'></div>
 
   <!-- HTML del Modal para confirmar la reserva -->
   <div id="reservaModal" class="modal">
     <div class="modal-content">
       <h3>Confirmar Reserva</h3>
-      <p id="infoReserva"></p>
-      <form action="registro_reserva.php" method="POST">
-        <input type="text" id="nombreCliente" placeholder="Ingrese su nombre">
-        <input type="text" id="telefonoCliente" placeholder="Ingrese su telefono">
-        <button id="btnConfirmarReserva">Reservar</button>
-        <button id="btnCancelarReserva" type="button">Cancelar</button>
-      </form>
+      <p id="infoReserva"></p>      <input type="text" id="nombreCliente" placeholder="Ingrese su nombre">      <input type="text" id="telefonoCliente" placeholder="Ingrese su telefono">      <button id="btnConfirmarReserva">Reservar</button>      <button id="btnCancelarReserva" type="button">Cancelar</button>
       
     </div>
   </div>
+  </div>
+
+  <div id="page-footer">
+    <?php 
+      // Si tienes un FOOTER.php, debería ir aquí.
+      // include("FOOTER.php"); 
+    ?>
+  </div>
+  <button id="btnCerrarModal">Cerrar</button>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+    // No se necesita aquí, se define más abajo
+
     const calendarEl = document.getElementById('calendar');
     const modal = document.getElementById('reservaModal');
     const infoReservaEl = document.getElementById('infoReserva');
@@ -87,7 +123,23 @@
     const btnCancelar = document.getElementById('btnCancelarReserva');
     let selectionInfo = null; // Para guardar la información de la selección
 
-    const calendar = new FullCalendar.Calendar(calendarEl, {
+    const urlParams = new URLSearchParams(window.location.search); // Declaración única
+    const esModal = urlParams.get('modal') === 'true';
+    const idCancha = urlParams.get('id_cancha') || '1';
+    
+    if (esModal) {
+        document.body.classList.add('en-modal');
+        const btnCerrar = document.getElementById('btnCerrarModal');
+        btnCerrar.style.display = 'block';
+        btnCerrar.onclick = function() {
+            // Llama a la función para cerrar el modal en la ventana padre
+            if (window.parent && typeof window.parent.closeCalendarioModal === 'function') {
+                window.parent.closeCalendarioModal();
+            }
+        };
+    }
+
+     const calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'timeGrid7Day',
       selectable: true,
       unselectAuto: true,
@@ -121,7 +173,7 @@
 
       eventSources: [   
         {
-          url: 'obtener_reservas.php?id_cancha=1', // <-- Corregido: Enviamos el ID de la cancha
+          url: `obtener_reservas.php?id_cancha=${idCancha}`,
           failure: function() {
             alert('Error al cargar las reservas desde el servidor.');
           }
@@ -134,7 +186,7 @@
               endTime: '22:00:00',   
               display: 'background', 
               backgroundColor: '#00ff3cff' // Un verde más suave y legible
-            }
+            }         
           ]
         }
       ],
@@ -177,9 +229,7 @@
       formData.append('hora_inicio', selectionInfo.start.getHours()); // Formato 24h (ej: 18)
       formData.append('hora_fin', selectionInfo.end.getHours()); // Formato 24h (ej: 19)
       // Datos que asumimos o hardcodeamos por ahora
-      formData.append('id_cancha', 1); // Asumimos cancha 1, esto debería ser dinámico
-      formData.append('id_pago', 0); // Asumimos 0 si no hay pago aún
-      formData.append('monto', 4000.00); // Precio de ejemplo
+      formData.append('id_cancha', idCancha);
 
       // Enviar los datos al servidor usando fetch (AJAX)
       fetch('registro_reserva.php', {
@@ -188,20 +238,10 @@
       })
       .then(response => response.json())
       .then(data => {
-        if (data.success) {
-          // Si el servidor confirma que guardó, añadimos el evento visualmente
-          calendar.addEvent({
-            title: 'Reservado (' + nombreCliente + ')',
-            start: selectionInfo.start,
-            end: selectionInfo.end,
-            backgroundColor: '#f8d7da',
-            borderColor: '#ff0019ff',
-            color:'black',
-            overlap: false
-          });
-          alert('¡Reserva guardada con éxito!');
-          modal.style.display = "none";
-          calendar.unselect();
+        if (data.success && data.id_reserva) {
+          // Si la reserva se guardó y obtuvimos el ID, redirigimos a la página de pago
+          // Pasamos el id_cancha y el nuevo id_reserva
+          window.location.href = `pago.php?id_cancha=${idCancha}&id_reserva=${data.id_reserva}`;
         } else {
           // Si hay un error, lo mostramos
           alert('Error al guardar la reserva: ' + data.message);

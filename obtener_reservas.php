@@ -43,13 +43,13 @@ while ($reserva = mysqli_fetch_assoc($resultado)) {
     $start_datetime = $reserva['fecha_reserva'] . 'T' . sprintf('%02d:00:00', $reserva['hora_inicio']);
     $end_datetime = $reserva['fecha_reserva'] . 'T' . sprintf('%02d:00:00', $reserva['hora_fin']);
 
-    // Usamos el operador ternario (condición ? valor_si_verdadero : valor_si_falso)
     $eventos[] = [
         'id'    => $reserva['id_reserva'],
-        'title' => ($reserva['estado'] == 'Confirmada') ? 'Pagado' : 'Reservado',
+        'title' => ($reserva['estado'] == 'Confirmada') ? 'Confirmado' :'Reservado',
         'start' => $start_datetime,
         'end'   => $end_datetime,
-        'overlap' => false, // <-- ¡Línea clave! Esto bloquea la selección sobre este evento.
+        'estado'=> $reserva['estado'],
+        'overlap' => false,
         'backgroundColor' => ($reserva['estado'] == 'Confirmada') ? '#f8d7da' : '#fff3cd', // Rojo si está pagado, amarillo si no.
         'borderColor' => ($reserva['estado'] == 'Confirmada') ? '#ff0019ff' : '#ffeeba',
         'textColor' => ($reserva['estado'] == 'Confirmada') ? '#721c24' : '#856404',

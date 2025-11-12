@@ -44,25 +44,49 @@
   //el get id_cancha es para pasar a la preferencia para poder crear la orden de pago.
   // Faz a chamada para o backend para obter o preferenceId
   const url = new URL('crear_preferencia.php', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/');
-  url.searchParams.append('id_cancha', <?php echo isset($_GET['id_cancha']) ? json_encode($_GET['id_cancha']) : 'null'; ?>);
+  const idCancha = <?php echo isset($_GET['id_cancha']) ? json_encode($_GET['id_cancha']) : 'null'; ?>;
+  const idReserva = <?php echo isset($_GET['id_reserva']) ? json_encode($_GET['id_reserva']) : 'null'; ?>;
+
+  url.searchParams.append('id_cancha', idCancha);
+  url.searchParams.append('id_reserva', idReserva);
 
   fetch(url)
     .then(response => response.json())
     .then(data => {
       if (data.preference_id) {
+        // 1. Renderizar el botón de pago de Mercado Pago
         renderWalletBrick(data.preference_id);
+
+        // 2. Llamar a manejo_pago.php para crear el registro de pago en nuestra BD
+        const formData = new FormData();
+        formData.append('id_reserva', idReserva);
+        formData.append('preference_id', data.preference_id); // <-- AÑADIDO: Enviamos el preference_id
+
+        fetch('manejo_pago.php', {
+          method: 'POST',
+          body: new URLSearchParams(formData) // Usamos URLSearchParams para formato x-www-form-urlencoded
+        })
+        .then(response => response.json())
+        .then(pagoData => {
+          if (pagoData.success) {
+            // Mostramos el ID de pago de nuestra BD y el de Mercado Pago
+            document.getElementById("miParrafo").innerHTML = `ID de Pago Interno: ${pagoData.id_pago} <br> ID de Preferencia de MP: ${data.preference_id}`;
+          } else {
+            document.getElementById("miParrafo").innerHTML = "Error al registrar el pago en el sistema: " + pagoData.message;
+          }
+        });
+
       } else {
         console.error('Error: preference_id no encontrado en la respuesta');
-        // Opcional: mostrar un mensaje de error al usuario
+        document.getElementById("miParrafo").innerHTML = "Error al generar la preferencia de pago.";
       }
     })
     .catch(error => {
       console.error('Error al obtener preference_id:', error);
-      // Opcional: mostrar un mensaje de error al usuario
+      document.getElementById("miParrafo").innerHTML = "Error de conexión al generar la preferencia de pago.";
     });
-
 </script>
-
+<p id="miParrafo"></p>
 <div id="walletBrick_container"></div>
 <footer>
 <?php
