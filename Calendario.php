@@ -112,9 +112,8 @@
       <p id="infoReserva"></p>      
         <input type="text" id="nombreCliente" placeholder="Ingrese su nombre">     
         <input type="text" id="telefonoCliente" placeholder="Ingrese su telefono">      
-        <button id="btnConfirmarReserva" id="walletBrick_container">Reservar</button>      
-        <button id="btnCancelarReserva" 
-        type="button">Cancelar</button>     
+        <button id="btnConfirmarReserva" >Reservar </button>      
+        <button id="btnCancelarReserva" type="button">Cancelar</button>     
     </div>
   </div>
   </div>
