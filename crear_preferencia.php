@@ -14,12 +14,15 @@ MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a
 if (!isset($_GET['id_cancha'])) { 
     exit("Error: falta el parámetro id_cancha");
 }
-$cancha_id = intval($_GET['id_cancha']);
-
+if (!isset($_GET['id_reserva'])) { 
+    exit("Error: falta el parámetro id_reserva");
+}
+$id_cancha = intval($_GET['id_cancha']);
+$id_reserva = intval($_GET['id_reserva']);
 
 $query = "SELECT nombre,precio_hora FROM canchas WHERE id_cancha = ?"; 
 $stmt = $conexion->prepare($query);
-$stmt->bind_param("i", $cancha_id);
+$stmt->bind_param("i", $id_cancha);
 $stmt->execute();
 $result = $stmt->get_result();
 $cancha = $result->fetch_assoc();
@@ -42,7 +45,9 @@ $client = new PreferenceClient();
         "success" => "localhost/Proyecto_SF/success.php",
         "failure" => "http://localhost/Proyecto_SF/failure.php",
         "pending" => "http://localhost/Proyecto_SF/pending.php"
-    ]
+    ],
+    "external_reference" => ["id_reserva"=>$id_reserva,
+    "monto"=> [floatval($cancha['precio_hora'])]] 
 ]);
 
 $preference->auto_return = "approved";

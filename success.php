@@ -28,20 +28,54 @@
     <p>¡Tu pago ha sido procesado con éxito!</p>
     <p>Gracias por tu compra.</p>
     <?php
-  
+    include("conexion.php");
+
     $collection_id = $_GET['collection_id'];
     $collection_status = $_GET['collection_status'];
     $payment_id = $_GET['payment_id'];
     $status = $_GET['status'];
     $preference_id = $_GET['preference_id'];
-    $external_reference = $_GET['external_reference']; // sera necesario?
+    $external_reference_json = $_GET['external_reference'] ?? null;
+
+    $id_reserva = null;
+    $monto = null;
+
+    // 1. Decodificar el JSON de external_reference
+    if ($external_reference_json) {
+        $data = json_decode($external_reference_json, true);
+        // Verificar si la decodificación fue exitosa y las claves existen
+        if (is_array($data) && isset($data['id_reserva'])) {
+            $id_reserva = $data['id_reserva'];
+            $monto = $data['monto'][0] ?? null; // monto es un array en tu JSON
+        }
+    }
+
+    // 2. Actualizar el estado de la reserva a 'Confirmada' si el pago fue aprobado
+    if ($status === 'approved' && $id_reserva && $monto !== null) {
+        // Actualizamos la tabla 'reservas' para marcarla como confirmada y guardar el monto
+        $sql_update_reserva = "UPDATE reservas SET monto = ?, estado = 'Confirmada'WHERE id_reserva = ?";
+        $stmt_reserva = mysqli_prepare($conexion, $sql_update_reserva);
+        mysqli_stmt_bind_param($stmt_reserva, "di", $monto, $id_reserva);
+        mysqli_stmt_execute($stmt_reserva);
+        mysqli_stmt_close($stmt_reserva);
+
+      
+        // Actualizamos la tabla 'pagos' con el estado y el monto final
+        $sql_update_pago = "UPDATE pagos SET estado = ? WHERE id_reserva = ?";
+        $stmt_pago = mysqli_prepare($conexion, $sql_update_pago);
+        mysqli_stmt_bind_param($stmt_pago, "si", $status, $id_reserva);
+        mysqli_stmt_execute($stmt_pago);
+        mysqli_stmt_close($stmt_pago);
+  
+    }
 
     echo "<p>ID de Colección: " . htmlspecialchars($collection_id) . "</p>";
     echo "<p>Estado de la Colección: " . htmlspecialchars($collection_status) . "</p>";
     echo "<p>ID de Pago: " . htmlspecialchars($payment_id) . "</p>";
     echo "<p>Estado del Pago: " . htmlspecialchars($status) . "</p>";
     echo "<p>ID de Preferencia: " . htmlspecialchars($preference_id) . "</p>";
-    echo "<p>Referencia Externa: " . htmlspecialchars($external_reference) . "</p>";
+    echo "<p>ID de Reserva (desde external_reference): " . htmlspecialchars($id_reserva) . "</p>";
+    echo "<p>Monto (desde external_reference): " . htmlspecialchars($monto) . "</p>";
     ?>
 <footer>
 <?php

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("conexion.php");
+require_once 'vendor/autoload.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -75,6 +76,37 @@ if (isset($_GET['status'])) {
         </form>
     </section>
 </article>
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+$mail = new PHPMailer(true);
+
+try {
+    // Configuración del servidor
+    $mail->isSMTP();
+    $mail->Host = 'smtp.ejemplo.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'tu_email@ejemplo.com'; 
+    $mail->Password = 'tu_contraseña';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    $mail->setFrom('tu_email@ejemplo.com', 'Nombre de tu remitente');
+    $mail->addAddress('destinatario@ejemplo.com', 'Nombre del destinatario');
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Asunto del correo';
+    $mail->Body    = '<h1>Cuerpo del mensaje</h1><p>Este es un mensaje de prueba en HTML.</p>';
+    $mail->AltBody = 'Este es un mensaje de texto plano para clientes que no soportan HTML.';
+
+    $mail->send();
+    echo 'El mensaje ha sido enviado';
+} catch (Exception $e) {
+    echo "El mensaje no pudo ser enviado. Error: {$mail->ErrorInfo}";
+}
+?>
 	
 <footer>
 <?php
