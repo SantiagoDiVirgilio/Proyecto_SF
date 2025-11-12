@@ -41,8 +41,6 @@ include("conexion.php");
 <?php
         $llamado_deportes = mysqli_query($conexion, "SELECT * FROM deportes");
 ?>
-<!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
-        deporte-->
         <h2 class="perfil"> 
         <?php
             if(isset($_SESSION['id_usuario'])){
@@ -58,12 +56,12 @@ include("conexion.php");
             }
         ?>
           </h2>
-        <div class="canchas-container">
+        <div class="tarjeta-container">
             <?php while($var_deportes = mysqli_fetch_assoc($llamado_deportes)){?>
                 <?php if($var_deportes["nombre"] != NULL && $var_deportes['nombre'] != 'SALON'){?>
-                    <div class="deporte-card">
+                    <div class="tarjeta">
                         <img src="imagenes/<?php echo $var_deportes['nombre'].'.png'; ?>" alt="<?php echo $var_deportes['nombre']; ?>">
-                        <div class="deporte-card-body">
+                        <div class="tarjeta-body">
                             <h4><?php echo htmlspecialchars($var_deportes["nombre"]); ?></h4>
                             <h5><?php echo htmlspecialchars($var_deportes["descripcion"]); ?></h5>
                             <button class="btn-ver-horarios" data-deporte-id="<?php echo $var_deportes['id_deporte']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($var_deportes['nombre'], ENT_QUOTES); ?>">Inscribirse</button>

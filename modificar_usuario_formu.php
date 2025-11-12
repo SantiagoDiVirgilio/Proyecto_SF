@@ -40,11 +40,39 @@ $usuario = mysqli_fetch_array($conexion_usuario);
         <h3>Edicion de Rol</h3><br>
 	<form action="modificar_usuario.php" method="post">
         <div class="form-group">
+            <input type="hidden" name="id_usuario" value="<?php echo $usuario["id_usuario"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" value="<?php echo $usuario["nombre"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="dni">DNI:</label>
+            <input type="text" name="dni" value="<?php echo $usuario["dni"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" name="email" value="<?php echo $usuario["email"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="telefono">Telefono:</label>
+            <input type="text" name="telefono" value="<?php echo $usuario["telefono"]?>" />
+        </div>
+        <div class="form-group">
+            <label for="fecha_alta">Fecha de alta:</label>
+            <input type="text" name="fecha_alta" value="<?php echo $usuario["fecha_alta"]?>" />
+        </div>
+        <?php if (isset($_SESSION['ROL']) && (strtolower($_SESSION['ROL']) == 'admin')) {
+                echo '
+
             <label for="rol">Actualizar Rol a Administrador:</label>
             <input type="radio" id="rol" name="rol" value="Admin">Admin</input>
             <label for="rol">Actualizar Rol a Usuario:</label>
-            <input type="radio" id="rol" name="rol" value="Usuario">Usuario</input>
+            <input type="radio" id="rol" name="rol" value="Usuario">Usuario</input>';
+        }
+        ?>
         </div>
+
         <div class="form-buttons">
             <input id="Enviar" type="submit" value="Enviar">
             <input id="Resetear" type="reset" value="Resetear Información">

@@ -49,17 +49,16 @@ include("conexion.php");
 
                 <table>
                     <thead>
-                        <th class="tabla-usuario">ID</th>
                         <th class="tabla-usuario">Nombre</th>
                         <th class="tabla-usuario">DNI</th>
                         <th class="tabla-usuario">Email</th>
                         <th class="tabla-usuario">Telefono</th>
                         <th class="tabla-usuario">Fecha Alta</th>
                         <th class="tabla-usuario">Rol</th>
+                        <th class="tabla-deporte">Acciones</th>
                     </thead>
                     <?php while($var_usuarios = mysqli_fetch_assoc($llamado_usuarios)){?>
                     <tr>
-                        <td class="tabla-usuario"><?php echo $var_usuarios["id_usuario"];?></td>
                         <td class="tabla-usuario"><?php echo $var_usuarios["nombre"];?></td>
                         <td class="tabla-usuario"><?php echo $var_usuarios["dni"];?></td>
                         <td class="tabla-usuario"><?php echo $var_usuarios["email"];?></td>

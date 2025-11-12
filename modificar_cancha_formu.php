@@ -40,8 +40,7 @@ $cancha = mysqli_fetch_array($conexion_cancha);
         <h3>Edicion de Cancha</h3><br>
 	<form action="modificar_cancha.php" method="post">
         <div class="form-group">
-            <label for="id_cancha">ID de la Cancha:</label>
-            <input type="text" readonly="readonly" name="id_cancha" value="<?php echo $cancha["id_cancha"]?>" />
+            <input type="hidden" name="id_cancha" value="<?php echo $cancha["id_cancha"]?>" />
         </div>
         <div class="form-group">
             <label for="nombre">Nombre de la Cancha:</label>

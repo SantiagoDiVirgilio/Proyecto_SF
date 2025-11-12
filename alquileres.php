@@ -68,16 +68,16 @@ include("conexion.php");
         <?php while($deportes = mysqli_fetch_assoc($conexdeportes)){?>
             <section class="titulo_deportes" id="<?php echo htmlspecialchars($deportes["nombre"]); ?>">
                 <h2><span><?php echo htmlspecialchars($deportes["nombre"]); ?></span></h2>
-                <div class="canchas-container">
+                <div class="tarjeta-container">
                     <?php $canchas = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
                     <?php $horarioscanchas = mysqli_query($conexion, "SELECT * FROM horario_cancha");
                     $varhorarios = mysqli_fetch_assoc($horarioscanchas);?>
                     <?php while($varcanchas = mysqli_fetch_assoc($canchas)){?>
                     
                         <?php if($varcanchas["tipo"] == $deportes["nombre"]){?>
-                            <div class="cancha-card">
+                            <div class="tarjeta">
                                 <img src="imagenes/<?php echo $varcanchas['tipo'].'.png'; ?>" alt="<?php echo $varcanchas['nombre']; ?>">
-                            <div class="cancha-card-body">
+                            <div class="tarjeta-body">
                                 <h4><?php echo $varcanchas["nombre"]; ?></h4>
                                 <p><?php echo $varcanchas["descripcion"]; ?></p>
                                 <p class="precio"><?php echo $varcanchas["precio_hora"]; ?></p>

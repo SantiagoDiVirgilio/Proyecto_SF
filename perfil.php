@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -37,23 +41,63 @@
         $id = $_GET['id'];
     } else {
         // Si no, usar el ID del usuario que inició sesión
-        $id = $_SESSION['ID'];
+        $id = $_SESSION['id_usuario'];
     }
 
     $consulta = mysqli_query($conexion, "SELECT * FROM usuarios WHERE id_usuario='$id'");
     $resultado = mysqli_fetch_assoc($consulta);
-    ?>
+    $llamado_inscripciones = mysqli_query($conexion, "SELECT d.id_deporte, d.nombre, d.descripcion FROM inscripciones i JOIN deportes d ON i.id_deporte = d.id_deporte WHERE i.id_usuario='$id'");
+    
+?>
 </article>
 
-<article class="perfil">
-        <h2> Nombre: <?php echo htmlspecialchars($resultado['nombre']); ?>
-         <br>Rol de Usuario: <?php echo htmlspecialchars($resultado['rol']); ?>
-         <br>Mail: <?php echo htmlspecialchars($resultado['email']); ?>
-         <br>DNI: <?php echo htmlspecialchars($resultado['dni']); ?>
-         <br>Telefono: <?php echo htmlspecialchars($resultado['telefono']); ?>
-         <br>Fecha de Alta: <?php echo htmlspecialchars($resultado['fecha_alta']); ?>
-    <!-- <br><a href="modificar_usuario_formu.php?ID=<?php echo $resultado["id_usuario"];?>">Editar</a> --> 
-         </h2>
+<article class="tablas">
+    <div id="tab1"> 
+        <table>
+            <thead>
+                <th class="tabla-usuario">Nombre</th>
+                <th class="tabla-usuario">DNI</th>
+                <th class="tabla-usuario">Email</th>
+                <th class="tabla-usuario">Telefono</th>
+                <th class="tabla-usuario">Fecha Alta</th>
+                <th class="tabla-usuario">Rol</th>
+                <th class="tabla-deporte">Acciones</th>
+            </thead>
+                <tr>
+                <td class="tabla-usuario"><?php echo $resultado["nombre"];?></td>
+                <td class="tabla-usuario"><?php echo $resultado["dni"];?></td>
+                <td class="tabla-usuario"><?php echo $resultado["email"];?></td>
+                <td class="tabla-usuario"><?php echo $resultado["telefono"];?></td>
+                <td class="tabla-usuario"><?php echo $resultado["fecha_alta"];?></td>
+                <td class="tabla-usuario"><?php echo $resultado["rol"];?></td>
+                <td>
+                    <a class="btn-editar-deporte" href="darbaja_usuario.php?id_usuario=<?php echo $resultado["id_usuario"];?>" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">Eliminar Cuenta</a>
+                    <a class="btn-editar-deporte" href="modificar_usuario_formu.php?id_usuario=<?php echo $resultado["id_usuario"];?>">Modificar</a>
+                </td>
+            </tr>
+        </table>
+        <h3>Deportes inscriptos:</h3>
+        <div class="tarjeta-container">
+            <?php
+            if (mysqli_num_rows($llamado_inscripciones) > 0) {
+                while ($fila = mysqli_fetch_assoc($llamado_inscripciones)) {
+            ?>
+                    <div class="tarjeta">
+                        <img src="imagenes/<?php echo $fila['nombre'].'.png'; ?>" alt="<?php echo $fila['nombre']; ?>">
+                        <div class="tarjeta-body">
+                            <h4><?php echo htmlspecialchars($fila["nombre"]); ?></h4>
+                            <h5><?php echo htmlspecialchars($fila["descripcion"]); ?></h5>
+                            <a href="darbaja_inscripcion.php?id_deporte=<?php echo $fila['id_deporte']; ?>&id_usuario=<?php echo $id; ?>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas darte de baja de este deporte?');">Darse de baja</a>
+                        </div>
+                    </div>
+            <?php
+                }
+            } else {
+                echo "<p>No estás inscripto en ningún deporte.</p>";
+            }
+            ?>
+        </div>
+    </div>
 </article>
 
 <footer>

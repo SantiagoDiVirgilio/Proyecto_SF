@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("conexion.php");
+?>
 <!doctype html>
 <html>
 <head>
@@ -43,12 +47,12 @@
 		<p>
 		<h2>Cantidad de Resultados: <?php echo $nros; ?></h2> 
 		</p>
-	    <section class="canchas-container">
+	    <section class="tarjeta-container">
 <?php
 			while($variable_1 = mysqli_fetch_array($resultado_1)) {
 ?>
-	    <div class="cancha-card">
-                <div class="cancha-card-body">
+	    <div class="tarjeta">
+                <div class="tarjeta-body">
                     <h4>
                         <a href="perfil.php?id=<?php echo $variable_1["id_usuario"];?>">
                             <?php echo htmlspecialchars($variable_1["nombre"]); ?>

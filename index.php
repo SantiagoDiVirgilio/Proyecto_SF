@@ -14,104 +14,76 @@
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 </head>
 
-<body>
+<body class="home-background">
 	<header>
 		<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
-	
+		
 	<?php
     include("NAV.php");
     ?>
-
 	<div class="mobile-header-bar">
-	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+	</div>
+
 	</header>
 
-	<div class="container-principal">
-		<div class="columna-texto">
-			<article >
-				<h3>Sobre Nosotros:</h3>
-					<p>Somos un equipo de trabajo dedicado y unido, estudiantes de la TUP en la Universidad Tecnológica Nacional, regional de Haedo,
-					<br>cuyos participantes somos:
-					<br>
-					<ul>
-						<li><i>Mateo Álvarez San Juan</i></li>
-						<li><i>Martín Castaño</i></li>
-						<li><i>Agustín Dotto</i></li>
-						<li><i>Santiago Di Virgilio</i></li>
-					</ul>
-					</p>
-			</article>
-	
-			<article>
-				<h3>¿Que es S.G.S.F?</h3>
-					<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (O por sus siglas S.G.S.F) es un sistema web de gestion de reservas de canchas y salones 
-					<br>del club Sociedad De Fomento. Fue diseñado con los lenguajes HTML5, PHP, JavaScript y MySQL.
-					<br>En este sistema se puede reservar distintas canchas (de diversos deportes realizados en el Club) y del salon de fiestas, asi como inscribirse mensulamente
-					a los deportes presentados. 
-					<br>Si bien, para reservar las canchas no es necesario ser un usuario registrado, SI debe serlo para inscribirse
-					mensualmente a los deportes presentados. Para cosnultas particulares drigrise al formulario de "Contacto" de nuestro sitio web.
-					</p>
-			</article>
-		</div>
-		<div class="columna-imagen">
-			<img src="imagenes/fondo_inicio.webp" alt="Imagen del club">
-		</div>
+	<div class="hero-section">
+		<article>
+			<h3>¿Qué es S.G.S.F?</h3>
+				<p><strong>Sistema de Gestión de Sociedad de Fomento</strong> (o por sus siglas S.G.S.F) es un sistema web de gestión de reservas de canchas y salones 
+				del club Sociedad De Fomento. Fue diseñado con los lenguajes HTML5, PHP, JavaScript y MySQL.
+				<br>En este sistema se puede reservar distintas canchas y el salón de fiestas, así como inscribirse mensualmente
+				a los deportes presentados. 
+				<br>Si bien para reservar no es necesario ser un usuario registrado, SÍ debe serlo para inscribirse
+				a los deportes. Para consultas particulares, diríjase al formulario de "Contacto".
+				</p>
+		</article>
 	</div>
-	<div>
-		
-	<article>
-		<h3></h3>
-		<ul>
-		<section class="personajes-list">
-			<div class="info_integrantes">
-			<img class="foto_integrantes" src="imagenes/Mateo.webp" alt="Icono de Loki">
-				<p><strong><u><i>Mateo Alvarez San Juan:</i></u></strong>Tras los eventos de <i>Avengers Endgame</i>, donde roba el Teseracto y crea una línea temporal alternativa, 
-				<br>es capturado por la <i>Agencia de Variación Temporal (TVA)</i>, una organización que mantiene la línea temporal sagrada. Obligado a colaborar con la TVA para atrapar a otra variante, Loki descubre la verdad detrás de la TVA y 
-				el control del tiempo, enfrentándose a dilemas existenciales y al multiverso que él mismo ayudó a crear.
-				<br>al final, Loki se sacrifica para salvar a Sylvie y el universo, y la línea del tiempo se fractura, llevando al nacimiento del multiverso. La TVA se encuentra al borde del colapso, y las líneas temporales se multiplican 
-				sin control. 
-				<br>Loki debe evitar que el Telar (el dispositivo que mantiene la línea temporal) se sobrecargue y destruya todo, sin embargo fracasa, y Loki asume la tarea de mantener las líneas temporales en una estructura en forma de árbol, 
-				convirtiéndose en el guardián solitario del tiempo. 
-				</p>
+
+	<section class="team-section">
+		<div class="titulo_deportes">
+			<h2><span>Nuestro Equipo</span></h2>
+		</div>
+		<div class="team-container">
+			<!-- Tarjeta de Integrante 1 -->
+			<div class="team-card">
+				<img src="imagenes/Mateo.webp" alt="Foto de Mateo Alvarez San Juan">
+				<div class="team-card-body">
+					<h4>Mateo Alvarez San Juan</h4>
+					<p class="team-role">Desarrollador</p>
+					<p class="team-description">Especialista en la interfaz de usuario y la experiencia de usuario (UI/UX), creando un diseño intuitivo y atractivo para los visitantes.</p>
+				</div>
 			</div>
-		</section>
-		<div class="info_integrantes">
-			<img class="foto_integrantes" src="imagenes/Martin.webp" alt="Icono de Loki">
-				<p><strong><u><i>Martin Rodolfo Castaño:</i></u></strong>Tras los eventos de <i>Avengers Endgame</i>, donde roba el Teseracto y crea una línea temporal alternativa, 
-				<br>es capturado por la <i>Agencia de Variación Temporal (TVA)</i>, una organización que mantiene la línea temporal sagrada. Obligado a colaborar con la TVA para atrapar a otra variante, Loki descubre la verdad detrás de la TVA y 
-				el control del tiempo, enfrentándose a dilemas existenciales y al multiverso que él mismo ayudó a crear.
-				<br>al final, Loki se sacrifica para salvar a Sylvie y el universo, y la línea del tiempo se fractura, llevando al nacimiento del multiverso. La TVA se encuentra al borde del colapso, y las líneas temporales se multiplican 
-				sin control. 
-				<br>Loki debe evitar que el Telar (el dispositivo que mantiene la línea temporal) se sobrecargue y destruya todo, sin embargo fracasa, y Loki asume la tarea de mantener las líneas temporales en una estructura en forma de árbol, 
-				convirtiéndose en el guardián solitario del tiempo. 
-				</p>
+			<!-- Tarjeta de Integrante 2 -->
+			<div class="team-card">
+				<img src="imagenes/Martin.webp" alt="Foto de Martin Rodolfo Castaño">
+				<div class="team-card-body">
+					<h4>Martin Rodolfo Castaño</h4>
+					<p class="team-role">Desarrollador</p>
+					<p class="team-description">Encargado de la integración de APIs y servicios externos, como la pasarela de pagos, y de la seguridad general del sitio web.</p>
+				</div>
 			</div>
-			<div class="info_integrantes">
-			<img class="foto_integrantes" src="imagenes/Agustin.webp" alt="Icono de Loki">
-				<p><strong><u><i>Agustin Dotto:</i></u></strong>Tras los eventos de <i>Avengers Endgame</i>, donde roba el Teseracto y crea una línea temporal alternativa, 
-				<br>es capturado por la <i>Agencia de Variación Temporal (TVA)</i>, una organización que mantiene la línea temporal sagrada. Obligado a colaborar con la TVA para atrapar a otra variante, Loki descubre la verdad detrás de la TVA y 
-				el control del tiempo, enfrentándose a dilemas existenciales y al multiverso que él mismo ayudó a crear.
-				<br>al final, Loki se sacrifica para salvar a Sylvie y el universo, y la línea del tiempo se fractura, llevando al nacimiento del multiverso. La TVA se encuentra al borde del colapso, y las líneas temporales se multiplican 
-				sin control. 
-				<br>Loki debe evitar que el Telar (el dispositivo que mantiene la línea temporal) se sobrecargue y destruya todo, sin embargo fracasa, y Loki asume la tarea de mantener las líneas temporales en una estructura en forma de árbol, 
-				convirtiéndose en el guardián solitario del tiempo. 
-				</p>
+			<!-- Tarjeta de Integrante 3 -->
+			<div class="team-card">
+				<img src="imagenes/Agustin.webp" alt="Foto de Agustin Dotto">
+				<div class="team-card-body">
+					<h4>Agustin Dotto</h4>
+					<p class="team-role">Desarrollador</p>
+					<p class="team-description">Encargado de la integración de APIs y servicios externos, como la pasarela de pagos, y de la seguridad general del sitio web.</p>
+				</div>
 			</div>
-			<div class="info_integrantes">
-			<img class="foto_integrantes" src="imagenes/Santiago.webp" alt="Icono de Loki">
-				<a href="https://www.linkedin.com/in/santiago-ezequiel-di-virgilio-a8569b319/" target="_blank"><strong><u><i>Santiago Ezequiel Di Virgilio:</i></u></strong></a>
-				<p>Tras los eventos de <i>Avengers Endgame</i>, donde roba el Teseracto y crea una línea temporal alternativa, 
-				<br>es capturado por la <i>Agencia de Variación Temporal (TVA)</i>, una organización que mantiene la línea temporal sagrada. Obligado a colaborar con la TVA para atrapar a otra variante, Loki descubre la verdad detrás de la TVA y 
-				el control del tiempo, enfrentándose a dilemas existenciales y al multiverso que él mismo ayudó a crear.
-				<br>al final, Loki se sacrifica para salvar a Sylvie y el universo, y la línea del tiempo se fractura, llevando al nacimiento del multiverso. La TVA se encuentra al borde del colapso, y las líneas temporales se multiplican 
-				sin control. 
-				<br>Loki debe evitar que el Telar (el dispositivo que mantiene la línea temporal) se sobrecargue y destruya todo, sin embargo fracasa, y Loki asume la tarea de mantener las líneas temporales en una estructura en forma de árbol, 
-				convirtiéndose en el guardián solitario del tiempo. 
-				</p>
+			<!-- Tarjeta de Integrante 4 -->
+			<div class="team-card">
+				<img src="imagenes/Santiago.webp" alt="Foto de Santiago Ezequiel Di Virgilio">
+				<div class="team-card-body">
+					<h4>Santiago Ezequiel Di Virgilio</h4>
+					<p class="team-role">Líder de Proyecto</p>
+					<p class="team-description">Coordina el equipo de desarrollo, define las metas del proyecto y se asegura de que el producto final cumpla con los objetivos establecidos.</p>
+				</div>
 			</div>
-		</ul> 
-	</article>
-	</div>
+		</div>
+	</section>
+
 <footer>
 <?php
     include("FOOTER.php");

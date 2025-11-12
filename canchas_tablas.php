@@ -49,15 +49,14 @@ include("conexion.php");
 
                 <table>
                     <thead>
-                        <th class="tabla_cancha">ID</th>
                         <th class="tabla_cancha">Nombre</th>
                         <th class="tabla_cancha">Deporte Jugado</th>
                         <th class="tabla_cancha">Descripcion</th>
                         <th class="tabla_cancha">Precio Por Hora</th>
+                        <th class="tabla-deporte">Acciones</th>
                     </thead>
                     <?php while($var_canchas = mysqli_fetch_assoc($llamado_canchas)){?>
                     <tr>
-                        <td class="tabla_cancha"><?php echo $var_canchas["id_cancha"];?></td>
                         <td class="tabla_cancha"><?php echo $var_canchas["nombre"];?></td>
                         <td class="tabla_cancha"><?php echo $var_canchas["tipo"];?></td>
                         <td class="tabla_cancha"><?php echo $var_canchas["descripcion"];?></td>
