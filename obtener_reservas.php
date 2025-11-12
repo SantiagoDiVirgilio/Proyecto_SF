@@ -13,12 +13,11 @@ $start = $_GET['start'] ?? date('Y-m-d');
 $end = $_GET['end'] ?? date('Y-m-d', strtotime('+7 days'));
 $cancha = $_GET['id_cancha'] ?? 1;
 
-// AND estado = 'confirmado'";
 // Corregí la lógica de la consulta para usar un rango de fechas (entre start y end).
 // También selecciono los campos necesarios para el evento de FullCalendar.
 $sql = "SELECT id_reserva, id_usuario, fecha_reserva, hora_inicio, hora_fin,estado
-        FROM reservas 
-        WHERE fecha_reserva BETWEEN ? AND ? AND id_cancha = ?"; 
+        FROM reservas
+        WHERE fecha_reserva BETWEEN ? AND ? AND id_cancha = ? AND estado != 'cancelado'"; 
        
 $stmt = mysqli_prepare($conexion, $sql);
 mysqli_stmt_bind_param($stmt, "ssi", $start, $end, $cancha);
@@ -39,7 +38,7 @@ exit;
 $eventos = [];
 while ($reserva = mysqli_fetch_assoc($resultado)) {
     // Combinamos fecha y hora para el formato que necesita FullCalendar (ISO 8601)
- 
+
     $start_datetime = $reserva['fecha_reserva'] . 'T' . sprintf('%02d:00:00', $reserva['hora_inicio']);
     $end_datetime = $reserva['fecha_reserva'] . 'T' . sprintf('%02d:00:00', $reserva['hora_fin']);
 
@@ -50,10 +49,10 @@ while ($reserva = mysqli_fetch_assoc($resultado)) {
         'end'   => $end_datetime,
         'estado'=> $reserva['estado'],
         'overlap' => false,
-        'backgroundColor' => ($reserva['estado'] == 'Confirmada') ? '#f8d7da' : '#fff3cd', // Rojo si está pagado, amarillo si no.
+        'backgroundColor' => ($reserva['estado'] == 'Confirmada') ? '#f8d7da' : '#fff3cd',
         'borderColor' => ($reserva['estado'] == 'Confirmada') ? '#ff0019ff' : '#ffeeba',
         'textColor' => ($reserva['estado'] == 'Confirmada') ? '#721c24' : '#856404',
-        'className' => 'evento-reservado', // Clase CSS para estilizar el evento
+        'className' => 'evento-reservado',
     ];
 }
 

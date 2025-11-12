@@ -53,18 +53,20 @@
     // 2. Actualizar el estado de la reserva a 'Confirmada' si el pago fue aprobado
     if ($status === 'approved' && $id_reserva && $monto !== null) {
         // Actualizamos la tabla 'reservas' para marcarla como confirmada y guardar el monto
-        $sql_update_reserva = "UPDATE reservas SET monto = ? WHERE id_reserva = ?";
+        $sql_update_reserva = "UPDATE reservas SET monto = ?, estado = 'Confirmada'WHERE id_reserva = ?";
         $stmt_reserva = mysqli_prepare($conexion, $sql_update_reserva);
         mysqli_stmt_bind_param($stmt_reserva, "di", $monto, $id_reserva);
         mysqli_stmt_execute($stmt_reserva);
         mysqli_stmt_close($stmt_reserva);
 
+      
         // Actualizamos la tabla 'pagos' con el estado y el monto final
         $sql_update_pago = "UPDATE pagos SET estado = ? WHERE id_reserva = ?";
         $stmt_pago = mysqli_prepare($conexion, $sql_update_pago);
         mysqli_stmt_bind_param($stmt_pago, "si", $status, $id_reserva);
         mysqli_stmt_execute($stmt_pago);
         mysqli_stmt_close($stmt_pago);
+  
     }
 
     echo "<p>ID de Colección: " . htmlspecialchars($collection_id) . "</p>";

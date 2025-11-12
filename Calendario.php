@@ -5,8 +5,15 @@
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/main.min.css' rel='stylesheet' />
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
   <style>
-    body { font-family: Arial, sans-serif; }
-    /* Estilos para el Modal (Pop-up) */
+    body { 
+      font-family: Arial, sans-serif;
+      /* --- AÑADIDO: Aseguramos que el body ocupe toda la altura y usamos flexbox para el layout --- */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: auto; 
+    }
+    
     .modal {
       display: none; /* Oculto por defecto */
       position: fixed; 
@@ -78,6 +85,9 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    #SuperCalendario{
+      max-width: 150px;
+    }
 
   </style>
 </head>
@@ -88,9 +98,8 @@
       // include("NAV.php"); 
     ?>
   </div>
-
   <div id="page-container">
-  <div id='calendar'></div>
+  <div id='calendar' class="superCalendario"></div>
 
   <!-- HTML del Modal para confirmar la reserva -->
   <div id="reservaModal" class="modal">
@@ -102,12 +111,6 @@
   </div>
   </div>
 
-  <div id="page-footer">
-    <?php 
-      // Si tienes un FOOTER.php, debería ir aquí.
-      // include("FOOTER.php"); 
-    ?>
-  </div>
   <button id="btnCerrarModal">Cerrar</button>
 
   <script>
@@ -141,6 +144,11 @@
 
      const calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'timeGrid7Day',
+      headerToolbar: {
+        left: '',
+        center: 'title',
+        right: '',      
+      },
       selectable: true,
       unselectAuto: true,
       selectMirror: true,
@@ -154,8 +162,9 @@
       },
       allDaySlot: false,
       slotMinTime: '08:00:00',
-      slotMaxTime: '22:00:00',
+      slotMaxTime: '24:00:00',
       slotDuration: '01:00:00',
+      height: 'auto',
       locale: 'es',
     //formato del dia
       dayHeaderFormat: {
@@ -183,7 +192,7 @@
             {
               daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6 ], 
               startTime: '08:00:00',
-              endTime: '22:00:00',   
+              endTime: '24:00:00',   
               display: 'background', 
               backgroundColor: '#00ff3cff' // Un verde más suave y legible
             }         
@@ -217,7 +226,6 @@
         alert("Por favor, ingrese su nombre y teléfono.");
         return;
       }
-
       if (!selectionInfo) return;
 
       // Preparar los datos para enviar
@@ -257,7 +265,6 @@
       modal.style.display = "none";
       calendar.unselect();
     }
-
     calendar.render();
   });
   </script>
