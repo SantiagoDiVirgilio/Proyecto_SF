@@ -10,12 +10,14 @@
 <?php 
 session_start(); // Iniciar la sesión
 
+// Cargar el autoloader de Composer
+require 'vendor/autoload.php';
+
 // Importar clases de PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Cargar el autoloader de Composer
-require 'vendor/autoload.php';
+
 
 // Captura de datos del formulario
 $nombre = htmlspecialchars(trim($_POST['nombre']));
@@ -40,16 +42,17 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'santiagodivirgilio073@gmail.com'; // TU CORREO DE GMAIL
-    $mail->Password   = 'TU_CONTRASEÑA_DE_APLICACION'; // ¡¡¡REEMPLAZA ESTO CON TU CONTRASEÑA DE APLICACIÓN!!!
+    $mail->Username   = 'agustincapi08@gmail.com'; 
+    $mail->Password   = 'htdg cizu aegp ijcy'; 
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port       = 465;
     $mail->CharSet = 'UTF-8';
 
 
     // Destinatarios
-    $mail->setFrom($email_remitente, $nombre);
-    $mail->addAddress('santiagodivirgilio073@gmail.com', 'Santiago Divirgilio'); // El email que recibirá el mensaje
+    $mail->setFrom('no-responder@tudominio.com', 'Formulario de contacto');
+    $mail->addAddress('agustincapi08@gmail.com');
+    $mail->addAddress('santiagodivirgilio073@gmail.com');  
     $mail->addReplyTo($email_remitente, $nombre);
 
     // Contenido del correo
@@ -66,14 +69,10 @@ try {
 
     $mail->send();
     
-    // Si el envío es exitoso, redirigir
-    echo "Correo enviado exitosamente. Redirigiendo...";
     header("Location: contacto.php?status=success");
-    exit();
-
 } catch (Exception $e) {
-    // Si hay un error, mostrarlo
-    echo "El mensaje no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
+    header("Location: contacto.php?status=error");
+    exit();
 }
 ?>  
 

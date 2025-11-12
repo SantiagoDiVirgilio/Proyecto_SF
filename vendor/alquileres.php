@@ -76,7 +76,7 @@ include("conexion.php");
                     
                         <?php if($varcanchas["tipo"] == $deportes["nombre"]){?>
                             <div class="cancha-card">
-                                <img src="imagenes/<?php echo $varcanchas['tipo'].'.png'; ?>" alt="<?php echo $varcanchas['nombre']; ?>">
+                                <img src="imagenes/<?php echo $varcanchas['tipo'].'.webp'; ?>" alt="<?php echo $varcanchas['nombre']; ?>">
                             <div class="cancha-card-body">
                                 <h4><?php echo $varcanchas["nombre"]; ?></h4>
                                 <p><?php echo $varcanchas["descripcion"]; ?></p>

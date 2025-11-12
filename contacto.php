@@ -33,9 +33,29 @@ include("conexion.php");
     <section class="formu">
         <h3>CONTACTO</h3><br>
         <p>¿Quiere hacer algún comentario en cuanto a nuestra página web?<br>
-                  ¡Todos sus mensajes son bienvenidos!<br>
+                    ¡Todos sus mensajes son bienvenidos!<br>
             ¡Complete el formulario y envíelo!
         </p>
+<?php
+
+
+// Verifica si el parámetro 'status' existe en la URL
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+    
+    // Si el estado es 'success', muestra el mensaje de éxito
+    if ($status === 'success') {
+        echo '<h2>¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.</h2>';
+    } 
+    // O si quieres manejar errores, puedes añadir esto también
+    else if ($status === 'error') {
+        echo '<h2>Lo sentimos, hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.</h2>'; 
+    }
+}
+?>
+
+<form action="enviar.php" method="POST">
+    </form>
         <form action="mensajes_contacto.php" method="post">
             <label for="nom">Nombre:</label>
             <input class="input_formu" type="text" name="nombre" maxlength="20">

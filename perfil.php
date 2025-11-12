@@ -147,6 +147,16 @@ $(document).ready(function(){
     });
 });
 </script>
+<script>
+function toggleMenu() {
+  var x = document.getElementById("myTopnav");
+  if (x.className.includes("responsive")) {
+    x.className = "";
+  } else {
+    x.className += " responsive";
+  }
+}
+</script>
 </body>
 
 </html>
