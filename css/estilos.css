@@ -556,19 +556,27 @@ footer div a{
   background-color: rgba(0,0,0,0.4); 
 }
 
+/* La clase que controla la visibilidad del modal */
+.modal.visible {
+    display: flex; /* Esto lo hace visible y lo centra con flexbox */
+    justify-content: center;
+    align-items: center;
+}
+
 /* Contenido del Modal */
-.modal-content {
+.modal-contenido { /* Corregido de .modal-content a .modal-contenido */
   background-color: #fefefe;
-  margin: 15% auto; 
+  /* Eliminado margin: 15% auto; ya que flexbox lo centrará */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Podría ser más pequeño o más grande dependiendo del contenido */
-  max-width: 600px;
+  width: 80%;
+  max-width: 1300px; /* Ajustado para que el calendario tenga suficiente espacio */
   border-radius: 10px;
   position: relative;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   animation: animatetop 0.4s;
 }
+
 
 /* Animación de entrada */
 @keyframes animatetop {
