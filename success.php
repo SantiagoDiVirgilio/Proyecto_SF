@@ -18,7 +18,7 @@
 		<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
 	
 	<?php
-    include("NAV.php");
+    //include("NAV.php");
     ?>
 
 	<div class="mobile-header-bar">
@@ -68,7 +68,7 @@
         mysqli_stmt_close($stmt_pago);
   
     }
-
+/*
     echo "<p>ID de Colección: " . htmlspecialchars($collection_id) . "</p>";
     echo "<p>Estado de la Colección: " . htmlspecialchars($collection_status) . "</p>";
     echo "<p>ID de Pago: " . htmlspecialchars($payment_id) . "</p>";
@@ -76,10 +76,11 @@
     echo "<p>ID de Preferencia: " . htmlspecialchars($preference_id) . "</p>";
     echo "<p>ID de Reserva (desde external_reference): " . htmlspecialchars($id_reserva) . "</p>";
     echo "<p>Monto (desde external_reference): " . htmlspecialchars($monto) . "</p>";
+    */
     ?>
 <footer>
 <?php
-    include("FOOTER.php");
+    //include("FOOTER.php");
 ?>
 </footer>
 
