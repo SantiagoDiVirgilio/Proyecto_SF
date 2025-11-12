@@ -91,6 +91,10 @@
 
   </style>
 </head>
+<?php
+  //include("pago.php");
+?>
+
 <body id="calendario-body">
   <div id="page-header">
     <?php
@@ -105,8 +109,12 @@
   <div id="reservaModal" class="modal">
     <div class="modal-content">
       <h3>Confirmar Reserva</h3>
-      <p id="infoReserva"></p>      <input type="text" id="nombreCliente" placeholder="Ingrese su nombre">      <input type="text" id="telefonoCliente" placeholder="Ingrese su telefono">      <button id="btnConfirmarReserva">Reservar</button>      <button id="btnCancelarReserva" type="button">Cancelar</button>
-      
+      <p id="infoReserva"></p>      
+        <input type="text" id="nombreCliente" placeholder="Ingrese su nombre">     
+        <input type="text" id="telefonoCliente" placeholder="Ingrese su telefono">      
+        <button id="btnConfirmarReserva" id="walletBrick_container">Reservar</button>      
+        <button id="btnCancelarReserva" 
+        type="button">Cancelar</button>     
     </div>
   </div>
   </div>
@@ -242,22 +250,39 @@
       // Enviar los datos al servidor usando fetch (AJAX)
       fetch('registro_reserva.php', {
         method: 'POST',
-        body: formData
+        body: new URLSearchParams(formData) // Usamos URLSearchParams para formato x-www-form-urlencoded
       })
       .then(response => response.json())
-      .then(data => {
-        if (data.success && data.id_reserva) {
-          // Si la reserva se guardó y obtuvimos el ID, redirigimos a la página de pago
-          // Pasamos el id_cancha y el nuevo id_reserva
-          window.location.href = `pago.php?id_cancha=${idCancha}&id_reserva=${data.id_reserva}`;
+      .then(reservaData => {
+        if (reservaData.success && reservaData.id_reserva) {
+          // 1. La reserva se creó en nuestra BD. Ahora creamos la preferencia de pago en Mercado Pago.
+          const urlPreferencia = new URL('crear_preferencia.php', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/');
+          urlPreferencia.searchParams.append('id_cancha', idCancha);
+          urlPreferencia.searchParams.append('id_reserva', reservaData.id_reserva);
+
+          // 2. Llamamos a crear_preferencia.php para obtener el link de pago.
+          return fetch(urlPreferencia);
         } else {
-          // Si hay un error, lo mostramos
-          alert('Error al guardar la reserva: ' + data.message);
+          // Si la creación de la reserva falló, lanzamos un error.
+          throw new Error('Error al guardar la reserva: ' + reservaData.message);
+        }
+      })
+      .then(response => response.json())
+      .then(preferenciaData => {
+        if (preferenciaData.init_point) {
+          // 3. Si obtuvimos el link de pago (init_point), redirigimos al usuario a Mercado Pago.
+          window.location.href = preferenciaData.init_point;
+        } else {
+          // Si la creación de la preferencia falló, lanzamos un error.
+          throw new Error('Error al crear la preferencia de pago.');
         }
       })
       .catch(error => {
-        console.error('Error en la petición fetch:', error);
-        alert('Ocurrió un error de conexión. No se pudo guardar la reserva.');
+        console.error('Error en el proceso de reserva y pago:', error);
+        alert('Ocurrió un error: ' + error.message);
+        // Cerramos el modal si algo falla para que el usuario pueda intentarlo de nuevo.
+        modal.style.display = "none";
+        calendar.unselect();
       });
     }
 

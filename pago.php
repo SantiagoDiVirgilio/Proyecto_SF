@@ -18,8 +18,8 @@
 		<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
 	
 	<?php
-    include("NAV.php");
-    include("conexion.php");
+   // include("NAV.php");
+    //include("conexion.php");
     /*
     session_start();
     $_SESSION['preference_id'] = $preference->id;
@@ -90,7 +90,7 @@
 <div id="walletBrick_container"></div>
 <footer>
 <?php
-    include("FOOTER.php");
+    //include("FOOTER.php");
 ?>
 </footer>
 </body>
