@@ -27,6 +27,10 @@ $rol = $_POST['rol'];
 	    } else {
 	        $_SESSION['mensaje'] = "Error al modificar el usuario: " . mysqli_error($conexion);
 	    }
-	header("Location:usuarios_tablas.php");
+	if (isset($_SESSION['ROL']) && (strtolower($_SESSION['ROL']) == 'admin')) {
+             header("Location:usuarios_tablas.php");
+        } else {
+            header("Location:perfil.php");
+        }
 	exit();
 ?>
