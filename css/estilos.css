@@ -397,7 +397,10 @@ p a{
   width: 100%;
   position: relative;
 }
-#buscarform fieldset { width: 100% }
+#buscarform fieldset { 
+  width: 100%;
+  margin-top: -15%;
+}
 
 #s {
   width: 100%;
