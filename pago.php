@@ -12,22 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 </head>
-
 <body>
-	<header>
-		<a href="index.php"><img src="imagenes/logo.webp" alt="Logo de la página" class="logo"></a>
-	
-	<?php
-   // include("NAV.php");
-    //include("conexion.php");
-    /*
-    session_start();
-    $_SESSION['preference_id'] = $preference->id;
-    */
-?>
-</header>
-<h3>DETALLES DE LA COMPRA</h3>
-<!--------------------------------------- SISTEMA DE PAGO ---------------------------------->
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 <script>
   const publicKey = "APP_USR-226856e1-5fbf-4b6b-9534-a5dbeef03d2b";
@@ -41,44 +26,38 @@
       }
     });
 };
-  
   // Faz a chamada para o backend para obter o preferenceId
   const url = new URL('crear_preferencia.php', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/');
   const idCancha = <?php echo isset($_GET['id_cancha']) ? json_encode($_GET['id_cancha']) : 'null'; ?>;
   const idReserva = <?php echo isset($_GET['id_reserva']) ? json_encode($_GET['id_reserva']) : 'null'; ?>;
-
   url.searchParams.append('id_cancha', idCancha);
   url.searchParams.append('id_reserva', idReserva);
-
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      if (data.preference_id) {
-       
-        renderWalletBrick(data.preference_id);
-
-
+      if (data.preference_id && data.init_point) {        
+        // 1. Primero, guardamos el preference_id en nuestra base de datos.
         const formData = new FormData();
         formData.append('id_reserva', idReserva);
         formData.append('preference_id', data.preference_id);
 
         fetch('manejo_pago.php', {
           method: 'POST',
-          body: new URLSearchParams(formData) 
+          body: formData
         })
         .then(response => response.json())
         .then(pagoData => {
           if (pagoData.success) {
-          
-            document.getElementById("miParrafo").innerHTML = `ID de Pago Interno: ${pagoData.id_pago} <br> ID de Preferencia de MP: ${data.preference_id}`;
+            // 2. Si se guardó correctamente, AHORA redirigimos al usuario a pagar.
+            window.location.href = data.init_point;
           } else {
-            document.getElementById("miParrafo").innerHTML = "Error al registrar el pago en el sistema: " + pagoData.message;
+            // Si falla el guardado, mostramos un error y no redirigimos.
+            throw new Error("Error al registrar el pago en el sistema: " + pagoData.message);
           }
         });
 
       } else {
-        console.error('Error: preference_id no encontrado en la respuesta');
-        document.getElementById("miParrafo").innerHTML = "Error al generar la preferencia de pago.";
+        throw new Error('Error al generar la preferencia de pago desde el servidor.');
       }
     })
     .catch(error => {
@@ -88,14 +67,8 @@
 </script>
 <p id="miParrafo"></p>
 <div id="walletBrick_container"></div>
-<footer>
-<?php
-    //include("FOOTER.php");
-?>
-</footer>
 </body>
 </html>
-
 <!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 

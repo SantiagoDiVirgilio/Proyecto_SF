@@ -138,7 +138,7 @@ include("conexion.php");
 <div id="miModal" class="modal">
     <div class="modal-contenido">
         <span class="cerrar" id="btnCerrarModal">&times;</span>
-        <h2>Selecciona un Horario</h2>
+        <h2 id="modalTitle">Selecciona un Horario</h2>
         <!-- El iframe donde se cargará el calendario -->
         <iframe id="calendarioFrame" style="width: 100%; height: 600px; border: none;"></iframe>
     </div>
@@ -163,11 +163,15 @@ include("conexion.php");
         const iframe = document.getElementById("calendarioFrame");
         const botonesAbrir = document.querySelectorAll(".js-abrir-calendario");
 
-        function abrirModal(canchaId) {
-            if (!modal || !iframe) {
+        function abrirModal(canchaId, canchaNombre) {
+            const modalTitle = document.getElementById("modalTitle");
+            if (!modal || !iframe || !modalTitle) {
                 console.error("El modal o el iframe no se encontraron en el DOM.");
                 return;
             }
+            // Actualizamos el título del modal con el nombre de la cancha
+            modalTitle.textContent = `Horarios para: ${canchaNombre}`;
+            // Cargamos el calendario correspondiente en el iframe
             iframe.src = `Calendario.php?id_cancha=${canchaId}&modal=true`;
             modal.classList.add("visible");
         }
@@ -182,7 +186,8 @@ include("conexion.php");
         botonesAbrir.forEach(function(boton) {
             boton.addEventListener("click", function() {
                 const canchaId = this.getAttribute("data-cancha-id");
-                abrirModal(canchaId);
+                const canchaNombre = this.getAttribute("data-cancha-nombre");
+                abrirModal(canchaId, canchaNombre);
             });
         });
 
