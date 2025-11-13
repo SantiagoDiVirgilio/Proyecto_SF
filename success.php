@@ -3,7 +3,7 @@
 
 <head>
 	<link rel="icon" href="imagenes/favicon.webp" type="image/webp">
-	<title>Sistema de Gestion de Sociedad de Fomento</title>
+	<title>Pago Exitoso - Sociedad de Fomento</title>
 	<meta charset="UTF-8">
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
@@ -11,13 +11,20 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/success.css">
 </head>
 
-<body>
-    <h1>SUCCESS</h1>
-    <p>¡Tu pago ha sido procesado con éxito!</p>
-    <p>Gracias por tu compra.</p>
-    <P>HOLA</P>
+<body class="success-page">
+    <div class="success-card">
+        <div class="success-icon">
+            <i class="fa fa-check-circle"></i>
+        </div>
+        <h1>¡Pago Completado!</h1>
+        <p>Tu pago ha sido procesado con éxito. ¡Gracias por tu reserva!</p>
+        
+        <a href="index.php" class="btn-volver">Volver al Inicio</a>
+    </div>
+
     <?php
     include("conexion.php");
 
