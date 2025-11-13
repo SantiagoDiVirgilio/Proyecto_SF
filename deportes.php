@@ -26,7 +26,7 @@ include("conexion.php");
     include("NAV.php");
     ?>
     </header>
-
+<main>
 <div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
     <fieldset>
         <input type="search" id="s" name="buscar_deporte" placeholder="Buscar..." required />
@@ -99,7 +99,7 @@ include("conexion.php");
     </div>
   </div>
 </div>
-
+</main>
 <footer>
 <?php
     include("FOOTER.php");
