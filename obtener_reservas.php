@@ -2,7 +2,6 @@
 session_start();
 header('Content-Type: application/json');
 include("conexion.php");
-
 /*
 if (!isset($_GET['start']) || !isset($_GET['end'])) {
     die(json_encode([]));
@@ -13,11 +12,10 @@ $start = $_GET['start'] ?? date('Y-m-d');
 $end = $_GET['end'] ?? date('Y-m-d', strtotime('+7 days'));
 $cancha = $_GET['id_cancha'] ?? 1;
 
-// Corregí la lógica de la consulta para usar un rango de fechas (entre start y end).
 // También selecciono los campos necesarios para el evento de FullCalendar.
 $sql = "SELECT id_reserva, id_usuario, fecha_reserva, hora_inicio, hora_fin,estado
         FROM reservas
-        WHERE fecha_reserva BETWEEN ? AND ? AND id_cancha = ? AND estado != 'cancelado'"; 
+        WHERE fecha_reserva BETWEEN ? AND ? AND id_cancha = ? AND estado != 'anulado'"; 
        
 $stmt = mysqli_prepare($conexion, $sql);
 mysqli_stmt_bind_param($stmt, "ssi", $start, $end, $cancha);

@@ -30,9 +30,6 @@
     $external_reference = $_GET['external_reference'] ?? null;
     //$date = $_GET['date_of_expiration'] ?? null;
 
-    echo "<p>ID de Colección: " . htmlspecialchars($collection_id) . "</p>";
-    echo "<p>Estado de la Colección: " . htmlspecialchars($collection_status) . "</p>";
-    echo "<p>ID de Pago: " . htmlspecialchars($payment_id) . "</p>";
     
     $id_reserva = null;
     $monto = null;
@@ -55,7 +52,7 @@
         mysqli_stmt_bind_param($stmt_pago, "sds", $status, $monto, $preference_id);
         mysqli_stmt_execute($stmt_pago);
         mysqli_stmt_close($stmt_pago);
-        
+
         $sql_update_reserva = "UPDATE reservas r 
                                JOIN pagos p ON r.id_pago = p.id_pago 
                                SET r.estado = 'Confirmada' 
@@ -65,10 +62,14 @@
         mysqli_stmt_execute($stmt_reserva);
         mysqli_stmt_close($stmt_reserva);
     }
-
+/*
     echo "<p>ID de Preferencia: " . htmlspecialchars($preference_id) . "</p>";
     echo "<p>ID de Reserva (desde external_reference): " . htmlspecialchars($id_reserva ?? 'No encontrado') . "</p>";
     echo "<p>Fecha: " . htmlspecialchars($date ?? 'No encontrada') . "</p>";
+    echo "<p>ID de Colección: " . htmlspecialchars($collection_id) . "</p>";
+    echo "<p>Estado de la Colección: " . htmlspecialchars($collection_status) . "</p>";
+    echo "<p>ID de Pago: " . htmlspecialchars($payment_id) . "</p>";
+    */
     ?>
 <!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

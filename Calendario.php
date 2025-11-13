@@ -193,9 +193,10 @@
             {
               daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6 ], 
               startTime: '08:00:00',
-              endTime: '24:00:00',   
-              display: 'background', 
-              backgroundColor: '#00ff3cff'
+              endTime: '24:00:00',  
+              //display: 'background',
+              display: "background", 
+              backgroundColor: '#00ff3cff',         
             }         
           ]
         }
@@ -235,8 +236,6 @@
       formData.append('hora_inicio', selectionInfo.start.getHours()); // Formato 24h (ej: 18)
       formData.append('hora_fin', selectionInfo.end.getHours()); // Formato 24h (ej: 19)
       formData.append('id_cancha', idCancha);
-
-
       // Enviar los datos al servidor usando fetch (AJAX)
       fetch('registro_reserva.php', {
         method: 'POST',
@@ -261,7 +260,6 @@
         calendar.unselect();
       });
     }
-
     btnCancelar.onclick = function() {
       modal.style.display = "none";
       calendar.unselect();

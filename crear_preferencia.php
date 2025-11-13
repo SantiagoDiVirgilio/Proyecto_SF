@@ -32,9 +32,15 @@ if (!$cancha) {
 }
 
 // Construimos la URL de éxito incluyendo el id_reserva como parámetro
-$success_url = "https://localhost/Pro/Graffo/success.php?id_reserva=" . urlencode($id_reserva);
+$success_url = "https://localhost/Pro/Graffo/success.php";
 $failure_url = "http://localhost/pro/Graffo/failure.php";
 $pending_url = "http://localhost/pro/Graffo/pending.php";
+
+// --- AÑADIDO: Calcular fechas de expiración dinámicas ---
+$timezone = new DateTimeZone('America/Argentina/Buenos_Aires');
+$fecha_inicio = new DateTime('now', $timezone);
+$fecha_fin = new DateTime('now', $timezone);
+$fecha_fin->modify('+3 minutes'); 
 
 $fechaActual = new DateTime();
 // Preparamos los datos para external_reference
@@ -59,7 +65,10 @@ $client = new PreferenceClient();
         "failure" => $failure_url,
         "pending" => $pending_url
     ],
-    "external_reference" => $external_reference_data
+    "external_reference" => $external_reference_data,
+    "expires" => true,
+    "expiration_date_from" => $fecha_inicio->format('Y-m-d\TH:i:s.vP'),
+    "expiration_date_to" => $fecha_fin->format('Y-m-d\TH:i:s.vP')
     ]);
 $preference->auto_return = "approved";
 $_SESSION['preference_id'] = $preference->id;

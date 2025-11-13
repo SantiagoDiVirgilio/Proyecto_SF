@@ -15,7 +15,6 @@ if (!$nombre_cliente || !$telefono || !$fecha_reserva || $hora_inicio === null |
     echo json_encode(['success' => false, 'message' => 'Faltan datos para procesar la reserva.']);
     exit;
 }
-
 mysqli_begin_transaction($conexion);
 
 try {

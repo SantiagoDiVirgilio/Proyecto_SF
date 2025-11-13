@@ -170,8 +170,7 @@ include("conexion.php");
                 return;
             }
             // Actualizamos el título del modal con el nombre de la cancha
-            modalTitle.textContent = `Horarios para: ${canchaNombre}`;
-            // Cargamos el calendario correspondiente en el iframe
+            modalTitle.textContent = `Alquiler : ${canchaNombre}`;
             iframe.src = `Calendario.php?id_cancha=${canchaId}&modal=true`;
             modal.classList.add("visible");
         }

@@ -23,8 +23,7 @@ include("conexion.php");
 	
 	<?php
     include("NAV.php");
-    include("conexion.php");
-    
+    include("conexion.php"); 
         $es_admin = false;
         if (isset($_SESSION['id_usuario'])) {
             $id_usuario = $_SESSION['id_usuario'];
@@ -39,17 +38,7 @@ include("conexion.php");
             mysqli_stmt_close($stmt_admin);
         }
     ?>
-    <div class="mobile-header-bar">
-        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
-    </div>
-    </header>
-
-<div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
-    <fieldset>
-        <input type="search" id="s" name="buscar_usuario" placeholder="Buscar..." required />
-        <input class="button" type="submit" value="" >
-    </fieldset>
-</form>
+    
 </div>
 
     <h2 class="perfil"> 
@@ -67,21 +56,34 @@ include("conexion.php");
           }
           ?>
     </h2>
-
-    <div class="formu-card-container">
-        <h2 class="formu-card"> 
-            <a href="deportes_tablas.php" class="perfil">Gestionar Deportes</a>
-        </h2>
-        <h2 class="formu-card"> 
-            <a href="canchas_tablas.php" class="perfil">Gestionar Canchas</a>
-        </h2>
-        <h2 class="formu-card"> 
-            <a href="usuarios_tablas.php" class="perfil">Gestionar Usuarios</a>
-        </h2>
-        <h2 class="formu-card"> 
-            <a href="horarios_tablas.php" class="perfil">Gestionar Horarios</a>
-        </h2>
+    <?php
+    if ($es_admin) { ?> 
+    <div class="mobile-header-bar">
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
     </div>
+    </header>
+
+    <div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
+        <fieldset>
+            <input type="search" id="s" name="buscar_usuario" placeholder="Buscar..." required />
+            <input class="button" type="submit" value="" >
+        </fieldset>
+    </form>
+        <div class="formu-card-container">
+            <h2 class="formu-card"> 
+                <a href="deportes_tablas.php" class="perfil">Gestionar Deportes</a>
+            </h2>
+            <h2 class="formu-card"> 
+                <a href="canchas_tablas.php" class="perfil">Gestionar Canchas</a>
+            </h2>
+            <h2 class="formu-card"> 
+                <a href="usuarios_tablas.php" class="perfil">Gestionar Usuarios</a>
+            </h2>
+            <h2 class="formu-card"> 
+                <a href="horarios_tablas.php" class="perfil">Gestionar Horarios</a>
+            </h2>
+        </div>
+   <?php } ?>
 <footer>
 <?php
     include("FOOTER.php");
