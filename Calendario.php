@@ -148,7 +148,6 @@
             }
         };
     }
-
      const calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'timeGrid7Day',
       headerToolbar: {
@@ -159,7 +158,6 @@
       selectable: true,
       unselectAuto: true,
       selectMirror: true,
-      
       views: {
         timeGrid7Day: {
           type: 'timeGrid',
@@ -179,14 +177,10 @@
         day: 'numeric',
         month: 'numeric'
       },
-      //selectOverlap: false,
-      // Permite la selección solo si es de exactamente 1 hora
-      selectAllow: function(selectInfo) {
-        let duration = selectInfo.end.getTime() - selectInfo.start.getTime();
-        // La duración de una hora en milisegundos es 3600000
-        return duration == 3600000;
-      },
-
+      titleFormat: {
+        month: 'long',
+        year: 'numeric'
+    },
       eventSources: [   
         {
           url: `obtener_reservas.php?id_cancha=${idCancha}`,
@@ -201,20 +195,17 @@
               startTime: '08:00:00',
               endTime: '24:00:00',   
               display: 'background', 
-              backgroundColor: '#00ff3cff' // Un verde más suave y legible
+              backgroundColor: '#00ff3cff'
             }         
           ]
         }
       ],
       select: function(info) {
-        // Guardar la información de la selección
         selectionInfo = info;
 
-        // Formatear y mostrar la fecha y hora en el modal
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
         const fechaInicio = info.start.toLocaleDateString('es-ES', options);
-        infoReservaEl.innerText = `Horario seleccionado: ${fechaInicio}`;
-        
+        infoReservaEl.innerText = `Horario seleccionado: ${fechaInicio}`;    
         // Limpiar el input y mostrar el modal
         nombreClienteInput.value = '';
         telefonoClienteInput.value='';
@@ -243,37 +234,23 @@
       formData.append('fecha_reserva', selectionInfo.start.toISOString().split('T')[0]); // Formato YYYY-MM-DD
       formData.append('hora_inicio', selectionInfo.start.getHours()); // Formato 24h (ej: 18)
       formData.append('hora_fin', selectionInfo.end.getHours()); // Formato 24h (ej: 19)
-      // Datos que asumimos o hardcodeamos por ahora
       formData.append('id_cancha', idCancha);
+
 
       // Enviar los datos al servidor usando fetch (AJAX)
       fetch('registro_reserva.php', {
         method: 'POST',
-        body: new URLSearchParams(formData) // Usamos URLSearchParams para formato x-www-form-urlencoded
+        body: formData // Simplemente pasamos el objeto formData directamente
       })
       .then(response => response.json())
       .then(reservaData => {
         if (reservaData.success && reservaData.id_reserva) {
-          // 1. La reserva se creó en nuestra BD. Ahora creamos la preferencia de pago en Mercado Pago.
-          const urlPreferencia = new URL('crear_preferencia.php', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/');
-          urlPreferencia.searchParams.append('id_cancha', idCancha);
-          urlPreferencia.searchParams.append('id_reserva', reservaData.id_reserva);
-
-          // 2. Llamamos a crear_preferencia.php para obtener el link de pago.
-          return fetch(urlPreferencia);
+          // La reserva se creó, ahora redirigimos al usuario a la página de pago.
+          // La página de pago se encargará de crear la preferencia y mostrar el botón.
+          window.location.href = `pago.php?id_cancha=${idCancha}&id_reserva=${reservaData.id_reserva}`;
         } else {
           // Si la creación de la reserva falló, lanzamos un error.
           throw new Error('Error al guardar la reserva: ' + reservaData.message);
-        }
-      })
-      .then(response => response.json())
-      .then(preferenciaData => {
-        if (preferenciaData.init_point) {
-          // 3. Si obtuvimos el link de pago (init_point), redirigimos al usuario a Mercado Pago.
-          window.location.href = preferenciaData.init_point;
-        } else {
-          // Si la creación de la preferencia falló, lanzamos un error.
-          throw new Error('Error al crear la preferencia de pago.');
         }
       })
       .catch(error => {

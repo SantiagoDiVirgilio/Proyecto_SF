@@ -10,6 +10,7 @@ use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 
 MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a3bc8b5805d6f726606e-2946101958");
+
 if (!isset($_GET['id_cancha'])) { 
     exit("Error: falta el parámetro id_cancha");
 }
@@ -29,10 +30,19 @@ $cancha = $result->fetch_assoc();
 if (!$cancha) {
     die("Error: Cancha no encontrada");
 }
-$fecha_expiracion = new DateTime('now', $timezone) ;
-$fecha_expiracion->modify('+3 minutes');
-$fecha_formateada = $fecha_expiracion->format('Y-m-d\TH:i:s.vP');
 
+// Construimos la URL de éxito incluyendo el id_reserva como parámetro
+$success_url = "https://localhost/Pro/Graffo/success.php?id_reserva=" . urlencode($id_reserva);
+$failure_url = "http://localhost/pro/Graffo/failure.php";
+$pending_url = "http://localhost/pro/Graffo/pending.php";
+
+$fechaActual = new DateTime();
+// Preparamos los datos para external_reference
+$external_reference_data = json_encode([
+    'id_reserva' => $id_reserva,
+    'monto' => floatval($cancha['precio_hora']),
+    'date'=> $fechaActual->format('d/m/Y H:i:s')
+]);
 $client = new PreferenceClient();
 
     $preference = $client->create([
@@ -45,15 +55,12 @@ $client = new PreferenceClient();
         ]
      ],
     "back_urls" => [
-        "success" => "localhost/Proyecto_SF/success.php",
-        "failure" => "localhost/Proyecto_SF/failure.php",
-        "pending" => "http://localhost/Proyecto_SF/pending.php"
+        "success" => $success_url,
+        "failure" => $failure_url,
+        "pending" => $pending_url
     ],
-    "external_reference" => ["id_reserva"=>$id_reserva,
-    "monto"=> [floatval($cancha['precio_hora'])]],
-    "date_of_expiration" => $fecha_formateada
-]);
-//"date_of_expiration" => $fecha_formateada,
+    "external_reference" => $external_reference_data
+    ]);
 $preference->auto_return = "approved";
 $_SESSION['preference_id'] = $preference->id;
 ob_end_clean();
@@ -62,7 +69,6 @@ echo json_encode([
     'preference_id' => $preference->id,
     'init_point' => $preference->init_point
 ]);
-
 mysqli_stmt_close($stmt);
 mysqli_close($conexion);
 ?>

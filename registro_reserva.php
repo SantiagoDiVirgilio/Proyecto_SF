@@ -16,38 +16,49 @@ if (!$nombre_cliente || !$telefono || !$fecha_reserva || $hora_inicio === null |
     exit;
 }
 
-    
-// creacion del id_pago
-$sql_pago = "INSERT INTO pagos (id_pago) VALUES (null)";
-$stmt_insert = mysqli_prepare($conexion, $sql_pago);
- mysqli_stmt_execute($stmt_insert);
-$id_pago = mysqli_stmt_insert_id($stmt_insert);
-mysqli_stmt_close($stmt_insert);
+mysqli_begin_transaction($conexion);
 
+try {
+    // 1. Crear una entrada en la tabla 'pagos' con estado 'Pendiente'
+    $estado_pago_inicial = 'Pendiente';
+    $sql_pago = "INSERT INTO pagos (estado) VALUES (?)";
+    $stmt_pago = mysqli_prepare($conexion, $sql_pago);
+    if ($stmt_pago === false) {
+        throw new Exception('Error al preparar la consulta de pago: ' . mysqli_error($conexion));
+    }
+    mysqli_stmt_bind_param($stmt_pago, "s", $estado_pago_inicial);
+    mysqli_stmt_execute($stmt_pago);
+    $id_pago = mysqli_insert_id($conexion);
+    mysqli_stmt_close($stmt_pago);
 
-// 2. Preparar los datos restantes para la inserción
-$id_usuario = $_SESSION['id_usuario'] ?? 0; 
+    if ($id_pago == 0) {
+        throw new Exception('No se pudo crear el registro de pago.');
+    }
 
-// Se omite la columna 'estado' para que la base de datos use su valor por defecto.
-$sql = "INSERT INTO reservas (id_cancha, id_usuario, id_pago, telefono, fecha_reserva, hora_inicio, hora_fin, nombre)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    // 2. Preparar los datos restantes para la inserción de la reserva
+    $id_usuario = $_SESSION['id_usuario'] ?? 0; 
 
-$stmt_insert = mysqli_prepare($conexion, $sql);
+    // Se omite la columna 'estado' en la reserva para que la base de datos use su valor por defecto ('Pendiente')
+    $sql_reserva = "INSERT INTO reservas (id_cancha, id_usuario, id_pago, telefono, fecha_reserva, hora_inicio, hora_fin, nombre)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt_reserva = mysqli_prepare($conexion, $sql_reserva);
+    if ($stmt_reserva === false) {
+        throw new Exception('Error al preparar la consulta de reserva: ' . mysqli_error($conexion));
+    }
+    mysqli_stmt_bind_param($stmt_reserva, "iiisssis", $id_cancha, $id_usuario, $id_pago, $telefono, $fecha_reserva, $hora_inicio, $hora_fin, $nombre_cliente);
 
-if ($stmt_insert === false) {
-    echo json_encode(['success' => false, 'message' => 'Error al preparar la consulta: ' . mysqli_error($conexion)]);
-    exit;
+    if (mysqli_stmt_execute($stmt_reserva)) {
+        $id_reserva_creada = mysqli_insert_id($conexion);
+        mysqli_stmt_close($stmt_reserva);
+        mysqli_commit($conexion); // Confirmar la transacción
+        echo json_encode(['success' => true, 'id_reserva' => $id_reserva_creada, 'id_pago' => $id_pago]);
+    } else {
+        throw new Exception('Error al registrar la reserva: ' . mysqli_stmt_error($stmt_reserva));
+    }
+} catch (Exception $e) {
+    mysqli_rollback($conexion); // Revertir la transacción si algo falló
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 
-mysqli_stmt_bind_param($stmt_insert, "iiisssis", $id_cancha, $id_usuario, $id_pago, $telefono, $fecha_reserva, $hora_inicio, $hora_fin, $nombre_cliente);
-
-
-if (mysqli_stmt_execute($stmt_insert)) {
-    $id_reserva_creada = mysqli_insert_id($conexion);
-    echo json_encode(['success' => true, 'id_reserva' => $id_reserva_creada]);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Error al registrar la reserva: ' . mysqli_stmt_error($stmt_insert)]);
-}
-mysqli_stmt_close($stmt_insert);
 mysqli_close($conexion);
 ?>

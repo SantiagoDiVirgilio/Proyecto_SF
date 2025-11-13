@@ -14,46 +14,29 @@ if (!$id_reserva || !$preference_id) {
 mysqli_begin_transaction($conexion);
 
 try {
-    // Paso extra: Verificar si la reserva ya tiene un pago asociado
-    $sql_check = "SELECT id_pago FROM reservas WHERE id_reserva = ?";
-    $stmt_check = mysqli_prepare($conexion, $sql_check);
-    mysqli_stmt_bind_param($stmt_check, "i", $id_reserva);
-    mysqli_stmt_execute($stmt_check);
-    $result_check = mysqli_stmt_get_result($stmt_check);
-    $reserva_existente = mysqli_fetch_assoc($result_check);
-    mysqli_stmt_close($stmt_check);
-
-    if ($reserva_existente && $reserva_existente['id_pago'] !== null) {
-        // Si ya existe un pago, no hacemos nada y devolvemos éxito para no interrumpir el flujo.
-        throw new Exception('Esta reserva ya tiene un pago asociado (ID: ' . $reserva_existente['id_pago'] . ').');
+    // 1. Obtener el id_pago desde la tabla de reservas
+    $sql_get_pago = "SELECT id_pago FROM reservas WHERE id_reserva = ?";
+    $stmt_get_pago = mysqli_prepare($conexion, $sql_get_pago);
+    mysqli_stmt_bind_param($stmt_get_pago, "i", $id_reserva);
+    mysqli_stmt_execute($stmt_get_pago);
+    $resultado_pago = mysqli_stmt_get_result($stmt_get_pago);
+    $fila_pago = mysqli_fetch_assoc($resultado_pago);
+    $id_pago = $fila_pago['id_pago'] ?? null;
+    mysqli_stmt_close($stmt_get_pago);
+    
+    if (!$id_pago) {
+        throw new Exception('No se encontró un pago asociado a la reserva.');
     }
 
-    // 2. Insertar un nuevo registro en la tabla 'pagos'
-    $sql_pago = "INSERT INTO pagos (estado, id_preference) VALUES (?, ?)";
-    $stmt_pago = mysqli_prepare($conexion, $sql_pago);
-    if ($stmt_pago === false) {
-        throw new Exception('Error al preparar la consulta de pago: ' . mysqli_error($conexion));
+    // 2. Actualizar el registro existente en la tabla 'pagos' con el id_preference
+    $sql_update_pago = "UPDATE pagos SET id_preference = ? WHERE id_pago = ?";
+    $stmt_update = mysqli_prepare($conexion, $sql_update_pago);
+    if ($stmt_update === false) {
+        throw new Exception('Error al preparar la consulta de actualización de pago: ' . mysqli_error($conexion));
     }
-    mysqli_stmt_bind_param($stmt_pago, "ss", $estado_pago, $preference_id);
-    mysqli_stmt_execute($stmt_pago);
-
-    // 3. Obtener el ID del pago recién creado
-    $id_pago = mysqli_insert_id($conexion);
-    mysqli_stmt_close($stmt_pago);
-
-    if ($id_pago == 0) {
-        throw new Exception('No se pudo crear el registro de pago.');
-    }
-
-    // 4. Actualizar la tabla 'reservas' con el nuevo id_pago
-    $sql_reserva = "UPDATE reservas SET id_pago = ? WHERE id_reserva = ?";
-    $stmt_reserva = mysqli_prepare($conexion, $sql_reserva);
-    if ($stmt_reserva === false) {
-        throw new Exception('Error al preparar la consulta de reserva: ' . mysqli_error($conexion));
-    }
-    mysqli_stmt_bind_param($stmt_reserva, "ii", $id_pago, $id_reserva);
-    mysqli_stmt_execute($stmt_reserva);
-    mysqli_stmt_close($stmt_reserva);
+    mysqli_stmt_bind_param($stmt_update, "si", $preference_id, $id_pago);
+    mysqli_stmt_execute($stmt_update);
+    mysqli_stmt_close($stmt_update);
 
     // Si todo fue bien, confirmar la transacción
     mysqli_commit($conexion);
