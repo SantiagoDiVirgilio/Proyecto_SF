@@ -15,48 +15,47 @@ if (!isset($_GET['id_cancha']) || !isset($_GET['id_reserva'])) {
     header('Content-Type: application/json');
     echo json_encode(['error' => 'Faltan parámetros requeridos (id_cancha o id_reserva).']);
     exit;
+}else{
+    $id_cancha = intval($_GET['id_cancha']);
+    $id_reserva = intval($_GET['id_reserva']);
+    $query = "SELECT nombre,precio_hora FROM canchas WHERE id_cancha = ?"; 
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("i", $id_cancha);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $elementoCobro = $result->fetch_assoc();
+    if (!$elementoCobro) {
+        die(json_encode(['error' => 'Cancha no encontrada con el ID proporcionado.']));
+    }
 }
-$id_cancha = intval($_GET['id_cancha']);
-$id_reserva = intval($_GET['id_reserva']);
 
-$query = "SELECT nombre,precio_hora FROM canchas WHERE id_cancha = ?"; 
-$stmt = $conexion->prepare($query);
-$stmt->bind_param("i", $id_cancha);
-$stmt->execute();
-$result = $stmt->get_result();
-$cancha = $result->fetch_assoc();
-
-if (!$cancha) {
-    die("Error: Cancha no encontrada");
-}
-
-// Construimos la URL de éxito incluyendo el id_reserva como parámetro
 $success_url = "https://localhost/Pro/Graffo/success.php";
 $failure_url = "http://localhost/pro/Graffo/failure.php";
 $pending_url = "http://localhost/pro/Graffo/pending.php";
 
-// --- AÑADIDO: Calcular fechas de expiración dinámicas ---
 $timezone = new DateTimeZone('America/Argentina/Buenos_Aires');
 $fecha_inicio = new DateTime('now', $timezone);
 $fecha_fin = new DateTime('now', $timezone);
 $fecha_fin->modify('+3 minutes'); 
-
 $fechaActual = new DateTime();
-// Preparamos los datos para external_reference
-$external_reference_data = json_encode([
-    'id_reserva' => $id_reserva,
-    'monto' => floatval($cancha['precio_hora']),
-    'date'=> $fechaActual->format('d/m/Y H:i:s')
-]);
+
+ if ($cancha) {
+        $external_reference_data = json_encode([
+        'id_reserva' => $id_reserva,
+        'monto' => floatval($cancha['precio_hora']),
+        'date'=> $fechaActual->format('d/m/Y H:i:s')
+        ]);
+    }
+
 $client = new PreferenceClient();
 
     $preference = $client->create([
     "items" => [
         [
-            "title" => $cancha['nombre'],
+            "title" => $elementoCobro['nombre'],
             "quantity" => 1,
             "currency_id" => "ARS",
-            "unit_price" => floatval($cancha['precio_hora'])
+            "unit_price" => floatval($elementoCobro['precio_hora'])
         ]
      ],
     "back_urls" => [
@@ -69,6 +68,7 @@ $client = new PreferenceClient();
     "expiration_date_from" => $fecha_inicio->format('Y-m-d\TH:i:s.vP'),
     "expiration_date_to" => $fecha_fin->format('Y-m-d\TH:i:s.vP')
     ]);
+
 $preference->auto_return = "approved";
 $_SESSION['preference_id'] = $preference->id;
 ob_end_clean();

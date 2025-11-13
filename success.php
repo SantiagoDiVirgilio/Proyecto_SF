@@ -21,16 +21,13 @@
     <?php
     include("conexion.php");
 
-    // Usar el operador de fusión de null (??) para evitar warnings si los parámetros no existen.
     $collection_id = $_GET['collection_id'] ?? null;
     $collection_status = $_GET['collection_status'] ?? null;
     $payment_id = $_GET['payment_id'] ?? null;
     $status = $_GET['status'] ?? null;
     $preference_id = $_GET['preference_id'] ?? null;
     $external_reference = $_GET['external_reference'] ?? null;
-    //$date = $_GET['date_of_expiration'] ?? null;
 
-    
     $id_reserva = null;
     $monto = null;
     $date = null;
@@ -42,13 +39,11 @@
             $date = $data['date'];
         }
     }
-
-    // 2. Actualizar el estado de la reserva a 'Confirmada' si el pago fue aprobado
     if ($status === 'approved' && !empty($preference_id)) {
-        // Primero, actualizamos el estado en la tabla 'pagos' usando el preference_id
+        
         $sql_update_pago = "UPDATE pagos SET estado = ?, transaction_amount = ? WHERE id_preference = ?";
         $stmt_pago = mysqli_prepare($conexion, $sql_update_pago);
-        // Usamos "s" para status y "s" para preference_id
+    
         mysqli_stmt_bind_param($stmt_pago, "sds", $status, $monto, $preference_id);
         mysqli_stmt_execute($stmt_pago);
         mysqli_stmt_close($stmt_pago);
@@ -62,14 +57,6 @@
         mysqli_stmt_execute($stmt_reserva);
         mysqli_stmt_close($stmt_reserva);
     }
-/*
-    echo "<p>ID de Preferencia: " . htmlspecialchars($preference_id) . "</p>";
-    echo "<p>ID de Reserva (desde external_reference): " . htmlspecialchars($id_reserva ?? 'No encontrado') . "</p>";
-    echo "<p>Fecha: " . htmlspecialchars($date ?? 'No encontrada') . "</p>";
-    echo "<p>ID de Colección: " . htmlspecialchars($collection_id) . "</p>";
-    echo "<p>Estado de la Colección: " . htmlspecialchars($collection_status) . "</p>";
-    echo "<p>ID de Pago: " . htmlspecialchars($payment_id) . "</p>";
-    */
     ?>
 <!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

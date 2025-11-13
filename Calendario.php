@@ -236,7 +236,7 @@
       formData.append('hora_inicio', selectionInfo.start.getHours()); // Formato 24h (ej: 18)
       formData.append('hora_fin', selectionInfo.end.getHours()); // Formato 24h (ej: 19)
       formData.append('id_cancha', idCancha);
-      // Enviar los datos al servidor usando fetch (AJAX)
+
       fetch('registro_reserva.php', {
         method: 'POST',
         body: formData // Simplemente pasamos el objeto formData directamente

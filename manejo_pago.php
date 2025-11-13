@@ -37,10 +37,8 @@ try {
     mysqli_stmt_bind_param($stmt_update, "si", $preference_id, $id_pago);
     mysqli_stmt_execute($stmt_update);
     mysqli_stmt_close($stmt_update);
-
-    // Si todo fue bien, confirmar la transacción
     mysqli_commit($conexion);
-    echo json_encode(['success' => true, 'id_pago' => $id_pago]);
+    echo json_encode(['success' => true, 'id_pago' => $id_pago, 'id_reserva' => $id_reserva]);
 
 } catch (Exception $e) {
     // Si algo falló, revertir la transacción
