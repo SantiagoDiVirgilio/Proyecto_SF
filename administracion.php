@@ -65,13 +65,6 @@ include("conexion.php");
             </h2>
     
         
-
-        <div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
-            <fieldset>
-                <input type="search" id="s" name="buscar_usuario" placeholder="Buscar..." required />
-                <input class="button" type="submit" value="" >
-            </fieldset>
-        </div>
         </form>
             <div class="formu-card-container">
                 <h2 class="formu-card"> 

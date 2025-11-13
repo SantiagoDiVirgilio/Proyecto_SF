@@ -27,17 +27,6 @@ include("conexion.php");
     ?>
     </header>
 <main>
-<div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
-    <fieldset>
-        <input type="search" id="s" name="buscar_deporte" placeholder="Buscar..." required />
-        <input class="button" type="submit" value="" >
-        <i class="search"></i>
-    </fieldset>
-</form>
-</div>
-
-
-
 <?php
         $llamado_deportes = mysqli_query($conexion, "SELECT * FROM deportes");
 ?>

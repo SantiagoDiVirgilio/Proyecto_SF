@@ -39,7 +39,7 @@ include("conexion.php");
 <article class="busqueda">
 <?php
 		$buscar_seguro = mysqli_real_escape_string($conexion, $buscar);
-		$resultado_1 = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre LIKE '%$buscar_seguro%' ");
+		$resultado_1 = mysqli_query($conexion, "SELECT * FROM usuarios_tablas WHERE nombre LIKE '%$buscar_seguro%' ");
 
 		if ($resultado_1 && mysqli_num_rows($resultado_1) > 0) {
 			$nros = mysqli_num_rows($resultado_1);
