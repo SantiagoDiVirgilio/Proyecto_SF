@@ -31,7 +31,7 @@
 	<form action="añadir_cancha.php" method="post">
         <div class="form-group">
             <label for="nombre">Nombre de la Cancha:</label>
-            <input id="nombre" name="nombre" type="text" maxlength="12" />
+            <input id="nombre" name="nombre" type="text" maxlength="15" />
         </div>
         <div class="form-group">
             <label for="tipo">Tipo de Deporte jugado:</label>
