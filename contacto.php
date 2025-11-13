@@ -46,11 +46,11 @@ if (isset($_GET['status'])) {
     
     // Si el estado es 'success', muestra el mensaje de éxito
     if ($status === 'success') {
-        echo '<h2>¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.</h2>';
+        echo '<div class="mensaje-exito">¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.</div>';
     } 
-    // O si quieres manejar errores, puedes añadir esto también
+
     else if ($status === 'error') {
-        echo '<h2>Lo sentimos, hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.</h2>'; 
+        echo '<div class="mensaje-error">Lo sentimos, hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.</div>'; 
     }
 }
 ?>
