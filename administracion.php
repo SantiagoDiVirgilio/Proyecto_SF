@@ -39,35 +39,37 @@ include("conexion.php");
         }
     ?>
     
-</div>
-
-    <h2 class="perfil"> 
-        <?php
-          if(isset($_SESSION['id_usuario'])){
-            $id_usuario_actual = $_SESSION['id_usuario'];
-            $stmt_usuario = mysqli_prepare($conexion, "SELECT nombre FROM usuarios WHERE id_usuario = ?");
-            mysqli_stmt_bind_param($stmt_usuario, "i", $id_usuario_actual);
-            mysqli_stmt_execute($stmt_usuario);
-            $resultado_usuario = mysqli_stmt_get_result($stmt_usuario);
-            if($usuario_actual = mysqli_fetch_assoc($resultado_usuario)){
-              echo "Bienvenido " . htmlspecialchars($usuario_actual["nombre"]);
-            }
-            mysqli_stmt_close($stmt_usuario);
-          }
-          ?>
-    </h2>
     <?php
     if ($es_admin) { ?> 
     <div class="mobile-header-bar">
         <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
     </div>
+    
     </header>
+        <h2 class="perfil"> 
+            <?php
+            if(isset($_SESSION['id_usuario'])){
+                $id_usuario_actual = $_SESSION['id_usuario'];
+                $stmt_usuario = mysqli_prepare($conexion, "SELECT nombre FROM usuarios WHERE id_usuario = ?");
+                mysqli_stmt_bind_param($stmt_usuario, "i", $id_usuario_actual);
+                mysqli_stmt_execute($stmt_usuario);
+                $resultado_usuario = mysqli_stmt_get_result($stmt_usuario);
+                if($usuario_actual = mysqli_fetch_assoc($resultado_usuario)){
+                echo "Bienvenido " . htmlspecialchars($usuario_actual["nombre"]);
+                }
+                mysqli_stmt_close($stmt_usuario);
+                }
+            ?>
+        </h2>
+   
+    
 
     <div class="cajabuscar"><form method="get" id="buscarform" action="resultados_buscar.php">
         <fieldset>
             <input type="search" id="s" name="buscar_usuario" placeholder="Buscar..." required />
             <input class="button" type="submit" value="" >
         </fieldset>
+    </div>
     </form>
         <div class="formu-card-container">
             <h2 class="formu-card"> 
@@ -89,7 +91,6 @@ include("conexion.php");
     include("FOOTER.php");
 ?>
 </footer>
-
 <!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
