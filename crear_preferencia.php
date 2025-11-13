@@ -11,11 +11,10 @@ use MercadoPago\Client\Preference\PreferenceClient;
 
 MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a3bc8b5805d6f726606e-2946101958");
 
-if (!isset($_GET['id_cancha'])) { 
-    exit("Error: falta el parámetro id_cancha");
-}
-if (!isset($_GET['id_reserva'])) { 
-    exit("Error: falta el parámetro id_reserva");
+if (!isset($_GET['id_cancha']) || !isset($_GET['id_reserva'])) {
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Faltan parámetros requeridos (id_cancha o id_reserva).']);
+    exit;
 }
 $id_cancha = intval($_GET['id_cancha']);
 $id_reserva = intval($_GET['id_reserva']);
