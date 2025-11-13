@@ -3,7 +3,7 @@
     <ul>
         <li><a href="index.php">Inicio</a></li>
         <li class="custom-dropdown">
-            <a href="pago_reserva.php?id_cancha=1">Alquileres</a>
+            <a href="alquileres.php">Alquileres</a>
             <div class="custom-dropdown-content">
                 <a href="alquileres.php#FUTBOL">Futbol</a>
                 <a href="alquileres.php#BASQUET">Basquet</a>
