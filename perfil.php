@@ -71,7 +71,6 @@ include("conexion.php");
                 <td class="tabla-usuario"><?php echo $resultado["fecha_alta"];?></td>
                 <td class="tabla-usuario"><?php echo $resultado["rol"];?></td>
                 <td>
-                    <a class="btn-editar-deporte" href="darbaja_usuario.php?id_usuario=<?php echo $resultado["id_usuario"];?>" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">Eliminar Cuenta</a>
                     <a class="btn-editar-deporte" href="modificar_usuario_formu.php?id_usuario=<?php echo $resultado["id_usuario"];?>">Modificar</a>
                 </td>
             </tr>
