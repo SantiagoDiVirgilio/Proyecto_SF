@@ -69,7 +69,7 @@
 				<div class="team-card-body">
 					<h4>Agustin Dotto</h4>
 					<p class="team-role">Desarrollador</p>
-					<p class="team-description">Encargado de la integración de APIs y servicios externos, como la pasarela de pagos, y de la seguridad general del sitio web.</p>
+					<p class="team-description">Encargado de la documentación técnica del proyecto. Colaboración en la implementación de funcionalidades clave para la comunicación del sitio web.</p>
 				</div>
 			</div>
 			<!-- Tarjeta de Integrante 4 -->
