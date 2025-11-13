@@ -10,7 +10,7 @@
 <?php 
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password = $_POST['clave'];
 $dni = $_POST['dni'];
 $telefono = $_POST['telefono'];
 $fecha_alta = date('Y-m-d');
