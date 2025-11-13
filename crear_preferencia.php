@@ -9,7 +9,6 @@ require __DIR__ . '/vendor/autoload.php';
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 
-
 MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a3bc8b5805d6f726606e-2946101958");
 if (!isset($_GET['id_cancha'])) { 
     exit("Error: falta el parámetro id_cancha");
@@ -30,6 +29,10 @@ $cancha = $result->fetch_assoc();
 if (!$cancha) {
     die("Error: Cancha no encontrada");
 }
+$fecha_expiracion = new DateTime('now', $timezone) ;
+$fecha_expiracion->modify('+3 minutes');
+$fecha_formateada = $fecha_expiracion->format('Y-m-d\TH:i:s.vP');
+
 $client = new PreferenceClient();
 
     $preference = $client->create([
@@ -43,13 +46,14 @@ $client = new PreferenceClient();
      ],
     "back_urls" => [
         "success" => "localhost/Proyecto_SF/success.php",
-        "failure" => "http://localhost/Proyecto_SF/failure.php",
+        "failure" => "localhost/Proyecto_SF/failure.php",
         "pending" => "http://localhost/Proyecto_SF/pending.php"
     ],
     "external_reference" => ["id_reserva"=>$id_reserva,
-    "monto"=> [floatval($cancha['precio_hora'])]] 
+    "monto"=> [floatval($cancha['precio_hora'])]],
+    "date_of_expiration" => $fecha_formateada
 ]);
-
+//"date_of_expiration" => $fecha_formateada,
 $preference->auto_return = "approved";
 $_SESSION['preference_id'] = $preference->id;
 ob_end_clean();

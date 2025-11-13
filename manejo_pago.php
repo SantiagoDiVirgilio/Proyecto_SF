@@ -11,8 +11,6 @@ if (!$id_reserva || !$preference_id) {
     echo json_encode(['success' => false, 'message' => 'Faltan datos para procesar la reserva.']);
     exit;
 }
-
-// Iniciar una transacción para asegurar la integridad de los datos
 mysqli_begin_transaction($conexion);
 
 try {
@@ -31,13 +29,12 @@ try {
     }
 
     // 2. Insertar un nuevo registro en la tabla 'pagos'
-    $estado_pago = 'pendiente';
-    $sql_pago = "INSERT INTO pagos (id_reserva, estado, id_preference) VALUES (?, ?, ?)";
+    $sql_pago = "INSERT INTO pagos (estado, id_preference) VALUES (?, ?)";
     $stmt_pago = mysqli_prepare($conexion, $sql_pago);
     if ($stmt_pago === false) {
         throw new Exception('Error al preparar la consulta de pago: ' . mysqli_error($conexion));
     }
-    mysqli_stmt_bind_param($stmt_pago, "iss", $id_reserva, $estado_pago, $preference_id);
+    mysqli_stmt_bind_param($stmt_pago, "ss", $estado_pago, $preference_id);
     mysqli_stmt_execute($stmt_pago);
 
     // 3. Obtener el ID del pago recién creado
