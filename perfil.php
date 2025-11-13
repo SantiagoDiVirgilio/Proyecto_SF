@@ -71,8 +71,12 @@ include("conexion.php");
                 <td class="tabla-usuario"><?php echo $resultado["fecha_alta"];?></td>
                 <td class="tabla-usuario"><?php echo $resultado["rol"];?></td>
                 <td>
-                    <a class="btn-editar-deporte" href="?id_usuario=<?php echo $resultado["id_usuario"];?>" onclick="return confirm('Cuenta Actualizada a Socio');">¡Hacerme Socio!</a>
-                    <a class="btn-editar-deporte" href="modificar_usuario_formu.php?id_usuario=<?php echo $resultado["id_usuario"];?>">Modificar</a>
+                <?php 
+                if (isset($_SESSION['ROL']) && strtolower($_SESSION['ROL']) != 'admin' && $id == $_SESSION['id_usuario'] && strtolower($resultado['rol']) != 'socio') {
+                    echo '<a class="btn-editar-deporte" href=".php?id_usuario=' . $resultado["id_usuario"] . '" onclick="return confirm(\'Para hacerte socio, serás redirigido a la página de pago. ¿Deseas continuar?\');">¡Hacerme Socio!</a>';
+                }
+                ?>
+                <a class="btn-editar-deporte" href="modificar_usuario_formu.php?id_usuario=<?php echo $resultado["id_usuario"];?>">Modificar</a>
                 </td>
             </tr>
         </table>

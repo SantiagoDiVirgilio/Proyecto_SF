@@ -5,11 +5,11 @@
 	margin: 0;
 }
 body{
-	background-color: #dcdcdc;
+	background-color: #aedcf1;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 1.3rem;
 	background-size: cover; 
-	background-position: center; /* Centra la imagen */
+	background-position: center; 
 	min-height: 100vh; 
 	background-attachment: fixed;
 	display: flex;
@@ -32,7 +32,7 @@ body.home-background::before {
     bottom: 0;
     background: inherit;
     z-index: -1;
-    filter: blur(3px); /* Ligero desenfoque */
+    filter: blur(3px); 
 }
 
 header{
@@ -67,7 +67,7 @@ header > nav{
   display: flex; 
   list-style: none;
   align-items: center;
-  font-size: 1rem; /* Aumentado el tamaño de la fuente del NAV para mayor legibilidad */
+  font-size: 1rem; 
   font-family: Arial, sans-serif;
   margin-right: 1%;
   
@@ -88,7 +88,7 @@ nav ul li a{
 
 li {
   list-style: none;
-  padding: 8px 0; /* Aumenta el espacio vertical para un área de hover más grande */
+  padding: 8px 0; 
 }
 
 nav ul li:hover {
@@ -151,9 +151,9 @@ p a{
 }
 
 .titulo_deportes{
-  text-align: center; /* Para centrar el h2 */
+  text-align: center; 
   margin-top: 3%;
-  margin-bottom: 2rem; /* Espacio debajo de la sección del título */
+  margin-bottom: 2rem; 
 }
 
 .titulo_deportes h2 {
@@ -162,22 +162,22 @@ p a{
   justify-content: center;
   font-size: 1.8rem;
   color: #000000;
-  margin: 0; /* Eliminar margen predeterminado del h2 */
-  width: 100%; /* Asegurar que ocupe todo el ancho para las líneas */
+  margin: 0; 
+  width: 100%; 
 }
 
 .titulo_deportes h2::before,
 .titulo_deportes h2::after {
   content: '';
   flex-grow: 1;
-  height: 2px; /* Grosor de la línea */
-  background-color: #b0c4de; /* Color de la línea (usando el del header) */
-  margin: 0 1em; /* Espacio entre la línea y el texto */
+  height: 2px; 
+  background-color: #b0c4de; 
+  margin: 0 1em; 
 }
 
 .titulo_deportes h2 span {
-  background-color: #dcdcdc; /* Mismo color que el fondo del body para que se integre */
-  padding: 0 0.5em; /* Relleno alrededor del texto */
+  background-color: #dcdcdc; 
+  padding: 0 0.5em; 
 }
 
 /* --- Estilos para las nuevas tarjetas de canchas y deportes --- */
@@ -246,7 +246,7 @@ p a{
   gap: 2rem;
   justify-content: center;
   padding: 2rem 0;
-  align-items: stretch; /* Asegura que todas las tarjetas tengan la misma altura */
+  align-items: stretch;
 }
 .tarjeta-body h4 {
   margin-top: 0;
@@ -263,7 +263,7 @@ p a{
   font-size: 1.2rem;
   font-weight: bold;
   color: #000;
-  margin: 1rem 0; /* Ajuste de margen */
+  margin: 1rem 0; 
 }
 .tarjeta {
   background-color: #fff;
@@ -274,10 +274,10 @@ p a{
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  text-align: center; /* Centra el contenido */
+  text-align: center; 
 }
 .tarjeta:hover {
-  transform: translateY(-10px); /* Efecto de elevación más pronunciado */
+  transform: translateY(-10px); 
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 .tarjeta img {
@@ -288,9 +288,9 @@ p a{
 
 .tarjeta-body {
   padding: 1.5rem;
-  display: flex; /* Cambiado a flex para mejor alineación */
+  display: flex; 
   flex-direction:column;
-  flex-grow: 1; /* Para que el cuerpo de la tarjeta crezca y empuje el botón hacia abajo */
+  flex-grow: 1; 
 }
 .registro{
   margin-top: 4%;
@@ -328,7 +328,7 @@ p a{
   padding: 1.5rem;
   display: block;
   flex-direction:column;
-  flex-grow: 1; /* Para que el cuerpo de la tarjeta crezca y empuje el botón hacia abajo */
+  flex-grow: 1; 
   margin-left: 15%;
   margin-top: 5%;
 }
@@ -336,7 +336,7 @@ p a{
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra el contenido (las tablas) horizontalmente */
+  align-items: center; 
   gap: 2rem;
   /* Estilos de la tarjeta contenedora */
   background-color: #ffffff;
@@ -346,8 +346,8 @@ p a{
 }
 
 .tablas table {
-  width: 100%; /* La tabla ocupará todo el ancho del contenedor blanco */
-  border-collapse: collapse; /* Une los bordes para un look de cuadrícula limpia */
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .logo_mp{
@@ -486,8 +486,8 @@ p a{
   color: #000000;
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 20px; /* Espacio interno */
-  text-align: center; /* Centra el texto */;
+  padding: 20px; 
+  text-align: center;
   display: flex;
   flex-direction: column;
 }
@@ -555,19 +555,19 @@ form label {
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Espacio entre la etiqueta y el input */
-    align-items: center; /* Centra los elementos dentro del grupo */
+    gap: 5px;
+    align-items: center; 
 }
 
 /* Estilos para el mensaje "¿No estás registrado? ¡Regístrate!" */
 .registro-prompt {
-    margin-top: 1.5rem; /* Espacio superior para separarlo del formulario */
+    margin-top: 1.5rem; 
     font-size: 1rem;
-    color: #333; /* Color de texto general */
+    color: #333;
 }
 
 .registro-prompt a {
-    color: #007bff; /* Color del enlace */
+    color: #007bff; 
     text-decoration: none;
     font-weight: bold;
 }
@@ -600,14 +600,12 @@ form label {
   height: 100%;
   border: 0;
 }
-
 /*----------------------------- FIN ESTILOS DE MAPA ----------------------------------------*/
 .container-principal {
   display: flex;
   align-items: stretch;
   flex: 1;
 }
-
 .hero-section {
   color: #ffffff;
   text-align: center;
@@ -618,13 +616,11 @@ form label {
   margin: 3rem auto;
   border-radius: 15px; 
 }
-
 .hero-section h3 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: white;
 }
-
 .hero-section p {
   font-size: 1.2rem;
   max-width: 800px;
@@ -632,7 +628,6 @@ form label {
   line-height: 1.7;
     color: white;
 }
-
  img.redes{
     width: 35px;
     height: 35px;
@@ -642,54 +637,46 @@ form label {
     -ms-transition: all .2s ease-in-out;
     margin-left: 2%;
 }
-
 .transition {
     -webkit-transform: scale(0.8); 
     -moz-transform: scale(0.8);
     -o-transform: scale(0.8);
     transform: scale(0.8);
 }
-
 .titulo_deportes h2 span {
-  background-color: #dcdcdc; /* Color de fondo para que el texto resalte */
-  padding: 0 0.5em; /* Relleno alrededor del texto */
-  white-space: nowrap; /* Evitar que el texto se envuelva */
+  background-color: #dcdcdc;
+  padding: 0 0.5em; 
+  white-space: nowrap; 
 }
-
 article h3 {
   margin-left: 2.5%;
   margin-bottom: 1.5%;
-  margin-top: 1rem; /* Ajustado para consistencia */
-  font-size: 1.4rem; /* Tamaño ajustado */
+  margin-top: 1rem; 
+  font-size: 1.4rem; 
   color: #000000;
 }
-
 h3{
 	margin-left: 3%;
 	color: #000000;
 }
-
 article p{
-	font-size: 1rem; /* Tamaño ajustado */
+	font-size: 1rem;
 	margin: 0 3% 1rem 3%;
   display: block;
   color: #000000;
-  line-height: 1.6; /* Mejora la legibilidad de los párrafos */
+  line-height: 1.6;
 }
-
 article ul li {
-  font-size: 1rem; /* Tamaño ajustado */
+  font-size: 1rem;
   margin-left: 8%;
   margin-top: 1%;
   color: #000000;
 }
-
 footer{
-	background-color: #b0c4de; /* Mismo color que el header para consistencia */
+	background-color: #b0c4de; 
 	text-align: center;
   padding: 1rem 0;
 }
-
 footer div a{
   color: #000000;
   display: inline-block;
@@ -709,11 +696,6 @@ footer div a{
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 3rem;
 }
-
-
-/* --- Estilos para la ventana modal de horarios --- */
-
-/* El fondo del modal (overlay) */
 #horariosModal {
   display: none; 
   position: fixed; 
@@ -722,50 +704,41 @@ footer div a{
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; /* Habilita el scroll si es necesario */
-  background-color: rgb(0,0,0); /* Color de fondo */
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
   background-color: rgba(0,0,0,0.4); 
 }
-
-/* Contenido del Modal */
 #customHorariosModal .custom-modal-content {
   background-color: #fefefe;
   margin: 15% auto; 
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Podría ser más pequeño o más grande dependiendo del contenido */
+  width: 80%;
   max-width: 600px;
   border-radius: 10px;
   position: relative;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   animation: animatetop 0.4s;
 }
-
-/* Animación de entrada */
 @keyframes animatetop {
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
 }
-
-/* El botón de cerrar (x) */
 #customHorariosModal .custom-close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-
 .modal .close:hover,
 .modal .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
-
-/* Estilo para el botón que abre el modal */
 .btn-ver-horarios {
   display: block;
-  background-color: #007bff; /* Color azul más vibrante */
+  background-color: #007bff; 
   color: #ffffff;
   text-align: center;
   padding: 0.75rem 1rem;
@@ -775,15 +748,13 @@ footer div a{
   transition: background-color 0.3s ease;
   border: none;
   cursor: pointer;
-  width: 100%; /* Hacemos que ocupe todo el ancho del contenedor padre */
-  font-family: inherit; /* Hereda la fuente del body */
+  width: 100%; 
+  font-family: inherit; 
   font-size: 1rem;
 }
-
 .btn-ver-horarios:hover {
-  background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+  background-color: #0056b3; 
 }
-
 .btn-añadir-deporte {
   display: block;
   background-color: #3888ad;
@@ -796,8 +767,8 @@ footer div a{
   transition: background-color 0.3s ease;
   border: none;
   cursor: pointer;
-  width: auto; /* Se mantiene el ancho automático */
-  font-family: inherit; /* Hereda la fuente del body */
+  width: auto;
+  font-family: inherit; 
   font-size: 1rem;
   margin-bottom: 4%;
   text-align: center;
@@ -805,7 +776,6 @@ footer div a{
 .btn-añadir-deporte:hover {
   background-color: #2a6a8a;
 }
-
 .btn-editar-deporte {
   display: block;
   background-color: #3888ad;
@@ -816,270 +786,32 @@ footer div a{
   border-radius: 5px;
   transition: background-color 0.3s ease; 
   border: none; 
-  margin-bottom: 0.5rem; /* Espacio fijo entre botones */
+  margin-bottom: 0.5rem; 
   cursor: pointer; 
-  width: 120px; /* Ancho fijo para consistencia */
+  width: 120px; 
   font-family: inherit; 
   font-size: 0.8rem;
 }
 .btn-editar-deporte:hover {
   background-color: #2a6a8a;
 }
-
-/* Estilo para los encabezados de las tablas */
 .tablas th {
-  background-color: #f2f2f2; /* Un fondo gris claro para el encabezado */
+  background-color: #f2f2f2; 
   color: #333;
   font-weight: bold;
   padding: 12px 15px;
   text-align: left;
-  border: 1px solid #ddd; /* Borde para celdas de encabezado */
+  border: 1px solid #ddd; 
 }
-
-/* Estilo para las celdas de datos (filas) de las tablas */
 .tablas td {
-	font-size: 1rem; /* Tamaño ajustado */
-  color: #333; /* Un gris oscuro es más suave a la vista que el negro puro */
-  text-align: left; /* Alineación a la izquierda para mejor legibilidad */
+	font-size: 1rem;
+  color: #333; 
+  text-align: left; 
   line-height: 1.6;
-  padding: 10px 15px; /* Aumentamos el padding para más aire */
-  border: 1px solid #ddd; /* Borde sutil para crear la cuadrícula */
-  vertical-align: middle; /* Centra el contenido verticalmente */
+  padding: 10px 15px; 
+  border: 1px solid #ddd;
+  vertical-align: middle;
 }
-
-/*-------------------------------------------- Inciio Código de Lightbox ----------------------------------------*/
-.lightbox-min{ /*Para las imágenes de la primer fila*/
-	margin-left: 1.7%;
-  margin-top: 1.7%;
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  -o-transition: all .2s ease-in-out;
-  -ms-transition: all .2s ease-in-out;
-}
-
-.lightbox-min-2{ /*Para las imágenes de la segunda fila en adelante*/
-	margin-top: 2%; 
-	margin-left: 1.7%;
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  -o-transition: all .2s ease-in-out;
-  -ms-transition: all .2s ease-in-out;
-}
-
-.lb-loader,.lightbox{
-	text-align:center;
-	line-height:0;
-	position:absolute;
-	left:0
-}
-
-body.lb-disable-scrolling {
-  overflow: hidden;
-}
-
-.lightboxOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  background-color: black;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  opacity: 0.8;
-  display: none;
-}
-
-.lightbox {
-  position: absolute;
-  left: 0;
-  width: 100%; /*--> Modifica las coordenadas de expansión de las imágenes*/
-  z-index: 10000;
-  text-align: center;
-  line-height: 0;
-  font-weight: normal;
-  outline: none;
-}
-
-.lightbox .lb-image {
-  display: block;
-  height: auto;
-  max-width: inherit;
-  max-height: none;
-  border-radius: 3px;
-  /* Borde de la imagen */
-  border: 4px solid rgb(161, 114, 52);
-  box-shadow: 0 0 15px rgba(161, 114, 52, 7);
-}
-
-.lightbox a img {
-  border: none;
-  box-shadow: 0 0 15px rgba(161, 114, 52, 7);
-}
-
-.lb-outerContainer { /*Opciones de imagen expandida*/
-  position: relative;
-  zoom: 1;
-  width: 250px;
-  height: 250px;
-  margin: 0 auto;
-  border-radius: 4px;
-
-  /* Color de fondo detrás de la imagen.
-     Es visible durante las transiciones. */
-  background-color: white;
-}
-
-.lb-outerContainer:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.lb-loader {
-  position: absolute;
-  top: 43%;
-  left: 0;
-  height: 25%;
-  width: 100%;
-  text-align: center;
-  line-height: 0;
-}
-
-.lb-cancel {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 0 auto;
-  background: url(../Imagenes/loading.gif) no-repeat;
-}
-
-.lb-nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
-}
-
-.lb-container > .nav {
-  left: 0;
-}
-
-.lb-nav a {
-  outline: none;
-  background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
-}
-
-.lb-prev, .lb-next {
-  height: 100%;
-  cursor: pointer;
-  display: block;
-}
-
-.lb-nav a.lb-prev {
-  width: 34%;
-  left: 0;
-  float: left;
-  background: url(../Imagenes/prev.png) left 48% no-repeat;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  -webkit-transition: opacity 0.6s;
-  -moz-transition: opacity 0.6s;
-  -o-transition: opacity 0.6s;
-  transition: opacity 0.6s;
-}
-
-.lb-nav a.lb-prev:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
-
-.lb-nav a.lb-next {
-  width: 64%;
-  right: 0;
-  float: right;
-  background: url(../Imagenes/next.png) right 48% no-repeat;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  -webkit-transition: opacity 0.6s;
-  -moz-transition: opacity 0.6s;
-  -o-transition: opacity 0.6s;
-  transition: opacity 0.6s;
-}
-
-.lb-nav a.lb-next:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
-
-.lb-dataContainer { /*Opciones del texto agregado a las imágenes*/
-  margin: 0 auto;
-  padding-top: 5px;
-  zoom: 1;
-  width: 100%;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-.lb-dataContainer:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.lb-data { /*Opciones del texto agregado de las imágenes*/
-  padding: 0 4px;
-  color: #ccc;
-}
-
-.lb-data .lb-details { /*Opciones del texto agregado de las imágenes*/
-  width: 85%;
-  float: left;
-  text-align: left;
-  line-height: 1.1em;
-}
-
-.lb-data .lb-caption { /*Opciones del texto agregado de las imágenes*/
-  font-size: 15px; 
-  font-weight: bold;
-  line-height: 1em;
-}
-
-.lb-data .lb-caption a {
-  color: #4ae;
-}
-
-.lb-data .lb-number { /*Opciones del texto "Imagen 1 de 2"*/
-  display: block;
-  clear: left;
-  padding-bottom: 1em;
-  font-size: 15px;
-  color: #999999; 
-}
-
-.lb-data .lb-close {
-  display: block;
-  float: right;
-  width: 30px;
-  height: 30px;
-  background: url(../Imagenes/close.png) top right no-repeat;
-  text-align: right;
-  outline: none;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-  opacity: 0.7;
-  -webkit-transition: opacity 0.2s;
-  -moz-transition: opacity 0.2s;
-  -o-transition: opacity 0.2s;
-  transition: opacity 0.2s;
-}
-
-.lb-data .lb-close:hover {
-  cursor: pointer;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
-/*---------------------------------------- Fin del código de Lightbox -------------------------------------------*/
-
 .mensaje-exito {
     background-color: #d4edda;
     color: #155724;
@@ -1090,7 +822,6 @@ body.lb-disable-scrolling {
     text-align: center;
     font-size: 1.1rem;
 }
-
 .mensaje-error {
     background-color: #f8d7da;
     color: #721c24;
@@ -1100,4 +831,86 @@ body.lb-disable-scrolling {
     margin-bottom: 1rem;
     text-align: center;
     font-size: 1.1rem;
+}
+/*-----------------------------------------------VERSIÓN DE MÓBILES----------------------------------------------*/
+@media screen and (max-width: 480px) {
+  .redes-sociales {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    flex-direction: column; /* Revertido a column */
+    align-items: center;
+    padding: 10px;
+  }
+  .logo {
+    width: 10%;
+    margin-bottom: 0;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+ /* Estilos para el menú desplegable en móvil */
+  nav > ul {
+    flex-direction: column;
+    width: 100%;
+  }
+  nav ul li {
+    padding: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #444;
+  }
+  /* Formulario */
+  .formu {
+    flex: 1;
+    width: 90%;
+    margin: 1rem auto;
+    height: auto;
+    color: #ffffff;
+  }
+  .formu form input[type="text"],
+  .formu form input[type="password"],
+  .formu form input[type="email"] {
+    width: 90%;
+  }
+
+  /* Footer */
+  footer {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  footer div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+  footer div br {
+    display: none;
+  }
+  footer div h7 + a {
+    margin-top: 0;
+  }
+  footer > a {
+    display: inline;
+    margin-top: 2%;
+  }
+  footer img.redes {
+    width: 35px;
+    height: 35px;
+    display: inline;
+  }  
+  nav > ul {
+    display: none;
+  }
 }
