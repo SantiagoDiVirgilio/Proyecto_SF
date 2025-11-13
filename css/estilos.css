@@ -5,7 +5,7 @@
 	margin: 0;
 }
 body{
-	background-color: #dcdcdc;
+	background-color: #aedcf1;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 1.3rem;
 	background-size: cover; 
@@ -831,4 +831,86 @@ footer div a{
     margin-bottom: 1rem;
     text-align: center;
     font-size: 1.1rem;
+}
+/*-----------------------------------------------VERSIÓN DE MÓBILES----------------------------------------------*/
+@media screen and (max-width: 480px) {
+  .redes-sociales {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    flex-direction: column; /* Revertido a column */
+    align-items: center;
+    padding: 10px;
+  }
+  .logo {
+    width: 10%;
+    margin-bottom: 0;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+ /* Estilos para el menú desplegable en móvil */
+  nav > ul {
+    flex-direction: column;
+    width: 100%;
+  }
+  nav ul li {
+    padding: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #444;
+  }
+  /* Formulario */
+  .formu {
+    flex: 1;
+    width: 90%;
+    margin: 1rem auto;
+    height: auto;
+    color: #ffffff;
+  }
+  .formu form input[type="text"],
+  .formu form input[type="password"],
+  .formu form input[type="email"] {
+    width: 90%;
+  }
+
+  /* Footer */
+  footer {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  footer div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+  footer div br {
+    display: none;
+  }
+  footer div h7 + a {
+    margin-top: 0;
+  }
+  footer > a {
+    display: inline;
+    margin-top: 2%;
+  }
+  footer img.redes {
+    width: 35px;
+    height: 35px;
+    display: inline;
+  }  
+  nav > ul {
+    display: none;
+  }
 }
