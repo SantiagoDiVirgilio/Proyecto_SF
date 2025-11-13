@@ -44,11 +44,11 @@ $usuario = mysqli_fetch_array($conexion_usuario);
         </div>
         <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" value="<?php echo $usuario["nombre"]?>" />
+            <input type="text" name="nombre" maxlength="12" value="<?php echo $usuario["nombre"]?>" />
         </div>
         <div class="form-group">
             <label for="dni">DNI:</label>
-            <input type="text" name="dni" value="<?php echo $usuario["dni"]?>" />
+            <input type="text" name="dni" maxlength="12" value="<?php echo $usuario["dni"]?>" />
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
