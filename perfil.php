@@ -73,7 +73,7 @@ include("conexion.php");
                 <td>
                 <?php 
                 if (isset($_SESSION['ROL']) && strtolower($_SESSION['ROL']) != 'admin' && $id == $_SESSION['id_usuario'] && strtolower($resultado['rol']) != 'socio') {
-                    echo '<a class="btn-editar-deporte" href=".php?id_usuario=' . $resultado["id_usuario"] . '" onclick="return confirm(\'Para hacerte socio, serás redirigido a la página de pago. ¿Deseas continuar?\');">¡Hacerme Socio!</a>';
+                    echo '<a class="btn-editar-deporte" href="hacerme_socio.php?id_usuario=' . $resultado["id_usuario"] . '" onclick="return confirm(\'Para hacerte socio, serás redirigido a la página de pago. ¿Deseas continuar?\');">¡Hacerme Socio!</a>';
                 }
                 ?>
                 <a class="btn-editar-deporte" href="modificar_usuario_formu.php?id_usuario=<?php echo $resultado["id_usuario"];?>">Modificar</a>
