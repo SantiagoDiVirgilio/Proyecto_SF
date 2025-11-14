@@ -25,7 +25,6 @@
 	<div class="mobile-header-bar">
 	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
-
 	<article >
     <section class="formu">
         <h3>Inicie Sesión</h3><br>
@@ -50,7 +49,7 @@
     
     </section>
 </article>
-	
+
 <footer>
 <?php
     include("FOOTER.php");
