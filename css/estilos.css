@@ -369,15 +369,31 @@ p a{
   border-collapse: collapse;
 }
 
-.logo_mp{
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  width: 180px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  margin-left: 3%;
+.btn-pago-mp {
+  display: block;
+  background-color: #009ee3;
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 2rem auto;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btn-pago-mp:hover {
+  background-color: #007abf;
+}
+
+.btn-pago-mp img {
+    width: 120px;
+    vertical-align: middle;
 }
 /*-------------------BUSCADOR-------------------*/
 
