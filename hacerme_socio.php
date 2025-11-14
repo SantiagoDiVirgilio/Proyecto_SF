@@ -25,19 +25,48 @@
 </header>
 
 <?php 
-//$clave=md5($_POST['clave']);
-
-// Debugging code
-//echo "Email: " . $email . "<br>";
-//echo "Clave (MD5): " . $clave . "<br>";
-//echo "Error de la base de datos: " . mysqli_error($conexion) . "<br>";
-
 include("conexion.php");
 
-
-	echo '<h2 class="registro">¡TE HCIISTE SOCIO!</h2>';
-	echo('<a class="registro" href="index.php">VOLVER A INICIO</a>');
+echo '<h2 class="registro">¡TE HCIISTE SOCIO!</h2>';
+echo('<a class="registro" href="index.php">VOLVER A INICIO</a>');
 ?>
+<div id="walletBrick_container">
 
+</div>
 </body>
 </html>
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script src="js/mercadopago.js"></script>
+<script>
+        const botonPagar = document.getElementById('pagarBtn');
+        const statusDiv = document.getElementById('status');
+        document.addEventListener('DOMContentLoaded', (event) => {
+        const container = document.getElementById('walletBrick_container');
+        container.innerHTML = '<p>Cargando opciones de pago...</p>';
+
+    fetch('crear_preferencia_socio.php', {
+        method: 'GET' 
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Hubo un problema al contactar el servidor.');
+        }
+        return response.json(); 
+    })
+    .then(data => {
+        const preferenceId = data.preference_id;
+
+        if (preferenceId) {
+            container.innerHTML = ''; 
+            renderWalletBrick(preferenceId);
+        } else {
+            throw new Error('La respuesta del servidor no incluyó un ID de preferencia.');
+        }
+    })
+    .catch(error => {
+        console.error('Error al cargar el brick de pago:', error);
+        container.innerHTML = 
+            `<p class="mensaje-error">No se pudo cargar la opción de pago. ${error.message}</p>`;
+    });
+});
+    </script>

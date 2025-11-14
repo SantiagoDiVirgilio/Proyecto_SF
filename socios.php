@@ -38,8 +38,7 @@ class Socios {
             return [];
         }
     }
-    public function getCuota($id_usuario){
-        
+    public function getCuota($id_usuario){      
         $sql = "SELECT cs.* FROM cuotas_socios AS cs 
             JOIN socios AS s ON cs.id_socio = s.id_socio 
             WHERE s.id_usuario = ?;";
@@ -78,6 +77,49 @@ class Socios {
             mysqli_stmt_close($stmt);
             return false;
         }
-    }  
-}
+    }
+    public function getIdSocio($id_usuario){
+        $sql = "SELECT id_socio FROM socios
+                WHERE id_usuario = ?;"; 
+        $stmt = mysqli_prepare($this->db, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id_usuario);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $resultado = mysqli_stmt_get_result($stmt);
+            $fila_de_datos = mysqli_fetch_assoc($resultado);
+            mysqli_stmt_close($stmt);
+            return $fila_de_datos; 
+        } 
+        else {     
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
+    public function PagarCuotaSocio($id_usuario,$id_pago){
+         
+        $socio = $this->getSocio($id_usuario);
+        $id_socio = $socio["id"];
+        $sql = "UPDATE FROM socios
+                WHERE id_usuario = ?;"; 
+
+        $stmt = mysqli_prepare($this->db, $sql);
+            mysqli_stmt_bind_param($stmt, "i", $id_usuario);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $resultado = mysqli_stmt_get_result($stmt);
+            $fila_de_datos = mysqli_fetch_assoc($resultado);
+            mysqli_stmt_close($stmt);
+            return $fila_de_datos; 
+        } 
+        else {     
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
+    //esto tendria que estar en otro lado pero en unas horas lo entregamos
+    public function AcreditarPagar($preference_id,$monto){
+
+    }
+}  
+
 ?>
