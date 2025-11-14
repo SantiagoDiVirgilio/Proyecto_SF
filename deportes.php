@@ -47,7 +47,7 @@ include("conexion.php");
           </h2>
         <div class="tarjeta-container">
             <?php while($var_deportes = mysqli_fetch_assoc($llamado_deportes)){?>
-                <?php if($var_deportes["nombre"] != NULL && $var_deportes['nombre'] != 'SALON'){?>
+                <?php if($var_deportes["nombre"] != NULL && $var_deportes['nombre'] != 'SALÓN'){?>
                     <div class="tarjeta">
                         <img src="imagenes/<?php echo $var_deportes['nombre'].'.png'; ?>" alt="<?php echo $var_deportes['nombre']; ?>">
                         <div class="tarjeta-body">
