@@ -118,7 +118,7 @@ class Socios {
     }
     //esto tendria que estar en otro lado pero en unas horas lo entregamos
     public function AcreditarPagar($preference_id,$monto){
-
+        $sql = "INSERT INTO pagos";
     }
 }  
 

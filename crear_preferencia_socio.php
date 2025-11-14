@@ -28,13 +28,12 @@ $success_url = "https://localhost/Pro/Graffo/success.php";
 $failure_url = "http://localhost/pro/Graffo/failure.php";
 $pending_url = "http://localhost/pro/Graffo/pending.php";
 include("config.php");
-include("Socios.php");
-
+//include("Socios.php");
 $monto = new Config($conexion);
 //$socio = new Socios($conexion);
 
 $pago=$monto->GetMontoCuota();
-$//nombre= $socio->GetSocio(1);
+//nombre= $socio->GetSocio(1);
 
 $client = new PreferenceClient();
 
