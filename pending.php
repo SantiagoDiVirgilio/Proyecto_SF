@@ -55,7 +55,19 @@
     });
     */
 </script>
+<?php
+include("conexion.php");
+include("config.php");
+include("Socios.php");
+    $monto = new Config($conexion);
+    $socio = new Socios($conexion);
 
+    $pago=$monto->GetMontoCuota();
+    $nombre= $socio->GetSocio(1);
+
+    echo $nombre['nombre'];
+
+?>
 </body>
 </html>
 <script>

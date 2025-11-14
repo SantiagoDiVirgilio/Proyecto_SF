@@ -10,13 +10,13 @@ use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 
 MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a3bc8b5805d6f726606e-2946101958");
-
+/*
 if (!isset($_GET['id_usuario']) ) {
     header('Content-Type: application/json');
     exit;
 }else{
     $id_usuario = intval($_GET['id_usuario']);
-}
+}*/
 
 $timezone = new DateTimeZone('America/Argentina/Buenos_Aires');
 $fecha_inicio = new DateTime('now', $timezone);
@@ -27,18 +27,24 @@ $fechaActual = new DateTime();
 $success_url = "https://localhost/Pro/Graffo/success.php";
 $failure_url = "http://localhost/pro/Graffo/failure.php";
 $pending_url = "http://localhost/pro/Graffo/pending.php";
+include("config.php");
+include("Socios.php");
+
+$monto = new Config($conexion);
+$socio = new Socios($conexion);
+
+$pago=$monto->GetMontoCuota();
+$nombre= $socio->GetSocio(1);
 
 $client = new PreferenceClient();
-$nom = "123";
-$prec = 10;
 
 $preference = $client->create([
     "items" => [
         [
-            "title" => $nom,
+            "title" => "cuota de socio",
             "quantity" => 1,
             "currency_id" => "ARS",
-            "unit_price" => floatval($prec)
+            "unit_price" => floatval($pago)
         ]
      ],
     "back_urls" => [
