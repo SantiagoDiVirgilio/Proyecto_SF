@@ -66,9 +66,9 @@ $usuario = mysqli_fetch_array($conexion_usuario);
                 echo '
 
             <label for="rol">Actualizar Rol a Administrador:</label>
-            <input type="radio" id="rol" name="rol" value="Admin">Admin</input>
+            <input type="radio" id="rol" name="rol" value="admin">Admin</input>
             <label for="rol">Actualizar Rol a Usuario:</label>
-            <input type="radio" id="rol" name="rol" value="Usuario">Usuario</input>';
+            <input type="radio" id="rol" name="rol" value="usuario">Usuario</input>';
         }
         ?>
         </div>
