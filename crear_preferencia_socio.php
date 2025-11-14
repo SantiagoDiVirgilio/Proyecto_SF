@@ -10,12 +10,14 @@ use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 
 MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a3bc8b5805d6f726606e-2946101958");
+
 if (!isset($_GET['id_usuario']) ) {
     header('Content-Type: application/json');
     exit;
 }else{
     $id_usuario = intval($_GET['id_usuario']);
 }
+
 $timezone = new DateTimeZone('America/Argentina/Buenos_Aires');
 $fecha_inicio = new DateTime('now', $timezone);
 $fecha_fin = new DateTime('now', $timezone);
