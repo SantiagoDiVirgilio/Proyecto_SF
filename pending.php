@@ -37,23 +37,7 @@
 <script src="js/mercadopago.js"></script>
 
 <script>
-    /*
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // Creamos un objeto para leer los parámetros de la URL actual
-        const urlParams = new URLSearchParams(window.location.search);
-        
-        // Obtenemos el valor del parámetro 'preference_id' que envía Mercado Pago
-        const preferenceId = urlParams.get('preference_id');
 
-        if (preferenceId) {
-            // Si encontramos el ID, llamamos a la función para dibujar el botón de pago
-            renderWalletBrick(preferenceId);
-        } else {
-            document.getElementById('walletBrick_container').innerHTML = 
-                `<p class="mensaje-error">No se pudo cargar la opción de pago. Falta el identificador de la preferencia.</p>`;
-        }
-    });
-    */
 </script>
 <?php
 include("conexion.php");
@@ -64,8 +48,18 @@ include("Socios.php");
 
     $pago=$monto->GetMontoCuota();
     $nombre= $socio->GetSocio(1);
+    $cuota= $socio->GetCuotaPendiente(1);
+    $estado= $socio->getEstadoSocio(1);
+
+    echo $estado['estado'];
 
     echo $nombre['nombre'];
+
+    if ($cuota){
+        echo "true";
+    }else{
+        echo "false";
+    };
 
 ?>
 </body>

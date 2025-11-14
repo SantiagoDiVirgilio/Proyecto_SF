@@ -42,10 +42,7 @@ $fechaActual = new DateTime();
         ]);
     }
 
-
-
-
-$success_url = "localhost/Proyecto_SF/success.php";
+$success_url = "https://localhost/pro/Graffo/success.php";
 $failure_url = "http://localhost/pro/Graffo/failure.php";
 $pending_url = "http://localhost/pro/Graffo/pending.php";
 

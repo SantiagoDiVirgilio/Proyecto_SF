@@ -27,6 +27,8 @@
 
     <?php
     include("conexion.php");
+    include("socios.php");
+
 
     $collection_id = $_GET['collection_id'] ?? null;
     $collection_status = $_GET['collection_status'] ?? null;
@@ -35,37 +37,27 @@
     $preference_id = $_GET['preference_id'] ?? null;
     $external_reference = $_GET['external_reference'] ?? null;
 
-    $id_reserva = null;
-    $monto = null;
-    $date = null;
     if ($external_reference) {
         $data = json_decode($external_reference, true);
-        if (is_array($data) && isset($data['id_reserva'])) {
-            $id_reserva = $data['id_reserva'];
-            $monto = $data['monto'];   
-            $date = $data['date'];
+        if (isset($data['id_usuario'])) {
+            $id_usuario = $data['id_usuario'];
+            $monto = $data['monto'];    
         }
     }
     if ($status === 'approved' && !empty($preference_id)) {
-        
-        $sql_update_pago = "UPDATE pagos SET estado = ?, transaction_amount = ? WHERE id_preference = ?";
-        $stmt_pago = mysqli_prepare($conexion, $sql_update_pago);
-    
-        mysqli_stmt_bind_param($stmt_pago, "sds", $status, $monto, $preference_id);
-        mysqli_stmt_execute($stmt_pago);
-        mysqli_stmt_close($stmt_pago);
-
-        $sql_update_reserva = "UPDATE reservas r 
-                               JOIN pagos p ON r.id_pago = p.id_pago 
-                               SET r.estado = 'Confirmada' 
-                               WHERE p.id_preference = ?";
-        $stmt_reserva = mysqli_prepare($conexion, $sql_update_reserva);
-        mysqli_stmt_bind_param($stmt_reserva, "s", $preference_id);
-        mysqli_stmt_execute($stmt_reserva);
-        mysqli_stmt_close($stmt_reserva);
+        $socio = new Socios($conexion);
+        $estado =$socio->getEstadoSocio($id_usuario);
+        if( $estado['estado'] == "Activo") {
+            $id_pago = $socio->AcreditarPagar($preference_id, $monto, $status);
+            $socio->PagarCuotaSocio($id_usuario,$id_pago,$status);
+        }else{    
+            $socio->createSocio($id_usuario);
+            $socio->generarCuota($id_usuario );
+            $id_pago = $socio->AcreditarPagar($preference_id, $monto, $status);
+            $socio->PagarCuotaSocio($id_usuario,$id_pago,"pagoenelif");
+        }     
     }
     ?>
-<!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 document.getElementById('btnVolver').addEventListener('click', function(e) {
@@ -73,7 +65,6 @@ document.getElementById('btnVolver').addEventListener('click', function(e) {
     if (window.parent && typeof window.parent.closeCalendarioModal === 'function') {
         window.parent.closeCalendarioModal();
     }
-    // Redirect the main page to index.php
     window.top.location.href = 'index.php';
 });
 

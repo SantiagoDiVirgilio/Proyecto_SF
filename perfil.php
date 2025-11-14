@@ -80,6 +80,19 @@ include("conexion.php");
                 </td>
             </tr>
         </table>
+        <h3>Cuotas Pendiente : </h3>
+                <?php
+                    include("conexion.php");
+                    include("socios.php");
+                 
+                    $socio = new Socios($conexion);
+                    $cuota= $socio->GetCuotaPendiente($resultado["id_usuario"]);
+                        if ($cuota){
+                            echo '<div id="walletBrick_container" ></div>';
+                        }else{
+                            echo '<p>No tienes cuotas pendientes</p>';
+                        }; ?>
+                
         <h3>Deportes inscriptos:</h3>
         <div class="tarjeta-container">
             <?php
@@ -103,7 +116,6 @@ include("conexion.php");
         </div>
     </div>
 </article>
-
 <footer>
 <?php
     include("FOOTER.php");
@@ -121,7 +133,6 @@ include("conexion.php");
         }
     }
 </script>
-
 <script>
 
 $('ul.tabs li a:first').addClass('active');
@@ -164,3 +175,37 @@ function toggleMenu() {
 </body>
 
 </html>
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script src="js/mercadopago.js"></script>
+<script>
+        const botonPagar = document.getElementById('pagarBtn');
+        const statusDiv = document.getElementById('status');
+        document.addEventListener('DOMContentLoaded', (event) => {
+        const container = document.getElementById('walletBrick_container');
+        container.innerHTML = '<p>Cargando opciones de pago...</p>';
+
+    fetch('crear_preferencia_socio.php?id_usuario='+ <?php echo $resultado["id_usuario"]; ?> , {
+        method: 'GET' 
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Hubo un problema al contactar el servidor.');
+        }
+        return response.json(); 
+    })
+    .then(data => {
+        const preferenceId = data.preference_id;
+        if (preferenceId) {
+            container.innerHTML = ''; 
+            renderWalletBrick(preferenceId);
+        } else {
+            throw new Error('La respuesta del servidor no incluyó un ID de preferencia.');
+        }
+    })
+    .catch(error => {
+        console.error('Error al cargar el brick de pago:', error);
+        container.innerHTML = 
+            `<p class="mensaje-error">No se pudo cargar la opción de pago. ${error.message}</p>`;
+    });
+});
+    </script>

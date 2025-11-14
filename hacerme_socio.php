@@ -26,12 +26,12 @@
 
 <?php 
 include("conexion.php");
+$id_usuario = $_GET['id_usuario'];
 
 echo '<h2 class="registro">¡TE HCIISTE SOCIO!</h2>';
 echo('<a class="registro" href="index.php">VOLVER A INICIO</a>');
 ?>
 <div id="walletBrick_container">
-
 </div>
 </body>
 </html>
@@ -44,7 +44,7 @@ echo('<a class="registro" href="index.php">VOLVER A INICIO</a>');
         const container = document.getElementById('walletBrick_container');
         container.innerHTML = '<p>Cargando opciones de pago...</p>';
 
-    fetch('crear_preferencia_socio.php', {
+    fetch('crear_preferencia_socio.php?id_usuario='+<?php echo $id_usuario; ?> , {
         method: 'GET' 
     })
     .then(response => {
@@ -55,7 +55,6 @@ echo('<a class="registro" href="index.php">VOLVER A INICIO</a>');
     })
     .then(data => {
         const preferenceId = data.preference_id;
-
         if (preferenceId) {
             container.innerHTML = ''; 
             renderWalletBrick(preferenceId);

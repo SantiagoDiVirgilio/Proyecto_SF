@@ -201,6 +201,11 @@
           ]
         }
       ],
+      
+      selectAllow: function(selectInfo) {  
+        let duration = selectInfo.end.getTime() - selectInfo.start.getTime();
+        return duration <= 3600000;
+      },
       select: function(info) {
         selectionInfo = info;
 

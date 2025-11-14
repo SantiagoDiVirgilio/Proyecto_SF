@@ -60,6 +60,28 @@ class Socios {
             return false;
         }
     }
+    public function getCuotaPendiente($id_usuario){      
+        $sql = "SELECT cs.* FROM cuotas_socios AS cs 
+            JOIN socios AS s ON cs.id_socio = s.id_socio 
+            WHERE s.id_usuario = ? and cs.estado = 'pendiente';";
+            
+            $stmt = mysqli_prepare($this->db, $sql);
+            mysqli_stmt_bind_param($stmt, "i", $id_usuario);
+    
+        if (mysqli_stmt_execute($stmt)) {
+        
+        
+            $resultado = mysqli_stmt_get_result($stmt);
+            $fila_de_datos = mysqli_fetch_assoc($resultado);
+            mysqli_stmt_close($stmt);
+
+            return $fila_de_datos; 
+        } 
+        else {     
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
     public function getSocio($id_usuario){
         $sql = "SELECT * FROM usuarios
                 WHERE id_usuario = ?;";
@@ -95,15 +117,74 @@ class Socios {
             return false;
         }
     }
-    public function PagarCuotaSocio($id_usuario,$id_pago){
-         
-        $socio = $this->getSocio($id_usuario);
-        $id_socio = $socio["id"];
-        $sql = "UPDATE FROM socios
-                WHERE id_usuario = ?;"; 
+    public function PagarCuotaSocio($id_usuario, $id_pago, $estado) {
+    
+    $datos_socio = $this->getIdSocio($id_usuario); 
+    
+    if (!$datos_socio || !isset($datos_socio['id_socio'])) {
+        return false;
+    }
+    
+    $id_socio = $datos_socio['id_socio'];
 
+    $sql = "UPDATE cuotas_socios SET estado = ?, id_pago = ? WHERE id_socio = ?";
+    $stmt = mysqli_prepare($this->db, $sql);
+
+    mysqli_stmt_bind_param($stmt, "sii", $estado, $id_pago, $id_socio);
+
+    if (mysqli_stmt_execute($stmt)) {
+        mysqli_stmt_close($stmt);
+        return true;
+    } else {
+        mysqli_stmt_close($stmt);
+        return false;
+    }
+}
+    public function AcreditarPagar($preference_id,$monto,$estado){
+        $sql = "INSERT INTO pagos (id_preference, transaction_amount, estado) VALUES (?, ?, ?);";
         $stmt = mysqli_prepare($this->db, $sql);
-            mysqli_stmt_bind_param($stmt, "i", $id_usuario);
+        mysqli_stmt_bind_param($stmt, "sds", $preference_id, $monto, $estado);
+
+        if (mysqli_stmt_execute($stmt)) {
+
+        $nuevo_id = mysqli_insert_id($this->db);   
+        mysqli_stmt_close($stmt);
+        return $nuevo_id; 
+
+        } else { 
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
+    public function generarCuota($id_usuario){   
+        $datos_socio = $this->getIdSocio($id_usuario); 
+    // Verificar si encontramos al socio
+    if (!$datos_socio || !isset($datos_socio['id_socio'])) {
+        // No se encontró el socio, no se puede actualizar la cuota
+        return false;
+    }
+    
+    // Esta es la variable correcta que necesitamos
+    $id_socio = $datos_socio['id_socio'];
+    
+        $sql = "INSERT INTO cuotas_socios SET id_socio = ?";
+        $stmt = mysqli_prepare($this->db, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id_socio);
+   
+        if (mysqli_stmt_execute($stmt)) { 
+            mysqli_stmt_close($stmt);
+            return true;
+        } else {
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
+    public function getEstadoSocio($id_usuario)
+    {
+        $sql = "SELECT estado FROM socios
+                WHERE id_usuario = ?;"; 
+        $stmt = mysqli_prepare($this->db, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id_usuario);
     
         if (mysqli_stmt_execute($stmt)) {
             $resultado = mysqli_stmt_get_result($stmt);
@@ -116,10 +197,7 @@ class Socios {
             return false;
         }
     }
-    //esto tendria que estar en otro lado pero en unas horas lo entregamos
-    public function AcreditarPagar($preference_id,$monto){
-        $sql = "INSERT INTO pagos";
-    }
-}  
+} 
+
 
 ?>
