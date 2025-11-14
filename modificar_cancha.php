@@ -10,10 +10,9 @@ $precio = $_POST['precio'];
 
 	$_SESSION['VARIABLE'] = session_id();
 
-	    $consulta = mysqli_query($conexion, "UPDATE canchas 
-     SET nombre='$nombre', tipo='$tipo', descripcion='$descripcion', precio_hora='$precio'
-     WHERE id_cancha='$id_cancha'");
-	
+	$consulta = mysqli_query($conexion, "UPDATE canchas 
+     			SET nombre='$nombre', tipo='$tipo', descripcion='$descripcion', precio_hora='$precio'
+    			WHERE id_cancha='$id_cancha'");	
 	    if ($consulta) {
 	        $_SESSION['mensaje'] = "Cancha modificada exitosamente.";
 	    } else {

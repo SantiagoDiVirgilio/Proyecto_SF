@@ -111,7 +111,7 @@ include("conexion.php");
           </h2>
         <?php while($deportes = mysqli_fetch_assoc($conexdeportes)){?>
             <section class="titulo_deportes" id="<?php echo htmlspecialchars($deportes["nombre"]); ?>">
-                <h2><span><?php echo htmlspecialchars($deportes["nombre"]); ?></span></h2>
+                <h2><?php echo htmlspecialchars($deportes["nombre"]); ?></h2>
                 <div class="canchas-container">
                     <?php $canchas = mysqli_query($conexion, "SELECT * FROM canchas"); ?>
                     <?php $horarioscanchas = mysqli_query($conexion, "SELECT * FROM horario_cancha");
@@ -194,7 +194,6 @@ include("conexion.php");
         if (btnCerrar) {
             btnCerrar.addEventListener("click", cerrarModal);
         }
-
         // Evento para cerrar haciendo clic fuera del contenido
         if (modal) {
             modal.addEventListener("click", function(event) {
@@ -203,7 +202,6 @@ include("conexion.php");
                 }
             });
         }
-
         // Función global para que el iframe pueda cerrar el modal
         window.closeCalendarioModal = cerrarModal;
     }

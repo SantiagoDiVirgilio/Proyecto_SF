@@ -36,7 +36,6 @@
     .then(response => response.json())
     .then(data => {
       if (data.preference_id && data.init_point) {        
-        // 1. Primero, guardamos el preference_id en nuestra base de datos.
         const formData = new FormData();
         formData.append('id_reserva', idReserva);
         formData.append('preference_id', data.preference_id);
@@ -55,7 +54,6 @@
             throw new Error("Error al registrar el pago en el sistema: " + pagoData.message);
           }
         });
-
       } else {
         throw new Error('Error al generar la preferencia de pago desde el servidor.');
       }
