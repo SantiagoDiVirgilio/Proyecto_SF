@@ -30,7 +30,7 @@ include("conexion.php");
 	    <?php
 	    if (isset($_SESSION['mensaje'])) {
 	        echo '<div class="message">' . $_SESSION['mensaje'] . '</div>';
-	        unset($_SESSION['mensaje']); // Clear the message after displaying it
+	        unset($_SESSION['mensaje']);
 	    }
 	    ?>
 	

@@ -63,8 +63,6 @@ include("conexion.php");
                     }
                 ?>
             </h2>
-    
-        
         </form>
             <div class="formu-card-container">
                 <h2 class="formu-card"> 
@@ -77,12 +75,11 @@ include("conexion.php");
                     <a href="usuarios_tablas.php" class="perfil">Gestionar Usuarios</a>
                 </h2>
                 <h2 class="formu-card"> 
-                    <a href="horarios_tablas.php" class="perfil">Gestionar Horarios</a>
+                    <a href="reservas_tablas.php" class="perfil">Visualizar Reservas</a>
                 </h2>
             </div>
     </main>
-
-   <?php } ?>
+<?php } ?>
 <footer>
 <?php
     include("FOOTER.php");

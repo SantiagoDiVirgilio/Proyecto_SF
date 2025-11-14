@@ -7,7 +7,6 @@
             <div class="custom-dropdown-content">
                 <a href="alquileres.php#FUTBOL">Futbol</a>
                 <a href="alquileres.php#BASQUET">Basquet</a>
-                <a href="alquileres.php#SALON">Salon</a>
                 <a href="alquileres.php#NATACION">Pileta</a>
             </div>
         </li>
