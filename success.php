@@ -22,7 +22,7 @@
         <h1>¡Pago Completado!</h1>
         <p>Tu pago ha sido procesado con éxito. ¡Gracias por tu reserva!</p>
         
-        <a href="index.php" class="btn-volver">Volver al Inicio</a>
+        <a href="#" id="btnVolver" class="btn-volver">Volver al Inicio</a>
     </div>
 
     <?php
@@ -68,6 +68,15 @@
 <!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
+document.getElementById('btnVolver').addEventListener('click', function(e) {
+    e.preventDefault();
+    if (window.parent && typeof window.parent.closeCalendarioModal === 'function') {
+        window.parent.closeCalendarioModal();
+    }
+    // Redirect the main page to index.php
+    window.top.location.href = 'index.php';
+});
+
 $(document).ready(function(){
     $('.redes').hover(function() {
         $(this).addClass('transition');
