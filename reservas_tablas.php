@@ -35,16 +35,17 @@ include("conexion.php");
 	
 		<div class="mobile-header-bar">	<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
 	</header>
+	<div class="tablas">
 			<article id="tab1">
                 <?php if ($llamado_reservas && mysqli_num_rows($llamado_reservas) > 0): ?>
                 <table>
                     <thead>
-						<th class="tabla-usuario">ID Reserva</th>
-                        <th class="tabla-usuario">Cancha</th>
-                        <th class="tabla-usuario">Pago</th>
-                        <th class="tabla-usuario">Telefono</th>
-                        <th class="tabla-usuario">Estado</th>
-                        <th class="tabla-usuario">Fecha de reserva</th>
+						<th class="tabla-deporte">ID Reserva</th>
+                        <th class="tabla-deporte">Cancha</th>
+                        <th class="tabla-deporte">Pago</th>
+                        <th class="tabla-deporte">Telefono</th>
+                        <th class="tabla-deporte">Estado</th>
+                        <th class="tabla-deporte">Fecha de reserva</th>
                         <th class="tabla-deporte">Monto</th>
                         <th class="tabla-deporte">Hora de Inicio</th>
                         <th class="tabla-deporte">Hora de Finalización</th>
@@ -52,16 +53,16 @@ include("conexion.php");
                     </thead>
                 <?php while($var_reservas = mysqli_fetch_assoc($llamado_reservas)){?>
                 <tr>
-					<td><?php echo htmlspecialchars($var_reservas["id_reserva"]);?></td>
-                    <td><?php echo htmlspecialchars($var_reservas["nombre_cancha"]);?></td>
-                    <td><?php echo htmlspecialchars($var_reservas["pago"]);?></td>
-                    <td><?php echo htmlspecialchars($var_reservas["telefono"]);?></td>
-                    <td><?php echo htmlspecialchars($var_reservas["estado"]);?></td>
-                    <td><?php echo htmlspecialchars($var_reservas["fecha_reserva"]);?></td>
-                    <td>$<?php echo htmlspecialchars($var_reservas["monto"]);?></td>
-                    <td><?php echo htmlspecialchars($var_reservas["hora_inicio"]);?></td>
-                    <td><?php echo htmlspecialchars($var_reservas["hora_fin"]);?></td>
-                    <td><?php echo htmlspecialchars($var_reservas["nombre_usuario"]);?></td>
+					<td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["id_reserva"]);?></td>
+                    <td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["nombre_cancha"]);?></td>
+                    <td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["pago"]);?></td>
+                    <td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["telefono"]);?></td>
+                    <td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["estado"]);?></td>
+                    <td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["fecha_reserva"]);?></td>
+                    <td class="tabla-deporte">$<?php echo htmlspecialchars($var_reservas["monto"]);?></td>
+                    <td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["hora_inicio"]);?></td>
+                    <td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["hora_fin"]);?></td>
+                    <td class="tabla-deporte"><?php echo htmlspecialchars($var_reservas["nombre_usuario"]);?></td>
                 </tr>
                 <?php }?>
                 </table>

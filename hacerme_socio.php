@@ -31,6 +31,7 @@ $id_usuario = $_GET['id_usuario'];
 echo '<h2 class="registro">¡TE HCIISTE SOCIO!</h2>';
 echo('<a class="registro" href="index.php">VOLVER A INICIO</a>');
 ?>
+<button class="btn-pago-mp"><img src="imagenes/logo_mp.webp" alt="Logo Mercado Pago"></button>
 <div id="walletBrick_container">
 </div>
 </body>
