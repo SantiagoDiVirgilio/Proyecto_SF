@@ -32,17 +32,17 @@ if (!isset($_GET['id_cancha']) || !isset($_GET['id_reserva'])) {
 $timezone = new DateTimeZone('America/Argentina/Buenos_Aires');
 $fecha_inicio = new DateTime('now', $timezone);
 $fecha_fin = new DateTime('now', $timezone);
-$fecha_fin->modify('+3 minutes'); 
+$fecha_fin->modify('+1 minutes'); 
 $fechaActual = new DateTime();
- if ($cancha) {
-        $external_reference_data = json_encode([
+ 
+    $external_reference_data = json_encode([
         'id_reserva' => $id_reserva,
-        'monto' => floatval($cancha['precio_hora']),
+        'monto' => floatval($elementoCobro['precio_hora']),
         'date'=> $fechaActual->format('d/m/Y H:i:s')
         ]);
-    }
+    
 
-$success_url = "https://localhost/pro/Graffo/success.php";
+$success_url = "https://localhost/Pro/Graffo/success.php";
 $failure_url = "http://localhost/pro/Graffo/failure.php";
 $pending_url = "http://localhost/pro/Graffo/pending.php";
 

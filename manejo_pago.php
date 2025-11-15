@@ -14,7 +14,6 @@ if (!$id_reserva || !$preference_id) {
 mysqli_begin_transaction($conexion);
 
 try {
-    // 1. Obtener el id_pago desde la tabla de reservas
     $sql_get_pago = "SELECT id_pago FROM reservas WHERE id_reserva = ?";
     $stmt_get_pago = mysqli_prepare($conexion, $sql_get_pago);
     mysqli_stmt_bind_param($stmt_get_pago, "i", $id_reserva);
@@ -28,7 +27,6 @@ try {
         throw new Exception('No se encontró un pago asociado a la reserva.');
     }
 
-    // 2. Actualizar el registro existente en la tabla 'pagos' con el id_preference
     $sql_update_pago = "UPDATE pagos SET id_preference = ? WHERE id_pago = ?";
     $stmt_update = mysqli_prepare($conexion, $sql_update_pago);
     if ($stmt_update === false) {
@@ -41,7 +39,6 @@ try {
     echo json_encode(['success' => true, 'id_pago' => $id_pago, 'id_reserva' => $id_reserva]);
 
 } catch (Exception $e) {
-    // Si algo falló, revertir la transacción
     mysqli_rollback($conexion);
     echo json_encode(['success' => false, 'message' => 'Error al procesar el pago: ' . $e->getMessage()]);
 }

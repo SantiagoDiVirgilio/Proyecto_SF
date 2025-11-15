@@ -47,10 +47,10 @@
         .then(response => response.json())
         .then(pagoData => {
           if (pagoData.success) {
-            // 2. Si se guardó correctamente, AHORA redirigimos al usuario a pagar.
+            
             window.location.href = data.init_point;
           } else {
-            // Si falla el guardado, mostramos un error y no redirigimos.
+          
             throw new Error("Error al registrar el pago en el sistema: " + pagoData.message);
           }
         });

@@ -53,6 +53,7 @@ include("conexion.php");
                         <div class="tarjeta-body">
                             <h4><?php echo htmlspecialchars($var_deportes["nombre"]); ?></h4>
                             <h5><?php echo htmlspecialchars($var_deportes["descripcion"]); ?></h5>
+                            <p>CUPO ACTUAL : <?php echo htmlspecialchars($var_deportes["cupo_maximo"]-$var_deportes["cupo_actual"]); ?></p>
                             <button class="btn-ver-horarios" data-deporte-id="<?php echo $var_deportes['id_deporte']; ?>" data-cancha-nombre="<?php echo htmlspecialchars($var_deportes['nombre'], ENT_QUOTES); ?>">Inscribirse</button>
                         </div>
                     </div>

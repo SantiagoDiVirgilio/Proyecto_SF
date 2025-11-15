@@ -15,6 +15,28 @@
 </head>
 
 <body class="success-page">
+    <?php
+    /*
+    $status = $_GET['status'] ?? null;
+    $external_reference = $_GET['external_reference'] ?? null;
+    
+
+    $id_reserva = null;
+    $monto = null;
+    $date = null;
+   
+        $data = json_decode($external_reference, true);
+        if (is_array($data) && isset($data['id_reserva'])) {
+            $id_reserva = $data['id_reserva'];
+            $monto = $data['monto'];   
+            $date = $data['date'];
+        }
+    
+    echo $status;
+    echo $monto;
+    ECHO "HOLA";
+    */
+    ?>
     <div class="success-card">
         <div class="success-icon">
             <i class="fa fa-check-circle"></i>
@@ -24,7 +46,6 @@
         
         <a href="#" id="btnVolver" class="btn-volver">Volver al Inicio</a>
     </div>
-
     <?php
     include("conexion.php");
 
@@ -42,10 +63,11 @@
         $data = json_decode($external_reference, true);
         if (is_array($data) && isset($data['id_reserva'])) {
             $id_reserva = $data['id_reserva'];
-            $monto = $data['monto'];   
+            $monto = floatval($data['monto']);   
             $date = $data['date'];
         }
     }
+    
     if ($status === 'approved' && !empty($preference_id)) {
         
         $sql_update_pago = "UPDATE pagos SET estado = ?, transaction_amount = ? WHERE id_preference = ?";
@@ -64,6 +86,7 @@
         mysqli_stmt_execute($stmt_reserva);
         mysqli_stmt_close($stmt_reserva);
     }
+        
     ?>
 <!-- Script de efecto zoom -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

@@ -10,18 +10,29 @@
 <?php 
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
-$password = $_POST['clave'];
+$password_plain = $_POST['clave'];
 $dni = $_POST['dni'];
 $telefono = $_POST['telefono'];
 $fecha_alta = date('Y-m-d');
 
-	include("conexion.php");
+// Hashear la contraseña de forma segura
+// La función password_hash se encarga de generar un hash seguro y único para cada contraseña.
+$hashed_password = password_hash($password_plain, PASSWORD_DEFAULT);
 
-	$_SESSION['VARIABLE'] = session_id();
+include("conexion.php");
 
-	$consulta = mysqli_query($conexion, "INSERT INTO usuarios (nombre, clave, dni, email, telefono, fecha_alta, rol, id_sesion) VALUES('$nombre','$password','$dni', '$email','$telefono','$fecha_alta', 'usuario', '')");
+// Usar sentencias preparadas para prevenir inyección SQL
+$sql = "INSERT INTO usuarios (nombre, clave, dni, email, telefono, fecha_alta, rol) VALUES(?, ?, ?, ?, ?, ?, 'usuario')";
+$stmt = mysqli_prepare($conexion, $sql);
 
-	header("Location:iniciar_sesion.php");
+// "ssssss" indica que los 6 parámetros son strings (cadenas de texto)
+mysqli_stmt_bind_param($stmt, "ssssss", $nombre, $hashed_password, $dni, $email, $telefono, $fecha_alta);
+
+mysqli_stmt_execute($stmt);
+
+mysqli_stmt_close($stmt);
+
+header("Location:iniciar_sesion.php?registro=exitoso");
 ?>  
 
 </body>

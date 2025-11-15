@@ -28,12 +28,15 @@
 include("conexion.php");
 $id_usuario = $_GET['id_usuario'];
 
-echo '<h2 class="registro">¡TE HCIISTE SOCIO!</h2>';
-echo('<a class="registro" href="index.php">VOLVER A INICIO</a>');
+echo '<h2 class="registro">Una vez realizado el pago por mercadopago quedara habilitado como socio!!!</h2>';
 ?>
-<button class="btn-pago-mp"><img src="imagenes/logo_mp.webp" alt="Logo Mercado Pago"></button>
-<div id="walletBrick_container">
-</div>
+<button class="btn-pago-mp" id="walletBrick_container"><img src="imagenes/logo_mp.webp" alt="Logo Mercado Pago"></button>
+
+<footer>
+    <?php
+        include("FOOTER.php");
+    ?>
+</footer>
 </body>
 </html>
 <script src="https://sdk.mercadopago.com/js/v2"></script>

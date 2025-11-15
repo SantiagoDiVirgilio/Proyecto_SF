@@ -21,10 +21,10 @@ if (!isset($_GET['id_usuario']) ) {
 $timezone = new DateTimeZone('America/Argentina/Buenos_Aires');
 $fecha_inicio = new DateTime('now', $timezone);
 $fecha_fin = new DateTime('now', $timezone);
-$fecha_fin->modify('+3 minutes'); 
+$fecha_fin->modify('+1 minutes'); 
 $fechaActual = new DateTime();
 
-$success_url = "https://localhost/Pro/Graffo/successCuota.php";
+$success_url = "Graffo/successCuota.php";
 $failure_url = "http://localhost/pro/Graffo/failure.php";
 $pending_url = "http://localhost/pro/Graffo/pending.php";
 include("config.php");
