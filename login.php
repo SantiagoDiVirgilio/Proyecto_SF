@@ -25,38 +25,41 @@
 </header>
 
 <?php 
-$email=mysqli_real_escape_string($conexion, $_POST['email']);
-$clave=$_POST['clave'];
-//$clave=md5($_POST['clave']);
+$email = $_POST['email'];
+$password_ingresada = $_POST['clave'];
 
-// Debugging code
-//echo "Email: " . $email . "<br>";
-//echo "Clave (MD5): " . $clave . "<br>";
-//echo "Error de la base de datos: " . mysqli_error($conexion) . "<br>";
 
-include("conexion.php");
+$sql = "SELECT id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol FROM usuarios WHERE email = ?";
+$stmt = mysqli_prepare($conexion, $sql);
+mysqli_stmt_bind_param($stmt, "s", $email);
+mysqli_stmt_execute($stmt);
+$resultado = mysqli_stmt_get_result($stmt);
 
-$consulta=mysqli_query($conexion, "SELECT id_usuario, nombre, clave, dni, email, telefono, fecha_alta, rol FROM usuarios WHERE email='$email' AND clave='$clave'");
-$resultado=mysqli_num_rows($consulta);
 
-if($resultado!=0){
-	$respuesta=mysqli_fetch_array($consulta);
-	$_SESSION['VARIABLE'] = session_id();
-	$_SESSION['id_usuario'] = $respuesta['id_usuario'];
-	$_SESSION['NOMBRE'] = $respuesta['nombre'];
-	$_SESSION['CLAVE'] = $respuesta['clave'];
-	$_SESSION['DNI'] = $respuesta['dni'];
-	$_SESSION['EMAIL'] = $respuesta['email'];
-	$_SESSION['TELEFONO'] = $respuesta['telefono'];
-	$_SESSION['FECHA_ALTA'] = $respuesta['fecha_alta'];
-	$_SESSION['ROL'] = $respuesta['rol'];
+if ($usuario = mysqli_fetch_assoc($resultado)) {
+    
+    if (password_verify($password_ingresada, $usuario['clave'])) {
+     
+        $_SESSION['VARIABLE'] = session_id();
+        $_SESSION['id_usuario'] = $usuario['id_usuario'];
+        $_SESSION['NOMBRE'] = $usuario['nombre'];
+        $_SESSION['DNI'] = $usuario['dni'];
+        $_SESSION['EMAIL'] = $usuario['email'];
+        $_SESSION['TELEFONO'] = $usuario['telefono'];
+        $_SESSION['FECHA_ALTA'] = $usuario['fecha_alta'];
+        $_SESSION['ROL'] = $usuario['rol'];
 
-	header("Location:deportes.php");
+        header("Location: deportes.php");
+        exit(); 
+	    }
 }
-else{
-	echo '<h2 class="registro">NO ESTAS REGISTRADO O LOS DATOS SON INCORRECTOS</h2>';
-	echo('<a class="registro" href="registro_nuevo.php">¡REGISTRATE!</a>');
-}?>
+
+
+echo '<h2 class="registro">El email o la contraseña son incorrectos.</h2>';
+echo('<a class="registro" href="registro_nuevo.php">¿No tienes cuenta? ¡REGÍSTRATE!</a>');
+
+mysqli_stmt_close($stmt);
+?>
 
 </body>
 </html>

@@ -15,8 +15,6 @@ $dni = $_POST['dni'];
 $telefono = $_POST['telefono'];
 $fecha_alta = date('Y-m-d');
 
-// Hashear la contraseña de forma segura
-// La función password_hash se encarga de generar un hash seguro y único para cada contraseña.
 $hashed_password = password_hash($password_plain, PASSWORD_DEFAULT);
 
 include("conexion.php");
