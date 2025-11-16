@@ -82,7 +82,7 @@
                                SET r.estado = 'Confirmada' 
                                WHERE p.id_preference = ?";
         $stmt_reserva = mysqli_prepare($conexion, $sql_update_reserva);
-        mysqli_stmt_bind_param($stmt_reserva, "s", $preference_id);
+        mysqli_stmt_bind_param($stmt_reserva, "s", $preference_id); 
         mysqli_stmt_execute($stmt_reserva);
         mysqli_stmt_close($stmt_reserva);
     }
