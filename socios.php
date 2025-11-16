@@ -118,13 +118,10 @@ class Socios {
         }
     }
     public function PagarCuotaSocio($id_usuario, $id_pago, $estado) {
-    
-    $datos_socio = $this->getIdSocio($id_usuario); 
-    
+    $datos_socio = $this->getIdSocio($id_usuario);    
     if (!$datos_socio || !isset($datos_socio['id_socio'])) {
         return false;
-    }
-    
+    }  
     $id_socio = $datos_socio['id_socio'];
 
     $sql = "UPDATE cuotas_socios SET estado = ?, id_pago = ? WHERE id_socio = ?";
@@ -158,13 +155,9 @@ class Socios {
     }
     public function generarCuota($id_usuario){   
         $datos_socio = $this->getIdSocio($id_usuario); 
-    // Verificar si encontramos al socio
     if (!$datos_socio || !isset($datos_socio['id_socio'])) {
-        // No se encontró el socio, no se puede actualizar la cuota
         return false;
     }
-    
-    // Esta es la variable correcta que necesitamos
     $id_socio = $datos_socio['id_socio'];
     
         $sql = "INSERT INTO cuotas_socios SET id_socio = ?";
@@ -185,6 +178,33 @@ class Socios {
                 WHERE id_usuario = ?;"; 
         $stmt = mysqli_prepare($this->db, $sql);
         mysqli_stmt_bind_param($stmt, "i", $id_usuario);
+    
+        if (mysqli_stmt_execute($stmt)) {
+            $resultado = mysqli_stmt_get_result($stmt);
+            $fila_de_datos = mysqli_fetch_assoc($resultado);
+            mysqli_stmt_close($stmt);
+            return $fila_de_datos; 
+        } 
+        else {     
+            mysqli_stmt_close($stmt);
+            return false;
+        }
+    }
+    
+    public function getFecha($id_usuario)
+    {
+        $datos_socio = $this->getIdSocio($id_usuario);
+
+        if (!$datos_socio || !isset($datos_socio['id_socio'])) {
+            return null;
+        }
+
+        $id_socio = $datos_socio['id_socio']; // Extraer el ID numérico
+
+        $sql = "SELECT fecha_generacion, fecha_vencimiento FROM cuotas_socios
+                WHERE id_socio = ?;";        
+        $stmt = mysqli_prepare($this->db, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $id_socio); // Ahora sí pasamos un entero
     
         if (mysqli_stmt_execute($stmt)) {
             $resultado = mysqli_stmt_get_result($stmt);

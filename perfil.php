@@ -86,7 +86,12 @@ include("conexion.php");
                  
                     $socio = new Socios($conexion);
                     $cuota= $socio->GetCuotaPendiente($resultado["id_usuario"]);
+                    $fechas = $socio->GetFecha($resultado["id_usuario"]);
+                    $soc = $socio->getIdSocio($resultado["id_usuario"]);
+
+                
                         if ($cuota){
+                            echo '<div>Fecha de la cuota: ' . $fechas["fecha_generacion"] . '. Fecha de vencimiento: ' . $fechas["fecha_vencimiento"] .'</div>';
                             echo '<div id="walletBrick_container" ></div>';
                         }else{
                             echo '<p>No tienes cuotas pendientes</p>';
