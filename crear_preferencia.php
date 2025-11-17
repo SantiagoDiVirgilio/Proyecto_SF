@@ -43,9 +43,14 @@ $fechaActual = new DateTime();
         ]);
     
 
-$success_url = "https://localhost/Pro/Graffo/success.php";
-$failure_url = "http://localhost/pro/Graffo/failure.php";
-$pending_url = "http://localhost/pro/Graffo/pending.php";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST'];
+$path = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+$base_url = $protocol . $host . $path;
+
+$success_url = $base_url . "/success.php";
+$failure_url = $base_url . "/failure.php";
+$pending_url = $base_url . "/pending.php";
 
 $client = new PreferenceClient();
 
