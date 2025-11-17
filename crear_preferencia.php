@@ -84,4 +84,6 @@ echo json_encode([
 ]);
 mysqli_stmt_close($stmt);
 mysqli_close($conexion);
+
+
 ?>

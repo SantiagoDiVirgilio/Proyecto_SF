@@ -61,13 +61,7 @@ $preference = $client->create([
     ],
     "external_reference" => $external_reference_data,
     ]);
-/*
- "expires" => true,
-    "expiration_date_from" => $fecha_inicio->format('Y-m-d\TH:i:s.vP'),
-    "expiration_date_to" => $fecha_fin->format('Y-m-d\TH:i:s.vP')
-*/ 
-//$preference->auto_return = "approved";
-//$_SESSION['preference_id'] = $preference->id;
+
 ob_end_clean(); 
 
 header('Content-Type: application/json');

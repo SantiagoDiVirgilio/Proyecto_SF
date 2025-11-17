@@ -45,7 +45,7 @@
 			<h2><span>Nuestro Equipo</span></h2>
 		</div>
 		<div class="team-container">
-			<!-- Tarjeta de Integrante 1 -->
+			
 			<div class="team-card">
 				<img src="imagenes/Mateo.webp" alt="Foto de Mateo Alvarez San Juan">
 				<div class="team-card-body">
@@ -54,7 +54,7 @@
 					<p class="team-description">Especialista en la interfaz de usuario y la experiencia de usuario (UI/UX), creando un diseño intuitivo y atractivo para los visitantes.</p>
 				</div>
 			</div>
-			<!-- Tarjeta de Integrante 2 -->
+			
 			<div class="team-card">
 				<img src="imagenes/Martin.webp" alt="Foto de Martin Rodolfo Castaño">
 				<div class="team-card-body">
@@ -63,7 +63,7 @@
 					<p class="team-description">Encargado de la integración de APIs y servicios externos, como la pasarela de pagos, y de la seguridad general del sitio web.</p>
 				</div>
 			</div>
-			<!-- Tarjeta de Integrante 3 -->
+			
 			<div class="team-card">
 				<img src="imagenes/Agustin.webp" alt="Foto de Agustin Dotto">
 				<div class="team-card-body">
@@ -72,7 +72,7 @@
 					<p class="team-description">Encargado de la documentación técnica del proyecto. Colaboración en la implementación de funcionalidades clave para la comunicación del sitio web.</p>
 				</div>
 			</div>
-			<!-- Tarjeta de Integrante 4 -->
+			
 			<div class="team-card">
 				<img src="imagenes/Santiago.webp" alt="Foto de Santiago Ezequiel Di Virgilio">
 				<div class="team-card-body">

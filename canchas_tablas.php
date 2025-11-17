@@ -30,7 +30,7 @@ include("conexion.php");
 	    <?php
 	    if (isset($_SESSION['mensaje'])) {
 	        echo '<div class="message">' . $_SESSION['mensaje'] . '</div>';
-	        unset($_SESSION['mensaje']); // Clear the message after displaying it
+	        unset($_SESSION['mensaje']);
 	    }
 	    ?>
 	
@@ -77,7 +77,7 @@ include("conexion.php");
 ?>
 </footer>
 
-<!-- Script de efecto zoom -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 <script>

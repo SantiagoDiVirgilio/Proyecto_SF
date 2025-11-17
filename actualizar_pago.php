@@ -20,10 +20,10 @@ if ($stmt_update === false) {
     exit;
 }
 
-// Vincular parámetros: s = string, i = integer
+
 mysqli_stmt_bind_param($stmt_update, "si", $estado, $id_pago);
 
-// Ejecutar la consulta
+
 if (mysqli_stmt_execute($stmt_update)) {
     echo json_encode(['success' => true, 'message' => 'Pago actualizado correctamente.']);
 } else {

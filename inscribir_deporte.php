@@ -19,7 +19,7 @@ $id_deporte = $_POST['id_deporte'];
 $fecha_inscripcion = time();
 $becado = 0;
 
-// Verificar si el usuario ya está inscripto
+
 $stmt_check = $conexion->prepare("SELECT id_inscripcion FROM inscripciones WHERE id_usuario = ? AND id_deporte = ?");
 $stmt_check->bind_param("ii", $id_usuario, $id_deporte);
 $stmt_check->execute();
@@ -33,7 +33,7 @@ if ($stmt_check->num_rows > 0) {
 }
 $stmt_check->close();
 
-// Insertar la nueva inscripción
+
 $stmt = $conexion->prepare("INSERT INTO inscripciones (id_usuario, id_deporte, fecha_inscripcion, becado) VALUES (?, ?, ?, ?)");
 $stmt->bind_param("iiii", $id_usuario, $id_deporte, $fecha_inscripcion, $becado);
 

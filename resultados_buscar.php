@@ -62,7 +62,7 @@ include("conexion.php");
                 </div>
             </div>
 <?php
-			} // fin while de BUSQUEDA DE USUARIOS
+			} 
 ?>
 		</section>
 </h3>

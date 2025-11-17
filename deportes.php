@@ -61,7 +61,7 @@ include("conexion.php");
             <?php }?>
         </div>
 
-<!-- Modal (Utiliza el mismo modal que alquileres.php)-->
+
 <div id="customHorariosModal" class="modal">
   <div class="custom-modal-content">
     <span class="custom-close">&times;</span>
@@ -71,7 +71,7 @@ include("conexion.php");
   </div>
 </div>
 
-<!-- HTML de la Ventana Modal de Iniciar Sesion o Registrarse -->
+
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -120,7 +120,7 @@ function toggleMenu() {
   }
 }
 
-// Funcion para abrir modal
+
 function openModal(canchaNombre, canchaHorario) {
     modalCanchaNombre.innerText = "Horarios para: " + canchaNombre;
     modalHorariosBody.innerHTML = (canchaHorario || "No disponible");
@@ -129,12 +129,12 @@ function openModal(canchaNombre, canchaHorario) {
 
 
 
-// Funcion para cerrar modal
+
 function closeModalFunction() {
     modal.style.display = "none";
 }
 
-// Evento de delegacion de modal
+
 document.addEventListener("click", function(event) {
     if (event.target.classList.contains("btn-ver-horarios")) {
         console.log("Botón 'Inscribirse' clickeado.");

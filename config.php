@@ -47,7 +47,7 @@ class Config {
             }
     }   
    public function GetMontoCuota() {
-    // Es buena práctica agregar LIMIT 1 si solo esperas un resultado
+  
     $sql = "SELECT monto_cuota FROM `config` LIMIT 1";
     $stmt = mysqli_prepare($this->db, $sql);
 
@@ -59,7 +59,7 @@ class Config {
         return $fila_de_datos['monto_cuota'] ?? null;
     } else {
         mysqli_stmt_close($stmt);
-        return false; // La consulta falló
+        return false; 
     }
 }
 }

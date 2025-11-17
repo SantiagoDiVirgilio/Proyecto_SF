@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: application/json');
 include("conexion.php");
 
-// 1. Validar y recoger los datos que vienen por POST desde el calendario
+
 $id_reserva = filter_input(INPUT_POST, 'id_reserva', FILTER_VALIDATE_INT);
 $preference_id = filter_input(INPUT_POST, 'preference_id', FILTER_SANITIZE_STRING);
 

@@ -11,13 +11,13 @@ $rol = $_POST['rol'];
 
 	$_SESSION['VARIABLE'] = session_id();
 
-	 // Comprueba si se ha seleccionado un nuevo rol
+	 
 	 if (!empty($rol)) {
-		// Si se selecciona un nuevo rol, actualízalo junto con los demás campos
+		
 		$consulta = mysqli_query($conexion, "UPDATE usuarios 
 		SET nombre='$nombre', dni='$dni', email='$email', telefono='$telefono', rol='$rol' WHERE id_usuario='$id_usuario'");
 	} else {
-		// Si no se selecciona un nuevo rol, conserva el rol original
+	
 		$consulta = mysqli_query($conexion, "UPDATE usuarios 
 		SET nombre='$nombre', dni='$dni', email='$email', telefono='$telefono' WHERE id_usuario='$id_usuario'");
 	}

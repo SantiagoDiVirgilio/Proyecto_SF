@@ -15,53 +15,6 @@ include("conexion.php");
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
-    <!-- AÑADIDO: Estilos del modal directamente en el archivo para garantizar su funcionamiento -->
-    <style>
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 9999; /* Z-index más alto */
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-        overflow: auto; /* Permitir scroll si es necesario */
-    }
-    
-    .modal.visible {
-        display: flex !important; /* Forzar con !important */
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .modal-contenido {
-        background-color: #fefefe;
-        padding: 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 1300px;
-        position: relative;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        margin: 20px auto;
-    }
-    
-    .cerrar {
-        color: #aaa;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 10000;
-    }
-    
-    .cerrar:hover,
-    .cerrar:focus {
-        color: #000;
-    }
-</style>
 </head>
 
 <body>
@@ -92,8 +45,6 @@ include("conexion.php");
 <?php
         $conexdeportes = mysqli_query($conexion, "SELECT * FROM deportes");
 ?>
-<!-- Llamamos a la base de datos para que cargue tanto, el tipo de deporte como las canchas de dicho 
-        deporte-->
         <h2 class="perfil"> 
         <?php
           if(isset($_SESSION['id_usuario'])){
@@ -134,12 +85,10 @@ include("conexion.php");
             </section>
         <?php }?>
 
-<!-- AÑADIDO: HTML del modal para el calendario -->
 <div id="miModal" class="modal">
     <div class="modal-contenido">
         <span class="cerrar" id="btnCerrarModal">&times;</span>
         <h2 id="modalTitle">Selecciona un Horario</h2>
-        <!-- El iframe donde se cargará el calendario -->
         <iframe id="calendarioFrame" style="width: 100%; height: 600px; border: none;"></iframe>
     </div>
 </div>
@@ -154,10 +103,8 @@ include("conexion.php");
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 <script>
-    // Espera a que todo el documento HTML esté cargado y listo
     document.addEventListener('DOMContentLoaded', function() {
 
-        // --- Lógica del Modal ---
         const modal = document.getElementById("miModal");
         const btnCerrar = document.getElementById("btnCerrarModal");
         const iframe = document.getElementById("calendarioFrame");
@@ -169,7 +116,7 @@ include("conexion.php");
                 console.error("El modal o el iframe no se encontraron en el DOM.");
                 return;
             }
-            // Actualizamos el título del modal con el nombre de la cancha
+         
             modalTitle.textContent = `Alquiler : ${canchaNombre}`;
             iframe.src = `Calendario.php?id_cancha=${canchaId}&modal=true`;
             modal.classList.add("visible");
@@ -181,7 +128,6 @@ include("conexion.php");
             iframe.src = "about:blank";
         }
 
-        // Asignar el evento de clic a CADA botón "Ver Horarios"
         botonesAbrir.forEach(function(boton) {
             boton.addEventListener("click", function() {
                 const canchaId = this.getAttribute("data-cancha-id");

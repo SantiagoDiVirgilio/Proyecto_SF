@@ -869,6 +869,133 @@ footer div a{
     text-align: center;
     font-size: 1.1rem;
 }
+ .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999; /* Z-index más alto */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        overflow: auto; /* Permitir scroll si es necesario */
+    }
+    
+    .modal.visible {
+        display: flex !important; /* Forzar con !important */
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .modal-contenido {
+        background-color: #fefefe;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 1300px;
+        position: relative;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        margin: 20px auto;
+    }
+    
+    .cerrar {
+        color: #aaa;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+    }
+    
+    .cerrar:hover,
+    .cerrar:focus {
+        color: #000;
+    }
+
+ /*
+    body { 
+      font-family: Arial, sans-serif;
+      
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: auto; 
+    }
+    */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1000; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5); 
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .modal-content input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .modal-content button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #btnConfirmarReserva { background-color: #28a745; color: white; }
+    #btnCancelarReserva { background-color: #dc3545; color: white; }
+
+   
+    .fc-day-today {
+      background-color: inherit !important;
+    }
+  /
+    .evento-reservado .fc-event-title {
+      text-align: center; 
+      width: 100%; 
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+      height: 100%;
+    }
+    
+    body.en-modal {
+      background-color: transparent; 
+    }
+    body.en-modal #page-header,
+    body.en-modal #page-footer {
+      display: none; 
+    }
+    #btnCerrarModal {
+      display: none; 
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1001;
+      padding: 10px 20px;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #SuperCalendario{
+      max-width: 150px;
+    }
 /*-----------------------------------------------VERSIÓN DE MÓBILES----------------------------------------------*/
 @media screen and (max-width: 480px) {
   .redes-sociales {
@@ -950,4 +1077,5 @@ footer div a{
   nav > ul {
     display: none;
   }
+}
 }

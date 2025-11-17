@@ -4,108 +4,17 @@
   <meta charset='utf-8' />
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/main.min.css' rel='stylesheet' />
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
-  <style>
-    body { 
-      font-family: Arial, sans-serif;
-      /* --- AÑADIDO: Aseguramos que el body ocupe toda la altura y usamos flexbox para el layout --- */
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: auto; 
-    }
-    
-    .modal {
-      display: none; /* Oculto por defecto */
-      position: fixed; 
-      z-index: 1000; 
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.5); /* Fondo oscuro semitransparente */
-    }
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 400px;
-      border-radius: 10px;
-      text-align: center;
-    }
-    .modal-content input {
-      width: calc(100% - 20px);
-      padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
-    .modal-content button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #btnConfirmarReserva { background-color: #28a745; color: white; }
-    #btnCancelarReserva { background-color: #dc3545; color: white; }
-
-    /* Regla para quitar el fondo amarillo del día actual */
-    .fc-day-today {
-      background-color: inherit !important;
-    }
-    /* Estilos para alinear el texto del evento */
-    .evento-reservado .fc-event-title {
-      text-align: center; /* Centra el texto horizontalmente */
-      width: 100%; /* Asegura que ocupe todo el ancho */
-      display: flex;
-      align-items: center; /* Centra verticalmente */
-      justify-content: center; /* Centra horizontalmente (para flex) */
-      height: 100%;
-    }
-    
-    /* Estilos para cuando la página se carga en un modal */
-    body.en-modal {
-      background-color: transparent; /* Fondo transparente para que se vea el del modal padre */
-    }
-    body.en-modal #page-header,
-    body.en-modal #page-footer {
-      display: none; /* Oculta header y footer */
-    }
-    #btnCerrarModal {
-      display: none; /* Oculto por defecto */
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1001;
-      padding: 10px 20px;
-      background-color: #6c757d;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #SuperCalendario{
-      max-width: 150px;
-    }
+  
 
   </style>
 </head>
-<?php
-  //include("pago.php");
-?>
 
 <body id="calendario-body">
   <div id="page-header">
-    <?php
-      // Si tienes un NAV.php o header, debería ir aquí.
-      // include("NAV.php"); 
-    ?>
   </div>
   <div id="page-container">
   <div id='calendar' class="superCalendario"></div>
 
-  <!-- HTML del Modal para confirmar la reserva -->
   <div id="reservaModal" class="modal">
     <div class="modal-content">
       <h3>Confirmar Reserva</h3>
@@ -122,7 +31,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-    // No se necesita aquí, se define más abajo
+  
 
     const calendarEl = document.getElementById('calendar');
     const modal = document.getElementById('reservaModal');
@@ -131,9 +40,9 @@
     const telefonoClienteInput = document.getElementById('telefonoCliente');
     const btnConfirmar = document.getElementById('btnConfirmarReserva');
     const btnCancelar = document.getElementById('btnCancelarReserva');
-    let selectionInfo = null; // Para guardar la información de la selección
+    let selectionInfo = null; 
 
-    const urlParams = new URLSearchParams(window.location.search); // Declaración única
+    const urlParams = new URLSearchParams(window.location.search); 
     const esModal = urlParams.get('modal') === 'true';
     const idCancha = urlParams.get('id_cancha') || '1';
     
@@ -142,7 +51,6 @@
         const btnCerrar = document.getElementById('btnCerrarModal');
         btnCerrar.style.display = 'block';
         btnCerrar.onclick = function() {
-            // Llama a la función para cerrar el modal en la ventana padre
             if (window.parent && typeof window.parent.closeCalendarioModal === 'function') {
                 window.parent.closeCalendarioModal();
             }
@@ -218,9 +126,9 @@
         modal.style.display = "block";
       }
     });
-    // Lógica de los botones del modal
+    
     btnConfirmar.onclick = function(event) { 
-      // Prevenir que el formulario se envíe de la forma tradicional
+     
       event.preventDefault();
 
       const nombreCliente = nombreClienteInput.value;
@@ -232,11 +140,11 @@
       }
       if (!selectionInfo) return;
 
-      // Preparar los datos para enviar
+    
       const formData = new FormData();
       formData.append('nombre', nombreCliente);
       formData.append('telefono', numeroTelefono);
-      // Extraemos los datos de fecha y hora del objeto 'selectionInfo'
+      
       formData.append('fecha_reserva', selectionInfo.start.toISOString().split('T')[0]); // Formato YYYY-MM-DD
       formData.append('hora_inicio', selectionInfo.start.getHours()); // Formato 24h (ej: 18)
       formData.append('hora_fin', selectionInfo.end.getHours()); // Formato 24h (ej: 19)
@@ -244,23 +152,21 @@
 
       fetch('registro_reserva.php', {
         method: 'POST',
-        body: formData // Simplemente pasamos el objeto formData directamente
+        body: formData 
       })
       .then(response => response.json())
       .then(reservaData => {
         if (reservaData.success && reservaData.id_reserva) {
-          // La reserva se creó, ahora redirigimos al usuario a la página de pago.
-          // La página de pago se encargará de crear la preferencia y mostrar el botón.
+          
           window.location.href = `pago.php?id_cancha=${idCancha}&id_reserva=${reservaData.id_reserva}`;
         } else {
-          // Si la creación de la reserva falló, lanzamos un error.
+         .
           throw new Error('Error al guardar la reserva: ' + reservaData.message);
         }
       })
       .catch(error => {
         console.error('Error en el proceso de reserva y pago:', error);
         alert('Ocurrió un error: ' + error.message);
-        // Cerramos el modal si algo falla para que el usuario pueda intentarlo de nuevo.
         modal.style.display = "none";
         calendar.unselect();
       });
