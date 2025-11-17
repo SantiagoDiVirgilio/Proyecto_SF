@@ -4,8 +4,86 @@
   <meta charset='utf-8' />
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/main.min.css' rel='stylesheet' />
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
-  
+  <style>
+    body { 
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: auto; 
+    }
+    
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1000; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5); 
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .modal-content input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .modal-content button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #btnConfirmarReserva { background-color: #28a745; color: white; }
+    #btnCancelarReserva { background-color: #dc3545; color: white; }
 
+    .fc-day-today {
+      background-color: inherit !important;
+    }
+    .evento-reservado .fc-event-title {
+      text-align: center; 
+      width: 100%; 
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      height: 100%;
+    }
+    
+    body.en-modal {
+      background-color: transparent; 
+    }
+    body.en-modal #page-header,
+    body.en-modal #page-footer {
+      display: none; 
+    }
+    #btnCerrarModal {
+      display: none; 
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1001;
+      padding: 10px 20px;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #SuperCalendario{
+      max-width: 150px;
+    }
   </style>
 </head>
 
@@ -15,6 +93,7 @@
   <div id="page-container">
   <div id='calendar' class="superCalendario"></div>
 
+ 
   <div id="reservaModal" class="modal">
     <div class="modal-content">
       <h3>Confirmar Reserva</h3>
@@ -120,7 +199,7 @@
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
         const fechaInicio = info.start.toLocaleDateString('es-ES', options);
         infoReservaEl.innerText = `Horario seleccionado: ${fechaInicio}`;    
-        // Limpiar el input y mostrar el modal
+    
         nombreClienteInput.value = '';
         telefonoClienteInput.value='';
         modal.style.display = "block";
@@ -128,7 +207,7 @@
     });
     
     btnConfirmar.onclick = function(event) { 
-     
+      
       event.preventDefault();
 
       const nombreCliente = nombreClienteInput.value;
@@ -140,11 +219,11 @@
       }
       if (!selectionInfo) return;
 
-    
+      
       const formData = new FormData();
       formData.append('nombre', nombreCliente);
       formData.append('telefono', numeroTelefono);
-      
+     
       formData.append('fecha_reserva', selectionInfo.start.toISOString().split('T')[0]); // Formato YYYY-MM-DD
       formData.append('hora_inicio', selectionInfo.start.getHours()); // Formato 24h (ej: 18)
       formData.append('hora_fin', selectionInfo.end.getHours()); // Formato 24h (ej: 19)
@@ -157,16 +236,17 @@
       .then(response => response.json())
       .then(reservaData => {
         if (reservaData.success && reservaData.id_reserva) {
-          
+   
           window.location.href = `pago.php?id_cancha=${idCancha}&id_reserva=${reservaData.id_reserva}`;
         } else {
-         .
+        
           throw new Error('Error al guardar la reserva: ' + reservaData.message);
         }
       })
       .catch(error => {
         console.error('Error en el proceso de reserva y pago:', error);
         alert('Ocurrió un error: ' + error.message);
+     
         modal.style.display = "none";
         calendar.unselect();
       });
