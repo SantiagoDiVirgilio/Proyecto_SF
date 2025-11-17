@@ -199,12 +199,12 @@ class Socios {
             return null;
         }
 
-        $id_socio = $datos_socio['id_socio']; // Extraer el ID numérico
+        $id_socio = $datos_socio['id_socio']; 
 
         $sql = "SELECT fecha_generacion, fecha_vencimiento FROM cuotas_socios
                 WHERE id_socio = ?;";        
         $stmt = mysqli_prepare($this->db, $sql);
-        mysqli_stmt_bind_param($stmt, "i", $id_socio); // Ahora sí pasamos un entero
+        mysqli_stmt_bind_param($stmt, "i", $id_socio); 
     
         if (mysqli_stmt_execute($stmt)) {
             $resultado = mysqli_stmt_get_result($stmt);

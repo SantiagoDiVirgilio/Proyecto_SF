@@ -9,7 +9,8 @@ require __DIR__ . '/vendor/autoload.php';
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 
-MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a3bc8b5805d6f726606e-2946101958");
+require_once 'mp_config.php'; 
+MercadoPagoConfig::setAccessToken(MP_ACCESS_TOKEN);
 
 if (!isset($_GET['id_usuario']) ) {
     header('Content-Type: application/json');
@@ -24,7 +25,7 @@ $fecha_fin = new DateTime('now', $timezone);
 $fecha_fin->modify('+1 minutes'); 
 $fechaActual = new DateTime();
 
-$success_url = "Graffo/successCuota.php";
+$success_url = "https://localhost/pro/Graffo/successCuota.php";
 $failure_url = "http://localhost/pro/Graffo/failure.php";
 $pending_url = "http://localhost/pro/Graffo/pending.php";
 include("config.php");

@@ -54,7 +54,7 @@
             $socio->createSocio($id_usuario);
             $socio->generarCuota($id_usuario );
             $id_pago = $socio->AcreditarPagar($preference_id, $monto, $status);
-            $socio->PagarCuotaSocio($id_usuario,$id_pago,"pagoenelif");
+            $socio->PagarCuotaSocio($id_usuario,$id_pago,$status);
         }     
     }
     ?>

@@ -36,10 +36,10 @@ include("conexion.php");
     <?php
    include("conexion.php");
    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-        // Si se pasa un ID por la URL, usarlo para ver otro perfil
+        
         $id = $_GET['id'];
     } else {
-        // Si no, usar el ID del usuario que inició sesión
+        
         $id = $_SESSION['id_usuario'];
     }
 

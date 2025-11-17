@@ -9,7 +9,8 @@ require __DIR__ . '/vendor/autoload.php';
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 
-MercadoPagoConfig::setAccessToken("APP_USR-2782007117684649-102607-32961f43b793a3bc8b5805d6f726606e-2946101958");
+require_once 'mp_config.php'; // Incluir el archivo de configuración
+MercadoPagoConfig::setAccessToken(MP_ACCESS_TOKEN);
 
 if (!isset($_GET['id_cancha']) || !isset($_GET['id_reserva'])) {
     header('Content-Type: application/json');
